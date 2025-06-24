@@ -7,7 +7,6 @@ namespace physics {
   class PhysicsObject {
   private:
   public:
-    virtual void addForce(double value, sf::Angle angle) = 0;
   };
 }
 
