@@ -1,14 +1,26 @@
-#ifndef SPACESHIP_CORE_HPP
-#define SPACESHIP_CORE_HPP
+#ifndef PARTS_SPACESHIP_CORE_HPP
+#define PARTS_SPACESHIP_CORE_HPP
 
 #include "physics/physics_object.hpp"
+
+#include "part.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
 
 namespace parts {
-  class SpaceshipCore : sf::Drawable, physics::PhysicsObject {
+  class SpaceshipCore : Part, sf::Drawable, physics::PhysicsObject {
   private:
+    int hp;
+    int mass;
   public:
+    SpaceshipCore(int hp, int mass);
+
+    virtual int getHp() override;
+    virtual int getMass() override;
+
+    // SpaceshipCore by itself does not implement things like getChildren()
+    // because SpaceshipCore is still an abstract class
+    // It should implement all the methods related to steering and similar things though
   };
 }
 

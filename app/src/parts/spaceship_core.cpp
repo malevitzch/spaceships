@@ -1,0 +1,8 @@
+#include "parts/spaceship_core.hpp"
+
+namespace parts {
+  //TODO: properly call constructors of parent classes
+  SpaceshipCore::SpaceshipCore(int hp, int mass) : hp(hp), mass(mass) {}
+  int SpaceshipCore::getHp() {return hp;}
+  int SpaceshipCore::getMass() {return mass;}
+}
