@@ -1,5 +1,5 @@
-#ifndef PARTS_PART_HPP
-#define PARTS_PART_HPP
+#ifndef PART_HPP
+#define PART_HPP
 
 #include <vector>
 #include <memory>

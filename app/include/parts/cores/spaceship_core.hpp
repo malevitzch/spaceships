@@ -1,14 +1,17 @@
-#ifndef PARTS_SPACESHIP_CORE_HPP
-#define PARTS_SPACESHIP_CORE_HPP
+#ifndef SPACESHIP_CORE_HPP
+#define SPACESHIP_CORE_HPP
 
 #include "physics/physics_object.hpp"
 
-#include "part.hpp"
+#include "parts/part.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
 
 namespace parts {
-  class SpaceshipCore : Part, sf::Drawable, physics::PhysicsObject {
+  class SpaceshipCore : 
+    public Part,
+    public sf::Drawable,
+    public physics::PhysicsObject {
   private:
     int hp;
     int mass;

@@ -1,4 +1,4 @@
-#include "parts/spaceship_core.hpp"
+#include "parts/cores/spaceship_core.hpp"
 
 namespace parts {
   //TODO: properly call constructors of parent classes

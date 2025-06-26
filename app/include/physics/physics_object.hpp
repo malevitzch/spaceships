@@ -8,9 +8,10 @@
 namespace physics {
   class PhysicsObject {
   private:
+  protected:
     PhysicsTransform transform;
   public:
-    virtual void physicsTick(double dt);
+    virtual void physicsTick(double dt) = 0;
   };
 }
 
