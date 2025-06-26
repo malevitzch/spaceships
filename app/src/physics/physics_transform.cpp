@@ -19,27 +19,6 @@ namespace physics {
     angular_velocity(angular_velocity),
     angular_acceleration(angular_acceleration) {}
 
-
-  sf::Vector2<double> PhysicsTransform::getPosition() {
-    return position;
-  }
-  sf::Vector2<double> PhysicsTransform::getVelocity() {
-    return velocity;
-  }
-  sf::Vector2<double> PhysicsTransform::getAcceleration() {
-    return acceleration;
-  }
-
-  double PhysicsTransform::getAngle() {
-    return angle;
-  }
-  double PhysicsTransform::getAngularVelocity() {
-    return angular_velocity;
-  }
-  double PhysicsTransform::getAngularAcceleration() {
-    return angular_acceleration;
-  }
-
   void PhysicsTransform::tick(double dt) {
     position += velocity * dt + (acceleration * (dt * dt)) / 2.0;
     velocity += acceleration * dt;

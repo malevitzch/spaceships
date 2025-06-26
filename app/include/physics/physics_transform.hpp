@@ -5,8 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 
 namespace physics {
-  class PhysicsTransform {
-  private:
+  struct PhysicsTransform {
     sf::Vector2<double> position = {0, 0};
     sf::Vector2<double> velocity = {0, 0};
     sf::Vector2<double> acceleration = {0, 0};
@@ -15,8 +14,8 @@ namespace physics {
     double angle = 0;
     double angular_velocity = 0;
     double angular_acceleration = 0;
-  public:
     PhysicsTransform() = default;
+
     PhysicsTransform(
       sf::Vector2<double> position,
       sf::Vector2<double> velocity,
@@ -25,15 +24,7 @@ namespace physics {
       double angular_velocity,
       double angular_acceleration);
 
-    sf::Vector2<double> getPosition();
-    sf::Vector2<double> getVelocity();
-    sf::Vector2<double> getAcceleration();
-
-    double getAngle();
-    double getAngularVelocity();
-    double getAngularAcceleration();
-
-    void tick(double dt);
+      void tick(double dt);
   };
 }
 
