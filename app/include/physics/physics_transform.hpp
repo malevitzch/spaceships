@@ -27,6 +27,22 @@ namespace physics {
 
       virtual void tick(double dt);
   };
+
+  struct CappedTransform : public PhysicsTransform {
+    const double velocity_cap;
+    const double angular_velocity_cap;
+    CappedTransform(
+      util::Vec2d position,
+      util::Vec2d velocity,
+      util::Vec2d acceleration,
+      util::Angle angle,
+      double angular_velocity,
+      double angular_acceleration,
+      double velocity_cap,
+      double angular_velocity_cap);
+
+  virtual void tick(double dt) override;
+  };
 }
 
 #endif

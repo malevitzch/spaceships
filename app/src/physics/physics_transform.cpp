@@ -26,4 +26,29 @@ namespace physics {
     angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0) / 100.0;
     angular_velocity += angular_acceleration * dt;
   }
+
+  CappedTransform::CappedTransform(
+      util::Vec2d position,
+      util::Vec2d velocity,
+      util::Vec2d acceleration,
+      util::Angle angle,
+      double angular_velocity,
+      double angular_acceleration,
+      double velocity_cap,
+      double angular_velocity_cap) 
+  : 
+  PhysicsTransform(
+    position,
+    velocity,
+    acceleration,
+    angle,
+    angular_velocity,
+    angular_acceleration),
+  velocity_cap(velocity_cap),
+  angular_velocity_cap(angular_velocity_cap) {
+  }
+  void CappedTransform::tick(double dt) {
+    //FIXME: implement
+  }
+
 }
