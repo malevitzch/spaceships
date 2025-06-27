@@ -2,13 +2,13 @@
 #define PHYSICS_TRANSFORM_HPP
 
 #include <SFML/System/Angle.hpp>
-#include <SFML/System/Vector2.hpp>
+#include "utility/vec2d.hpp"
 
 namespace physics {
   struct PhysicsTransform {
-    sf::Vector2<double> position = {0, 0};
-    sf::Vector2<double> velocity = {0, 0};
-    sf::Vector2<double> acceleration = {0, 0};
+    util::Vec2d position = {0, 0};
+    util::Vec2d velocity = {0, 0};
+    util::Vec2d acceleration = {0, 0};
 
     // All angles are in radians
     double angle = 0;
@@ -17,9 +17,9 @@ namespace physics {
     PhysicsTransform() = default;
 
     PhysicsTransform(
-      sf::Vector2<double> position,
-      sf::Vector2<double> velocity,
-      sf::Vector2<double> acceleration,
+      util::Vec2d position,
+      util::Vec2d velocity,
+      util::Vec2d acceleration,
       double angle,
       double angular_velocity,
       double angular_acceleration);

@@ -1,5 +1,4 @@
 
-
 set(SOURCES
 
   parts/part.cpp
@@ -7,6 +6,9 @@ set(SOURCES
   parts/cores/simple_core.cpp
 
   physics/physics_transform.cpp
+
+  utility/vec2d.cpp
+  utility/angle.cpp
 )
 
 add_executable(main main.cpp ${SOURCES})

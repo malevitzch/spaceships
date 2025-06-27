@@ -5,9 +5,9 @@
 
 namespace physics {
   PhysicsTransform::PhysicsTransform(
-    sf::Vector2<double> position,
-    sf::Vector2<double> velocity,
-    sf::Vector2<double> acceleration,
+    util::Vec2d position,
+    util::Vec2d velocity,
+    util::Vec2d acceleration,
     double angle,
     double angular_velocity,
     double angular_acceleration) 

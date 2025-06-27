@@ -22,6 +22,27 @@ namespace util {
     return Vec2d(this->x / scalar, this->y / scalar);
   }
 
+  Vec2d& Vec2d::operator+=(const Vec2d& vec) {
+    this->x += vec.x;
+    this->y += vec.y;
+    return *this;
+  }
+  Vec2d& Vec2d::operator-=(const Vec2d& vec) {
+    this->x -= vec.x;
+    this->y -= vec.y;
+    return *this;
+  }
+  Vec2d& Vec2d::operator*=(const double scalar) {
+    this->x *= scalar;
+    this->y *= scalar;
+    return *this;
+  }
+  Vec2d& Vec2d::operator/=(const double scalar) {
+    this->x /= scalar;
+    this->y /= scalar;
+    return *this;
+  }
+
   Vec2d::operator sf::Vector2f() const {
     return sf::Vector2f(float(x), float(y));
   }
