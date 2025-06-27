@@ -3,6 +3,7 @@
 
 #include <SFML/System/Angle.hpp>
 #include "utility/vec2d.hpp"
+#include "utility/angle.hpp"
 
 namespace physics {
   struct PhysicsTransform {
@@ -11,7 +12,7 @@ namespace physics {
     util::Vec2d acceleration = {0, 0};
 
     // All angles are in radians
-    double angle = 0;
+    util::Angle angle = 0;
     double angular_velocity = 0;
     double angular_acceleration = 0;
     PhysicsTransform() = default;
@@ -20,11 +21,11 @@ namespace physics {
       util::Vec2d position,
       util::Vec2d velocity,
       util::Vec2d acceleration,
-      double angle,
+      util::Angle angle,
       double angular_velocity,
       double angular_acceleration);
 
-      void tick(double dt);
+      virtual void tick(double dt);
   };
 }
 

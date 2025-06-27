@@ -25,8 +25,10 @@ namespace util {
     double get() const;
 
     operator double() const;
-
+    double getDegrees();
   };
+
+  Angle degrees(double degrees);
 }
 
 #endif

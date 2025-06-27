@@ -50,4 +50,14 @@ namespace util {
   Angle::operator double() const {
     return get();
   }
+
+  double Angle::getDegrees() {
+    static constexpr double conversion_factor = 360 / twopi;
+    return val * conversion_factor;
+  }
+
+  Angle degrees(double degrees) {
+    static constexpr double conversion_factor = twopi / 360;
+    return Angle(degrees * conversion_factor);
+  }
 }

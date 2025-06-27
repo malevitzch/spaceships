@@ -8,7 +8,7 @@ namespace physics {
     util::Vec2d position,
     util::Vec2d velocity,
     util::Vec2d acceleration,
-    double angle,
+    util::Angle angle,
     double angular_velocity,
     double angular_acceleration) 
     :
@@ -23,9 +23,7 @@ namespace physics {
     position += (velocity * dt + (acceleration * (dt * dt)) / 2.0) / 100.0;
     velocity += acceleration * dt;
 
-    angle = std::fmod(
-      (angle + (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0) / 100.0), 
-      (2 * std::numbers::pi));
+    angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0) / 100.0;
     angular_velocity += angular_acceleration * dt;
   }
 }
