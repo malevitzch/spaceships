@@ -6,6 +6,7 @@ set(SOURCES
   parts/cores/simple_core.cpp
 
   physics/physics_transform.cpp
+  physics/physics_object.cpp
 
   utility/vec2d.cpp
   utility/angle.cpp

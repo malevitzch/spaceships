@@ -14,7 +14,7 @@ namespace parts {
   }
   void SimpleCore::physicsTick(double dt) {
     double thrust = 0.00001;
-    sf::Vector2f acceleration = 
+    sf::Vector2f acceleration =
       {(float)(thrust * cos(transform.angle)), (float)(thrust * sin(transform.angle))};
     transform.acceleration.x += acceleration.x;
     transform.acceleration.y += acceleration.y;

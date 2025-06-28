@@ -32,6 +32,9 @@ namespace physics {
     const double velocity_cap;
     const double angular_velocity_cap;
     CappedTransform(
+      double velocity_cap,
+      double angular_velocity_cap);
+    CappedTransform(
       util::Vec2d position,
       util::Vec2d velocity,
       util::Vec2d acceleration,

@@ -11,6 +11,7 @@ namespace physics {
   protected:
     PhysicsTransform transform;
   public:
+    PhysicsObject(PhysicsTransform transform);
     virtual void physicsTick(double dt) = 0;
   };
 }

@@ -51,6 +51,22 @@ namespace util {
     return std::sqrt(x*x + y*y);
   }
 
+  Vec2d Vec2d::unit() const {
+    double length = magnitude();
+    // This is reasonable behavior to avoid division by 0
+    if(length == 0) {
+      return {0, 0};
+    }
+    return Vec2d(*this) / length;
+  }
+
+  Vec2d& Vec2d::rescale(const double length) {
+    if(magnitude() == 0) {
+      return *this;
+    }
+    (*this) *= (length / magnitude());
+    return *this;
+  }
 
   Vec2d operator*(const double scalar, const Vec2d& vec) {
     return Vec2d(vec.x * scalar, vec.y * scalar);

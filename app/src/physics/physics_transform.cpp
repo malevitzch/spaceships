@@ -28,15 +28,15 @@ namespace physics {
   }
 
   CappedTransform::CappedTransform(
-      util::Vec2d position,
-      util::Vec2d velocity,
-      util::Vec2d acceleration,
-      util::Angle angle,
-      double angular_velocity,
-      double angular_acceleration,
-      double velocity_cap,
-      double angular_velocity_cap) 
-  : 
+    util::Vec2d position,
+    util::Vec2d velocity,
+    util::Vec2d acceleration,
+    util::Angle angle,
+    double angular_velocity,
+    double angular_acceleration,
+    double velocity_cap,
+    double angular_velocity_cap) 
+  :
   PhysicsTransform(
     position,
     velocity,
@@ -47,8 +47,22 @@ namespace physics {
   velocity_cap(velocity_cap),
   angular_velocity_cap(angular_velocity_cap) {
   }
+  CappedTransform::CappedTransform(
+    double velocity_cap,
+    double angular_velocity_cap)
+  :
+  physics::PhysicsTransform(),
+  velocity_cap(velocity_cap),
+  angular_velocity_cap(angular_velocity_cap) {
+  }
   void CappedTransform::tick(double dt) {
-    //FIXME: implement
+    PhysicsTransform::tick(dt);
+    if(velocity.magnitude() >= velocity_cap) {
+      velocity.rescale(velocity_cap);
+    }
+    if(angular_velocity >= angular_velocity_cap) {
+      angular_velocity = angular_velocity_cap;
+    }
   }
 
 }
