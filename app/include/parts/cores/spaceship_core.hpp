@@ -8,7 +8,7 @@
 #include <SFML/Graphics/Drawable.hpp>
 
 namespace parts {
-  class SpaceshipCore : 
+  class SpaceshipCore :
     public Part,
     public sf::Drawable,
     public physics::PhysicsObject {

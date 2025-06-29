@@ -20,10 +20,12 @@ namespace physics {
     angular_acceleration(angular_acceleration) {}
 
   void PhysicsTransform::tick(double dt) {
+    // TODO: make position not directly linked to the pixel position on the 
+    // display
     position += (velocity * dt + (acceleration * (dt * dt)) / 2.0) / 100.0;
     velocity += acceleration * dt;
 
-    angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0) / 100.0;
+    angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0);
     angular_velocity += angular_acceleration * dt;
   }
 

@@ -6,7 +6,7 @@ namespace parts {
     int hp,
     int mass)
   :
-    physics::PhysicsObject(physics::CappedTransform(1, 1)),
+    physics::PhysicsObject(physics::CappedTransform(10000, 6)),
     hp(hp),
     mass(mass) {}
   int SpaceshipCore::getHp() {return hp;}

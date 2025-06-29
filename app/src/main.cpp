@@ -17,7 +17,20 @@ int main() {
         window.close();
       }
     }
-    double dt = clock.getElapsedTime().asMilliseconds();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+      core.turn_on_engines();
+    } else {
+      core.turn_off_engines();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+      core.angular_left();
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+      core.angular_right();
+    } else {
+      core.angular_off();
+    }
+    // dt is in seconds
+    double dt = clock.getElapsedTime().asSeconds();
     clock.restart();
     core.physicsTick(dt);
 
