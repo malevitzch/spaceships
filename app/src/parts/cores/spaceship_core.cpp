@@ -11,4 +11,5 @@ namespace parts {
     mass(mass) {}
   int SpaceshipCore::getHp() {return hp;}
   int SpaceshipCore::getMass() {return mass;}
+
 }

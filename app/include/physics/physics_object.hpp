@@ -13,6 +13,8 @@ namespace physics {
   public:
     PhysicsObject(PhysicsTransform transform);
     virtual void physicsTick(double dt) = 0;
+
+    void setPosition(util::Vec2d target);
   };
 }
 

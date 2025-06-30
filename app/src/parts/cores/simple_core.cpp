@@ -9,21 +9,22 @@ namespace parts {
     transform.position = {500, 500};
   }
   void SimpleCore::physicsTick(double dt) {
-    //FIXME: we always add the acceleration if the engines are live
-    // when in reality it should only be added when it matters
-    // We will do a band aid solution that just simply 
-    // does not allow for other sources of acceleration
+    // We first add the thrust to the transform (if engines are on),
+    // then we compute the physics tick
+    // And finally we subtract it back
+    util::Vec2d acceleration = {0, 0};
     if(engines_on) {
-      util::Vec2d acceleration =
+      acceleration =
         {(float)(thrust * cos(transform.angle)), (float)(thrust * sin(transform.angle))};
-      transform.acceleration = acceleration;
-    } else {
-      transform.acceleration = {0, 0};
     }
 
-    transform.angular_acceleration = angular_thrust * angular_engines;
+    transform.acceleration += acceleration;
+    transform.angular_acceleration += angular_thrust * angular_engines;
 
-  transform.tick(dt);
+    transform.tick(dt);
+
+    transform.acceleration -= acceleration;
+    transform.angular_acceleration -= angular_thrust * angular_engines;
   }
   void SimpleCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     sf::RectangleShape shape;

@@ -16,6 +16,12 @@ int main() {
       if (event->is<sf::Event::Closed>()) {
         window.close();
       }
+      if (event->is<sf::Event::MouseButtonPressed>()) {
+        const auto& mouseEvent = event->getIf<sf::Event::MouseButtonPressed>();
+        if(mouseEvent->button == sf::Mouse::Button::Left) {
+          core.setPosition({(double)mouseEvent->position.x, (double)mouseEvent->position.y});
+        }
+      }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
       core.turn_on_engines();
