@@ -14,7 +14,11 @@ namespace physics {
     PhysicsObject(PhysicsTransform transform);
     virtual void physicsTick(double dt) = 0;
 
+    util::Vec2d getPosition() const;
     void setPosition(util::Vec2d target);
+
+    util::Angle getAngle() const;
+    void setAngle(util::Angle angle);
   };
 }
 
