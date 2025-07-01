@@ -31,14 +31,14 @@ namespace physics {
     transform.angle = angle;
   }
 
-  util::Angle PhysicsObject::getAngularVelocity() const {
+  double PhysicsObject::getAngularVelocity() const {
     return transform.angular_velocity;
   }
   void PhysicsObject::setAngularVelocity(util::Angle angular_velocity) {
     transform.angular_velocity = angular_velocity;
   }
 
-  util::Angle PhysicsObject::getAngularAcceleration() const {
+  double PhysicsObject::getAngularAcceleration() const {
     return transform.angular_acceleration;
   }
   void PhysicsObject::setAngularAcceleration(util::Angle angular_acceleration) {

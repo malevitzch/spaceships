@@ -5,6 +5,8 @@
 
 #include "parts/part.hpp"
 
+#include "controls/player_input.hpp"
+
 #include <SFML/Graphics/Drawable.hpp>
 
 namespace parts {
@@ -23,7 +25,8 @@ namespace parts {
 
     // SpaceshipCore by itself does not implement things like getChildren()
     // because SpaceshipCore is still an abstract class
-    // It should implement all the methods related to steering and similar things though
+
+    virtual void handleInstructions(controls::PlayerInput input) = 0;
   };
 }
 

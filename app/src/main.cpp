@@ -23,18 +23,12 @@ int main() {
         }
       }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-      core.turn_on_engines();
-    } else {
-      core.turn_off_engines();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-      core.angular_left();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) ) {
-      core.angular_right();
-    } else {
-      core.angular_off();
-    }
+    controls::PlayerInput player_input;
+    player_input.ahead = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W);
+    player_input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A);
+    player_input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D);
+
+    core.handleInstructions(player_input);
     // dt is in seconds
     double dt = clock.getElapsedTime().asSeconds();
     clock.restart();

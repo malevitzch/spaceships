@@ -26,10 +26,10 @@ namespace physics {
     util::Angle getAngle() const;
     void setAngle(util::Angle angle);
 
-    util::Angle getAngularVelocity() const;
+    double getAngularVelocity() const;
     void setAngularVelocity(util::Angle angle);
 
-    util::Angle getAngularAcceleration() const;
+    double getAngularAcceleration() const;
     void setAngularAcceleration(util::Angle angle);
   };
 }

@@ -10,6 +10,7 @@ namespace controls {
 
     bool ahead = false;
 
+    PlayerInput() = default;
     PlayerInput(bool left, bool right, bool ahead);
   };
 }

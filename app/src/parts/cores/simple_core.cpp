@@ -3,7 +3,6 @@
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
-
 namespace parts {
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
     transform.position = {500, 500};
@@ -44,6 +43,29 @@ namespace parts {
   }
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
     return {};
+  }
+  void SimpleCore::handleInstructions(controls::PlayerInput input) {
+    if(input.ahead) {
+      turn_on_engines();
+    } else {
+      turn_off_engines();
+    }
+    // Pressing both buttons at once makes the ship try to stablize rotation
+    if(input.left && input.right) {
+      if(getAngularVelocity() > 0) {
+        angular_left();
+      } else if(getAngularVelocity() < 0) {
+        angular_right();
+      } else {
+        angular_off();
+      }
+    } else if(input.left) {
+      angular_left();
+    } else if(input.right) {
+      angular_right();
+    } else {
+      angular_off();
+    }
   }
 
   void SimpleCore::turn_on_engines() {

@@ -10,6 +10,8 @@ set(SOURCES
 
   utility/vec2d.cpp
   utility/angle.cpp
+
+  controls/player_input.cpp
 )
 
 add_executable(main main.cpp ${SOURCES})

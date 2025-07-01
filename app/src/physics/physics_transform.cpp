@@ -62,8 +62,8 @@ namespace physics {
     if(velocity.magnitude() >= velocity_cap) {
       velocity.rescale(velocity_cap);
     }
-    if(angular_velocity >= angular_velocity_cap) {
-      angular_velocity = angular_velocity_cap;
+    if(std::fabs(angular_velocity) >= angular_velocity_cap) {
+      angular_velocity = angular_velocity_cap * (angular_velocity < 0 ? -1 : 1);
     }
   }
 
