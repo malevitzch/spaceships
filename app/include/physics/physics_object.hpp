@@ -17,8 +17,20 @@ namespace physics {
     util::Vec2d getPosition() const;
     void setPosition(util::Vec2d target);
 
+    util::Vec2d getVelocity() const;
+    void setVelocity(util::Vec2d target);
+
+    util::Vec2d getAcceleration() const;
+    void setAcceleration(util::Vec2d target);
+
     util::Angle getAngle() const;
     void setAngle(util::Angle angle);
+
+    util::Angle getAngularVelocity() const;
+    void setAngularVelocity(util::Angle angle);
+
+    util::Angle getAngularAcceleration() const;
+    void setAngularAcceleration(util::Angle angle);
   };
 }
 

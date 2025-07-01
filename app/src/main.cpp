@@ -28,9 +28,9 @@ int main() {
     } else {
       core.turn_off_engines();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
       core.angular_left();
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) ) {
       core.angular_right();
     } else {
       core.angular_off();
