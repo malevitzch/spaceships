@@ -17,5 +17,9 @@ namespace parts {
     }
     return mass;
   }
+  
+  std::vector<std::shared_ptr<Part>> Part::getChildren() {
+    return {};
+  }
 
 }

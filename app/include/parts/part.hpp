@@ -13,7 +13,7 @@ namespace parts {
     virtual int getMass() = 0;
     virtual int getSubtreeMass();
 
-    virtual std::vector<std::shared_ptr<Part>> getChildren() = 0;
+    virtual std::vector<std::shared_ptr<Part>> getChildren();
   };
 
 }

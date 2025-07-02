@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
-#include "parts/cores/simple_core.hpp"
+#include "parts/cores/omni_core.hpp"
 
 
 // TODO: this should not be a part of the main function but rather a part of 
@@ -11,7 +11,8 @@ int main() {
   window.setPosition({0, 0});
   window.setFramerateLimit(144);
 
-  parts::SimpleCore core;
+  parts::OmniCore core;
+  core.setPosition({500, 500});
   sf::Clock clock;
 
   while (window.isOpen()) {

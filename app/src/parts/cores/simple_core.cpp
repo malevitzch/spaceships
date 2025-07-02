@@ -46,42 +46,42 @@ namespace parts {
   }
   void SimpleCore::handleInstructions(controls::PlayerInput input) {
     if(input.ahead) {
-      turn_on_engines();
+      turnOnEngines();
     } else {
-      turn_off_engines();
+      turnOffEngines();
     }
     // Pressing both buttons at once makes the ship try to stablize rotation
     if(input.left && input.right) {
       if(getAngularVelocity() > 0) {
-        angular_left();
+        angularLeft();
       } else if(getAngularVelocity() < 0) {
-        angular_right();
+        angularRight();
       } else {
-        angular_off();
+        angularOff();
       }
     } else if(input.left) {
-      angular_left();
+      angularLeft();
     } else if(input.right) {
-      angular_right();
+      angularRight();
     } else {
-      angular_off();
+      angularOff();
     }
   }
 
-  void SimpleCore::turn_on_engines() {
+  void SimpleCore::turnOnEngines() {
     engines_on = true;
   }
-  void SimpleCore::turn_off_engines() {
+  void SimpleCore::turnOffEngines() {
     engines_on = false;
   }
 
-  void SimpleCore::angular_left() {
+  void SimpleCore::angularLeft() {
     angular_engines = -1;
   }
-  void SimpleCore::angular_right() {
+  void SimpleCore::angularRight() {
     angular_engines = 1;
   }
-  void SimpleCore::angular_off() {
+  void SimpleCore::angularOff() {
     angular_engines = 0;
   }
 

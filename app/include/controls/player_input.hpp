@@ -13,9 +13,10 @@ namespace controls {
     bool right = false;
 
     bool ahead = false;
+    bool back = false;
 
     PlayerInput() = default;
-    PlayerInput(bool left, bool right, bool ahead);
+    PlayerInput(bool left, bool right, bool ahead, bool back);
   };
 
   PlayerInput getInput(std::queue<std::optional<sf::Event>>& events);

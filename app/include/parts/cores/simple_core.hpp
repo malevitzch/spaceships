@@ -24,12 +24,12 @@ namespace parts {
 
     virtual void handleInstructions(controls::PlayerInput input) override;
 
-    void turn_on_engines();
-    void turn_off_engines();
+    void turnOnEngines();
+    void turnOffEngines();
 
-    void angular_left();
-    void angular_right();
-    void angular_off();
+    void angularLeft();
+    void angularRight();
+    void angularOff();
   };
 }
 

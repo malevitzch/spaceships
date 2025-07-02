@@ -4,6 +4,7 @@ set(SOURCES
   parts/part.cpp
   parts/cores/spaceship_core.cpp
   parts/cores/simple_core.cpp
+  parts/cores/omni_core.cpp
 
   physics/physics_transform.cpp
   physics/physics_object.cpp

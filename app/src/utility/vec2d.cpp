@@ -3,6 +3,10 @@
 
 namespace util {
   Vec2d::Vec2d(double x, double y) : x(x), y(y) {}
+
+  Vec2d::Vec2d(double magnitude, Angle angle)
+  : x(magnitude * sin(angle)), y(magnitude * cos(angle)) {}
+  
   Vec2d::Vec2d(sf::Vector2f vec) : x(vec.x), y(vec.y) {}
 
   Vec2d Vec2d::operator-() const {
