@@ -2,8 +2,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
 #include <stdexcept>
-#include "parts/cores/omni_core.hpp"
-#include "parts/cores/simple_core.hpp"
+#include "parts.hpp"
 
 
 // TODO: this should not be a part of the main function but rather a part of 
