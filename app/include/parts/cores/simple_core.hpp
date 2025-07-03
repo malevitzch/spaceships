@@ -10,7 +10,7 @@
 namespace parts {
   class SimpleCore : public SpaceshipCore {
   private:
-    double thrust = 7000;
+    double thrust = 3000;
     bool engines_on = false;
 
     double angular_thrust = 3;

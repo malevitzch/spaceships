@@ -13,10 +13,15 @@ namespace parts {
     Vec2d ax = engines.x * Vec2d(thrust, getAngle());
     Vec2d ay = engines.y * Vec2d(thrust, getAngle() + std::numbers::pi / 2);
     transform.acceleration += ax + ay;
+
+    double ang = angular_thrust * angular_engines;
+    transform.angular_acceleration += ang;
     // FIXME: honestly transform.tick(dt) should just be the default implementation
     // for PhysicsObject physicsTick()
     transform.tick(dt);
+
     transform.acceleration -= ax + ay;
+    transform.angular_acceleration -= ang;
   }
   void OmniCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     sf::RectangleShape shape;
@@ -36,11 +41,14 @@ namespace parts {
   }
 
   void OmniCore::handleInstructions(controls::PlayerInput input) {
-    int dx = input.right - input.left;
-    int dy = input.ahead - input.back;
+    int dy = input.right - input.left;
+    int dx = input.ahead - input.back;
 
     setXEngine(dx);
     setYEngine(dy);
+
+    int ang = input.right_arrow - input.left_arrow;
+    setAngular(ang);
   }
 
   void OmniCore::setXEngine(int direction) {
@@ -48,5 +56,9 @@ namespace parts {
   }
   void OmniCore::setYEngine(int direction) {
     engines.y = direction;
+  }
+
+  void OmniCore::setAngular(int direction) {
+    angular_engines = direction;
   }
 }

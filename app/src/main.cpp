@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
+#include <stdexcept>
 #include "parts/cores/omni_core.hpp"
+#include "parts/cores/simple_core.hpp"
 
 
 // TODO: this should not be a part of the main function but rather a part of 
@@ -14,6 +16,14 @@ int main() {
   parts::OmniCore core;
   core.setPosition({500, 500});
   sf::Clock clock;
+
+  // FIXME: make an asset load system
+  sf::Texture bg_texture; 
+  if(!bg_texture.loadFromFile("assets/graphics/SpaceBackground.png")) {
+    throw new std::runtime_error("Failed to load texture for background");
+  }
+  
+  sf::Sprite bg_sprite(bg_texture);
 
   while (window.isOpen()) {
     std::queue<std::optional<sf::Event>> playerEvents;
@@ -53,6 +63,8 @@ int main() {
     core.physicsTick(dt);
 
     window.clear();
+    window.draw(bg_sprite);
+
     core.draw(window, sf::RenderStates());
 
     window.display();

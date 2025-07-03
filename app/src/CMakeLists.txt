@@ -1,3 +1,5 @@
+set(ASSETS_SOURCE_DIR "${CMAKE_SOURCE_DIR}/app/assets")
+set(ASSETS_TARGET_DIR "${CMAKE_BINARY_DIR}/assets")
 
 set(SOURCES
 
@@ -17,5 +19,13 @@ set(SOURCES
 
 add_executable(main main.cpp ${SOURCES})
 target_compile_features(main PRIVATE cxx_std_20)
+
+add_custom_command(
+    TARGET main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${ASSETS_SOURCE_DIR}"
+            "${ASSETS_TARGET_DIR}"
+    COMMENT "Copying assets"
+)
 
 target_link_libraries(main PRIVATE SFML::Graphics)

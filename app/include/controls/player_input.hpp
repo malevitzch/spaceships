@@ -15,6 +15,9 @@ namespace controls {
     bool ahead = false;
     bool back = false;
 
+    bool left_arrow = false;
+    bool right_arrow = false;
+
     PlayerInput() = default;
     PlayerInput(bool left, bool right, bool ahead, bool back);
   };

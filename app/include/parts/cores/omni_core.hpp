@@ -13,6 +13,9 @@ namespace parts {
     // Second is left/right
     // All relative to ship orientation
     sf::Vector2i engines = {0, 0};
+
+    double angular_thrust = 1;
+    int angular_engines = 0;
   public:
     OmniCore();
     virtual void physicsTick(double dt) override;
@@ -22,6 +25,8 @@ namespace parts {
 
     void setXEngine(int direction);
     void setYEngine(int direction);
+
+    void setAngular(int direction);
   };
 }
 #endif
