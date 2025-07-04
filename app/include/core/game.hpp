@@ -4,19 +4,20 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "parts/cores/spaceship_core.hpp"
+#include "controls/controllers/controller.hpp"
 
 namespace core {
 
   class Battle {
   private:
     sf::RenderWindow& window;
-    //FIXME: this contains pairs of controller, core
-    // Controller is always prompted for instructions
-    // And the core accepts instructions
-    std::vector<parts::SpaceshipCore> cores;
+    std::vector<
+      std::pair<
+        parts::SpaceshipCore,
+        controls::Controller
+      >> cores;
   public:
     Battle(sf::RenderWindow& window);
-
     virtual void start();
   };
 
