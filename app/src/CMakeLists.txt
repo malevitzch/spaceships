@@ -29,3 +29,10 @@ add_custom_command(
 )
 
 target_link_libraries(main PRIVATE SFML::Graphics)
+
+
+add_custom_target(run
+    COMMAND main
+    DEPENDS main
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
