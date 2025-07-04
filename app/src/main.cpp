@@ -49,7 +49,7 @@ int main() {
 
     // This contains all player input (which will ultimately contain things like mouse clicks)
     // And it should
-    controls::PlayerInput player_input = controls::getInput(playerEvents);
+    controls::ShipOrders player_input = controls::getPlayerOrders(playerEvents);
 
     // SpaceshipCore processes input and acts depending on them
     // This is really convenient as different types of esoteric ships might

@@ -1,5 +1,5 @@
-#ifndef PLAYER_INPUT_HPP
-#define PLAYER_INPUT_HPP
+#ifndef CONTROLS_SHIP_ORDERS_HPP
+#define CONTROLS_SHIP_ORDERS_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -8,7 +8,7 @@
 namespace controls {
   // Struct that contains extracted information
   // from what the player pressed
-  struct PlayerInput {
+  struct ShipOrders {
     bool left = false;
     bool right = false;
 
@@ -18,11 +18,11 @@ namespace controls {
     bool left_arrow = false;
     bool right_arrow = false;
 
-    PlayerInput() = default;
-    PlayerInput(bool left, bool right, bool ahead, bool back);
+    ShipOrders() = default;
+    ShipOrders(bool left, bool right, bool ahead, bool back);
   };
 
-  PlayerInput getInput(std::queue<std::optional<sf::Event>>& events);
+  ShipOrders getPlayerOrders(std::queue<std::optional<sf::Event>>& events);
 }
 
 #endif

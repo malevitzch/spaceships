@@ -1,19 +1,14 @@
-#include "controls/player_input.hpp"
+#include "controls/controllers/player_controller.hpp"
 
 namespace controls {
-  PlayerInput::PlayerInput(bool left, bool right, bool ahead, bool back)
-  :
-  left(left),
-  right(right),
-  ahead(ahead),
-  back(back) {}
-
-  PlayerInput getInput(std::queue<std::optional<sf::Event>>& events) {
+  ShipOrders PlayerController::getOrders() {
     while(!events.empty()) {
+      //FIXME: events are currently being ignored
+      // but only because player clicks don't mean anything yet`
       events.pop();
     }
 
-    PlayerInput player_input;
+    ShipOrders player_input;
 
     player_input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A);
     player_input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D);
@@ -25,5 +20,8 @@ namespace controls {
     player_input.right_arrow = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right);
 
     return player_input;
+  }
+  void PlayerController::addEvent(sf::Event event) {
+    events.push(event);
   }
 }

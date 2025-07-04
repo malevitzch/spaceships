@@ -40,7 +40,7 @@ namespace parts {
     target.draw(circle);
   }
 
-  void OmniCore::handleInstructions(controls::PlayerInput input) {
+  void OmniCore::handleInstructions(controls::ShipOrders input) {
     int dy = input.right - input.left;
     int dx = input.ahead - input.back;
 

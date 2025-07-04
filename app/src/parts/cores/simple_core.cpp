@@ -44,7 +44,7 @@ namespace parts {
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
     return {};
   }
-  void SimpleCore::handleInstructions(controls::PlayerInput input) {
+  void SimpleCore::handleInstructions(controls::ShipOrders input) {
     if(input.ahead) {
       turnOnEngines();
     } else {

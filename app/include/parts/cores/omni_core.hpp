@@ -21,7 +21,7 @@ namespace parts {
     virtual void physicsTick(double dt) override;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    virtual void handleInstructions(controls::PlayerInput input) override;
+    virtual void handleInstructions(controls::ShipOrders input) override;
 
     void setXEngine(int direction);
     void setYEngine(int direction);

@@ -5,7 +5,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include "controls/player_input.hpp"
+#include "controls/ship_orders.hpp"
 
 namespace parts {
   class SimpleCore : public SpaceshipCore {
@@ -22,7 +22,7 @@ namespace parts {
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual std::vector<std::shared_ptr<Part>> getChildren() override;
 
-    virtual void handleInstructions(controls::PlayerInput input) override;
+    virtual void handleInstructions(controls::ShipOrders input) override;
 
     void turnOnEngines();
     void turnOffEngines();
