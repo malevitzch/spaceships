@@ -7,6 +7,8 @@
 
 #include "controls/ship_orders.hpp"
 
+#include "utility/normalizer.hpp"
+
 namespace parts {
   class SimpleCore : public SpaceshipCore {
   private:

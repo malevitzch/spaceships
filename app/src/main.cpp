@@ -12,7 +12,7 @@ int main() {
   window.setPosition({0, 0});
   window.setFramerateLimit(144);
 
-  parts::OmniCore core;
+  parts::SimpleCore core;
   core.setPosition({500, 500});
   sf::Clock clock;
 

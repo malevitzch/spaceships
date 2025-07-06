@@ -3,6 +3,8 @@
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
+#include "utility/normalizer.hpp"
+
 namespace parts {
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
     transform.position = {500, 500};
@@ -31,7 +33,7 @@ namespace parts {
     shape.setOrigin({25, 25});
     shape.setPosition({(float)transform.position.x, (float)transform.position.y});
     shape.setRotation(sf::radians(transform.angle));
-    
+
     sf::CircleShape circle(4);
     circle.setOrigin({4 - 21, 4});
     circle.setFillColor(sf::Color::Red);
@@ -52,13 +54,12 @@ namespace parts {
     }
     // Pressing both buttons at once makes the ship try to stablize rotation
     if(input.left && input.right) {
-      if(getAngularVelocity() > 0) {
-        angularLeft();
-      } else if(getAngularVelocity() < 0) {
-        angularRight();
-      } else {
-        angularOff();
-      }
+      util::normalize(
+        *this,
+        static_cast<double (SimpleCore::*)() const>(&PhysicsObject::getAngularVelocity),
+        &SimpleCore::angularRight,
+        &SimpleCore::angularLeft,
+        &SimpleCore::angularOff);
     } else if(input.left) {
       angularLeft();
     } else if(input.right) {
