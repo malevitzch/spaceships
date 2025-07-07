@@ -3,6 +3,10 @@
 namespace physics {
   PhysicsObject::PhysicsObject(PhysicsTransform transform) : transform(transform) {}
 
+  void PhysicsObject::physicsTick(double dt) {
+    transform.tick(dt);
+  }
+
   util::Vec2d PhysicsObject::getPosition() const {
     return transform.position;
   }

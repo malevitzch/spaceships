@@ -1,7 +1,7 @@
 #include "parts/cores/omni_core.hpp"
 
 namespace parts {
-  
+
   OmniCore::OmniCore() : SpaceshipCore(100, 100) {}
 
   void OmniCore::physicsTick(double dt) {
@@ -16,9 +16,8 @@ namespace parts {
 
     double ang = angular_thrust * angular_engines;
     transform.angular_acceleration += ang;
-    // FIXME: honestly transform.tick(dt) should just be the default implementation
-    // for PhysicsObject physicsTick()
-    transform.tick(dt);
+
+    PhysicsObject::physicsTick(dt);
 
     transform.acceleration -= ax + ay;
     transform.angular_acceleration -= ang;

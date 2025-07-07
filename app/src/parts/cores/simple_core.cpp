@@ -3,6 +3,7 @@
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
+#include "physics/physics_object.hpp"
 #include "utility/normalizer.hpp"
 
 namespace parts {
@@ -22,7 +23,7 @@ namespace parts {
     transform.acceleration += acceleration;
     transform.angular_acceleration += angular_thrust * angular_engines;
 
-    transform.tick(dt);
+    PhysicsObject::physicsTick(dt);
 
     transform.acceleration -= acceleration;
     transform.angular_acceleration -= angular_thrust * angular_engines;

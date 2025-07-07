@@ -12,7 +12,7 @@ namespace physics {
     PhysicsTransform transform;
   public:
     PhysicsObject(PhysicsTransform transform);
-    virtual void physicsTick(double dt) = 0;
+    virtual void physicsTick(double dt);
 
     util::Vec2d getPosition() const;
     double getPositionX() const;
