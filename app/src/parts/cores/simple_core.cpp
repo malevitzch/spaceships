@@ -1,5 +1,6 @@
 #include "parts/cores/simple_core.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
@@ -9,6 +10,10 @@
 namespace parts {
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
     transform.position = {500, 500};
+    if(!texture.loadFromFile("assets/graphics/BasicShip.png")) {
+      throw new std::runtime_error("Failed to load texture for background");
+    }
+
   }
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),
@@ -29,7 +34,8 @@ namespace parts {
     transform.angular_acceleration -= angular_thrust * angular_engines;
   }
   void SimpleCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    sf::RectangleShape shape;
+
+    /*sf::RectangleShape shape;
     shape.setSize({50, 50});
     shape.setOrigin({25, 25});
     shape.setPosition({(float)transform.position.x, (float)transform.position.y});
@@ -39,10 +45,15 @@ namespace parts {
     circle.setOrigin({4 - 21, 4});
     circle.setFillColor(sf::Color::Red);
     circle.setPosition({(float)transform.position.x, (float)transform.position.y});
-    circle.setRotation(sf::radians(transform.angle));
+    circle.setRotation(sf::radians(transform.angle));*/
+    static sf::Sprite sprite(texture);
+    sprite.setOrigin({25, 25});
+    sprite.setPosition({(float)transform.position.x, (float)transform.position.y});
+    sprite.setRotation(sf::radians(transform.angle));
 
-    target.draw(shape);
-    target.draw(circle);
+    target.draw(sprite);
+    /*target.draw(shape);
+    target.draw(circle);*/
   }
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
     return {};

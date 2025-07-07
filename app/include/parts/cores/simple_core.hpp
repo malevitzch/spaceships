@@ -18,6 +18,8 @@ namespace parts {
     double angular_thrust = 3;
     // left is -1 and right is 1
     int angular_engines = 0;
+
+    sf::Texture texture;
   public:
     SimpleCore();
     virtual void physicsTick(double dt) override;

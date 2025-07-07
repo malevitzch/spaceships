@@ -21,7 +21,7 @@ int main() {
   if(!bg_texture.loadFromFile("assets/graphics/SpaceBackground.png")) {
     throw new std::runtime_error("Failed to load texture for background");
   }
-  
+
   sf::Sprite bg_sprite(bg_texture);
 
   while (window.isOpen()) {
