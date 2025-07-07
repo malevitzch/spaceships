@@ -1,4 +1,6 @@
 #include "parts/cores/spaceship_core.hpp"
+#include "physics/physics_object.hpp"
+#include "utility/angle.hpp"
 
 namespace parts {
   //TODO: properly call constructors of parent classes
@@ -6,9 +8,11 @@ namespace parts {
     int hp,
     int mass)
   :
-    physics::PhysicsObject(physics::CappedTransform(10000, 6)),
+    PhysicsObject(physics::CappedTransform(10000, 6)),
     hp(hp),
-    mass(mass) {}
+    mass(mass) {
+    PhysicsObject::setAngle(util::degrees(-90));
+  }
   int SpaceshipCore::getHp() {return hp;}
   int SpaceshipCore::getMass() {return mass;}
 

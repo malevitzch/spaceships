@@ -49,6 +49,7 @@ namespace parts {
   void OmniCore::setXEngine(int direction) {
     engines.x = direction;
   }
+
   void OmniCore::setYEngine(int direction) {
     engines.y = direction;
   }

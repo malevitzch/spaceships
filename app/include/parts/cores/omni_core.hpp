@@ -2,6 +2,7 @@
 #define PARTS_CORES_OMNI_CORE_HPP
 
 #include "spaceship_core.hpp"
+#include "utility/vec2d.hpp"
 
 namespace parts {
   // Short for OmnidirectionalCore
@@ -12,7 +13,7 @@ namespace parts {
     // First is forward/backward
     // Second is left/right
     // All relative to ship orientation
-    sf::Vector2i engines = {0, 0};
+    util::Vec2d engines = {0, 0};
 
     double angular_thrust = 1;
     int angular_engines = 0;
