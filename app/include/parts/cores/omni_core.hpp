@@ -16,6 +16,8 @@ namespace parts {
 
     double angular_thrust = 1;
     int angular_engines = 0;
+
+    sf::Texture texture;
   public:
     OmniCore();
     virtual void physicsTick(double dt) override;

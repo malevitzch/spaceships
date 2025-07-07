@@ -12,12 +12,12 @@ int main() {
   window.setPosition({0, 0});
   window.setFramerateLimit(144);
 
-  parts::SimpleCore core;
+  parts::OmniCore core;
   core.setPosition({500, 500});
   sf::Clock clock;
 
   // FIXME: make an asset load system
-  sf::Texture bg_texture; 
+  sf::Texture bg_texture;
   if(!bg_texture.loadFromFile("assets/graphics/SpaceBackground.png")) {
     throw new std::runtime_error("Failed to load texture for background");
   }

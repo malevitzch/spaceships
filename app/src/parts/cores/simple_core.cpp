@@ -8,6 +8,7 @@
 #include "utility/normalizer.hpp"
 
 namespace parts {
+  //FIXME: cores should not have their position set on creation
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
     transform.position = {500, 500};
     if(!texture.loadFromFile("assets/graphics/BasicShip.png")) {
