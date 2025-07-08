@@ -17,5 +17,4 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-include_directories(${CMAKE_SOURCE_DIR}/app/include)
 add_subdirectory(app)

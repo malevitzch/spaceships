@@ -17,6 +17,8 @@ set(SOURCES
   controls/ship_orders.cpp
   controls/controllers/controller.cpp
   controls/controllers/player_controller.cpp
+
+  core/game.cpp
 )
 
 add_executable(main main.cpp ${SOURCES})
