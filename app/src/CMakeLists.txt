@@ -19,6 +19,7 @@ set(SOURCES
   controls/controllers/player_controller.cpp
 
   core/game.cpp
+  core/menu.cpp
 )
 
 add_executable(main main.cpp ${SOURCES})

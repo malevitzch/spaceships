@@ -22,11 +22,11 @@ namespace core {
     sf::Clock clock;
 
 
-    while (window.isOpen()) {
+    while(window.isOpen()) {
       std::queue<std::optional<sf::Event>> playerEvents;
-      while (const std::optional event = window.pollEvent()) {
+      while(const std::optional event = window.pollEvent()) {
 
-        if (event->is<sf::Event::Closed>()) {
+        if(event->is<sf::Event::Closed>()) {
           window.close();
         } else {
           // Any event that is not directly consumed by the window itself is treated 
