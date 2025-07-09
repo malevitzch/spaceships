@@ -16,8 +16,14 @@ namespace util {
   Vec2d Vec2d::operator+(const Vec2d& vec) const {
     return Vec2d(this->x + vec.x, this->y + vec.y);
   }
+  Vec2d Vec2d::operator+(const double scalar) const {
+    return Vec2d(this->x + scalar, this->y + scalar);
+  }
   Vec2d Vec2d::operator-(const Vec2d& vec) const {
     return Vec2d(this->x - vec.x, this->y - vec.y);
+  }
+  Vec2d Vec2d::operator-(const double scalar) const {
+    return Vec2d(this->x - scalar, this->y - scalar);
   }
   Vec2d Vec2d::operator*(const double scalar) const {
     return Vec2d(this->x * scalar, this->y * scalar);
@@ -31,9 +37,19 @@ namespace util {
     this->y += vec.y;
     return *this;
   }
+  Vec2d& Vec2d::operator+=(const double scalar) {
+    this->x += scalar;
+    this->y += scalar;
+    return *this;
+  }
   Vec2d& Vec2d::operator-=(const Vec2d& vec) {
     this->x -= vec.x;
     this->y -= vec.y;
+    return *this;
+  }
+  Vec2d& Vec2d::operator-=(const double scalar) {
+    this->x -= scalar;
+    this->y -= scalar;
     return *this;
   }
   Vec2d& Vec2d::operator*=(const double scalar) {

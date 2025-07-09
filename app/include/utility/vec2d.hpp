@@ -16,12 +16,20 @@ namespace util {
     Vec2d operator-() const;
 
     Vec2d operator+(const Vec2d& vec) const;
+    Vec2d operator+(const double scalar) const;
+
     Vec2d operator-(const Vec2d& vec) const;
+    Vec2d operator-(const double scalar) const;
+
     Vec2d operator*(const double scalar) const;
     Vec2d operator/(const double scalar) const;
 
     Vec2d& operator+=(const Vec2d& vec);
+    Vec2d& operator+=(const double scalar);
+
     Vec2d& operator-=(const Vec2d& vec);
+    Vec2d& operator-=(const double scalar);
+
     Vec2d& operator*=(const double scalar);
     Vec2d& operator/=(const double scalar);
 
