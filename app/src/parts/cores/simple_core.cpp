@@ -14,7 +14,8 @@ namespace parts {
     if(!texture.loadFromFile("assets/graphics/BasicShip.png")) {
       throw new std::runtime_error("Failed to load texture for background");
     }
-
+    sprite = std::make_shared<sf::Sprite>(sf::Sprite(texture));
+    sprite->setOrigin({25, 25});
   }
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),
@@ -26,24 +27,26 @@ namespace parts {
         {(float)(thrust * cos(transform.angle)), (float)(thrust * sin(transform.angle))};
     }
 
+    // Add the thrust to the transform so that its taken into account
     transform.acceleration += acceleration;
     transform.angular_acceleration += angular_thrust * angular_engines;
 
     PhysicsObject::physicsTick(dt);
 
+    // Subtract back the thrust
+    // This is much more convenient than keeping an ON/OFF meter since the meter
+    // Would have to somehow be a part of the transform
     transform.acceleration -= acceleration;
     transform.angular_acceleration -= angular_thrust * angular_engines;
   }
+
+  //FIXME: this could be implemented in SpaceshipCore
   void SimpleCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
-    static sf::Sprite sprite(texture);
-    sprite.setOrigin({25, 25});
-    sprite.setPosition({(float)transform.position.x, (float)transform.position.y});
-    sprite.setRotation(sf::radians(transform.angle));
+    states.transform.translate(transform.position);
+    states.transform.rotate(sf::radians(transform.angle));
 
-    target.draw(sprite);
-    /*target.draw(shape);
-    target.draw(circle);*/
+    target.draw(*sprite, states);
   }
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
     return {};

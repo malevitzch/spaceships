@@ -7,6 +7,8 @@
 
 namespace physics {
   struct PhysicsTransform {
+    // Elements of the transform are represented
+    // by their (x, y) parts along the two axes
     util::Vec2d position = {0, 0};
     util::Vec2d velocity = {0, 0};
     util::Vec2d acceleration = {0, 0};
@@ -15,7 +17,9 @@ namespace physics {
     util::Angle angle = 0;
     double angular_velocity = 0;
     double angular_acceleration = 0;
+
     PhysicsTransform() = default;
+    PhysicsTransform(const PhysicsTransform&) = default;
 
     PhysicsTransform(
       util::Vec2d position,
@@ -24,6 +28,16 @@ namespace physics {
       util::Angle angle,
       double angular_velocity,
       double angular_acceleration);
+
+      virtual PhysicsTransform operator+(
+        const PhysicsTransform& transform) const;
+      virtual PhysicsTransform& operator+=(
+        const PhysicsTransform& transform);
+
+      virtual PhysicsTransform operator-(
+        const PhysicsTransform& transform) const;
+      virtual PhysicsTransform& operator-=(
+        const PhysicsTransform& transform);
 
       virtual void tick(double dt);
       virtual void reset();

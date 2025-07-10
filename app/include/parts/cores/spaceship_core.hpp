@@ -8,6 +8,7 @@
 #include "controls/ship_orders.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace parts {
   class SpaceshipCore :
@@ -17,6 +18,9 @@ namespace parts {
   private:
     int hp;
     int mass;
+  protected:
+    // TODO: consider a default texture
+    std::shared_ptr<sf::Sprite> sprite;
   public:
     SpaceshipCore(int hp, int mass);
 

@@ -6,6 +6,8 @@ namespace parts {
     if(!texture.loadFromFile("assets/graphics/OmniShip.png")) {
       throw new std::runtime_error("Failed to load texture for background");
     }
+    sprite = std::make_shared<sf::Sprite>(sf::Sprite(texture));
+    sprite->setOrigin({25, 25});
   }
 
   void OmniCore::physicsTick(double dt) {
@@ -26,13 +28,13 @@ namespace parts {
     transform.acceleration -= ax + ay;
     transform.angular_acceleration -= ang;
   }
-  void OmniCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    static sf::Sprite sprite(texture);
-    sprite.setOrigin({25, 25});
-    sprite.setPosition({(float)transform.position.x, (float)transform.position.y});
-    sprite.setRotation(sf::radians(transform.angle));
 
-    target.draw(sprite);
+  //FIXME: this could be implemented in SpaceshipCore
+  void OmniCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    states.transform.translate(transform.position);
+    states.transform.rotate(sf::radians(transform.angle));
+
+    target.draw(*sprite, states);
   }
 
   void OmniCore::handleInstructions(controls::ShipOrders input) {

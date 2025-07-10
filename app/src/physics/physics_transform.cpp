@@ -19,6 +19,46 @@ namespace physics {
     angular_velocity(angular_velocity),
     angular_acceleration(angular_acceleration) {}
 
+    PhysicsTransform PhysicsTransform::operator+(
+      const PhysicsTransform& transform) const {
+      PhysicsTransform result(*this);
+      result += transform;
+      return result;
+    }
+    PhysicsTransform& PhysicsTransform::operator+=(
+      const PhysicsTransform& transform) {
+
+      position += transform.position;
+      velocity += transform.velocity;
+      acceleration += transform.acceleration;
+
+      angle += transform.angle;
+      angular_velocity += transform.angular_velocity;
+      angular_acceleration += transform.angular_acceleration;
+
+      return *this;
+    }
+
+    PhysicsTransform PhysicsTransform::operator-(
+      const PhysicsTransform& transform) const {
+      PhysicsTransform result(*this);
+      result -= transform;
+      return result;
+    }
+    PhysicsTransform& PhysicsTransform::operator-=(
+      const PhysicsTransform& transform) {
+
+      position -= transform.position;
+      velocity -= transform.velocity;
+      acceleration -= transform.acceleration;
+
+      angle -= transform.angle;
+      angular_velocity -= transform.angular_velocity;
+      angular_acceleration -= transform.angular_acceleration;
+
+      return *this;
+    }
+
   void PhysicsTransform::tick(double dt) {
     // TODO: make position not directly linked to the pixel position on the 
     // display
