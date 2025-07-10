@@ -66,4 +66,8 @@ namespace physics {
   void PhysicsObject::setAngularAcceleration(util::Angle angular_acceleration) {
     transform.angular_acceleration = angular_acceleration;
   }
+
+  void PhysicsObject::resetTransform() {
+    transform.reset();
+  }
 }

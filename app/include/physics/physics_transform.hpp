@@ -26,6 +26,7 @@ namespace physics {
       double angular_acceleration);
 
       virtual void tick(double dt);
+      virtual void reset();
   };
 
   struct CappedTransform : public PhysicsTransform {

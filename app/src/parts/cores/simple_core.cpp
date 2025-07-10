@@ -36,17 +36,6 @@ namespace parts {
   }
   void SimpleCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
-    /*sf::RectangleShape shape;
-    shape.setSize({50, 50});
-    shape.setOrigin({25, 25});
-    shape.setPosition({(float)transform.position.x, (float)transform.position.y});
-    shape.setRotation(sf::radians(transform.angle));
-
-    sf::CircleShape circle(4);
-    circle.setOrigin({4 - 21, 4});
-    circle.setFillColor(sf::Color::Red);
-    circle.setPosition({(float)transform.position.x, (float)transform.position.y});
-    circle.setRotation(sf::radians(transform.angle));*/
     static sf::Sprite sprite(texture);
     sprite.setOrigin({25, 25});
     sprite.setPosition({(float)transform.position.x, (float)transform.position.y});

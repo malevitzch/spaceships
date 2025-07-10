@@ -37,6 +37,8 @@ namespace physics {
 
     double getAngularAcceleration() const;
     void setAngularAcceleration(util::Angle angle);
+
+    void resetTransform();
   };
 }
 

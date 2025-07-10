@@ -17,6 +17,7 @@ namespace core {
   std::shared_ptr<parts::SpaceshipCore> Menu::pickShip() {
     std::shared_ptr<parts::SpaceshipCore> ship = nullptr;
     for(auto& ship : ships) {
+      ship->resetTransform();
       ship->setAngle(util::degrees(-90));
     }
     //FIXME: selections should probably just hold a struct or smth

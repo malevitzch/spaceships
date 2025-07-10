@@ -29,6 +29,16 @@ namespace physics {
     angular_velocity += angular_acceleration * dt;
   }
 
+  void PhysicsTransform::reset() {
+    position = {0, 0};
+    velocity = {0, 0};
+    acceleration = {0, 0};
+
+    angle = 0;
+    angular_velocity = 0;
+    angular_acceleration = 0;
+  }
+
   CappedTransform::CappedTransform(
     util::Vec2d position,
     util::Vec2d velocity,
