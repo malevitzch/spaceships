@@ -18,6 +18,8 @@ int main() {
     auto ship = menu.pickShip();
 
     // If ship selection fails it's usually becuase user closed the window
+    // in which case we want to avoid things like nullptr dereferences
+    // and we just exit the program with code 0
     if(ship == nullptr) return 0;
 
     core::Battle battle(window);

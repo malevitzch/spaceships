@@ -33,6 +33,8 @@ namespace core {
     selections[1].setSize({120, 120});
     while(window.isOpen() && ship == nullptr) {
       while(const std::optional event = window.pollEvent()) {
+        // Keys A-D are used to move the selection left or right
+        // And Space/Enter is used to select the ship currently in the middle 
         if(event->is<sf::Event::Closed>()) {
           window.close();
         } else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
@@ -40,7 +42,8 @@ namespace core {
             selection_index = (ships.size() + selection_index - 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::D) {
             selection_index = (ships.size() + selection_index + 1) % ships.size();
-          } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space) {
+          } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space
+                    || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
             return ships[(ships.size() - selection_index) % ships.size()];
           }
         }
@@ -50,7 +53,8 @@ namespace core {
         window.draw(selections[i]);
         auto& ship = ships[(i - selection_index + ships.size() - 1) % ships.size()];
         ship->setPosition(util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
-        window.draw(*ship);
+        sf::RenderStates states;
+        window.draw(*ship, states);
       }
       window.display();
     }
