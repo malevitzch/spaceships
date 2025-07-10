@@ -12,25 +12,25 @@ int main() {
   window.setPosition({0, 0});
   window.setFramerateLimit(144);
 
-  // TODO: the following part is still not the initial setup
-  // instead, we should have a menu that starts a new battle
-  parts::OmniCore core;
-
   core::Menu menu(window);
 
-  auto ship = menu.pickShip();
-  if(ship == nullptr) return 0;
+  while(window.isOpen()) {
+    auto ship = menu.pickShip();
 
-  core::Battle battle(window);
-  std::shared_ptr<controls::PlayerController> player_controller
-    = std::make_shared<controls::PlayerController>();
-  core::ShipActor player(
-    ship,
-    player_controller
-  );
+    // If ship selection fails it's usually becuase user closed the window
+    if(ship == nullptr) return 0;
 
-  player.core->setPosition({500, 500});
+    core::Battle battle(window);
+    std::shared_ptr<controls::PlayerController> player_controller
+      = std::make_shared<controls::PlayerController>();
+    core::ShipActor player(
+      ship,
+      player_controller
+    );
 
-  battle.addPlayerShip(player, player_controller);
-  battle.start();
+    player.core->setPosition({500, 500});
+
+    battle.addPlayerShip(player, player_controller);
+    battle.start();
+  }
 }

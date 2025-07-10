@@ -21,13 +21,19 @@ namespace core {
 
     sf::Clock clock;
 
-
-    while(window.isOpen()) {
+    bool over = false;
+    while(window.isOpen() && !over) {
       std::queue<std::optional<sf::Event>> playerEvents;
       while(const std::optional event = window.pollEvent()) {
 
         if(event->is<sf::Event::Closed>()) {
           window.close();
+        } else if(const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+          if(keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
+            over = true;
+          } else {
+            playerEvents.push(event);
+          }
         } else {
           // Any event that is not directly consumed by the window itself is treated 
           // as a "PlayerEvent" and sent ahead to the playerEvents queue which is then

@@ -2,6 +2,7 @@
 #include "parts/cores.hpp"
 #include "parts/cores/omni_core.hpp"
 #include "parts/cores/spaceship_core.hpp"
+#include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -15,7 +16,9 @@ namespace core {
   }
   std::shared_ptr<parts::SpaceshipCore> Menu::pickShip() {
     std::shared_ptr<parts::SpaceshipCore> ship = nullptr;
-
+    for(auto& ship : ships) {
+      ship->setAngle(util::degrees(-90));
+    }
     //FIXME: selections should probably just hold a struct or smth
     sf::RectangleShape selections[3];
     for(int i = 0; i < 3; i++) {
