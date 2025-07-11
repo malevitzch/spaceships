@@ -27,7 +27,14 @@ namespace parts {
     virtual void handleInstructions(controls::ShipOrders input) override;
 
     void setXEngine(int direction);
+    void engineXForward();
+    void engineXBack();
+    void engineXOff();
+
     void setYEngine(int direction);
+    void engineYForward();
+    void engineYBack();
+    void engineYOff();
 
     void setAngular(int direction);
   };

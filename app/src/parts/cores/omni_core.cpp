@@ -1,4 +1,7 @@
 #include "parts/cores/omni_core.hpp"
+#include "utility/normalizer.hpp"
+
+#include <functional>
 
 namespace parts {
 
@@ -51,9 +54,27 @@ namespace parts {
   void OmniCore::setXEngine(int direction) {
     engines.x = direction;
   }
+  void OmniCore::engineXForward() {
+    setXEngine(1);
+  }
+  void OmniCore::engineXBack() {
+    setXEngine(-1);
+  }
+  void OmniCore::engineXOff() {
+    setXEngine(0);
+  }
 
   void OmniCore::setYEngine(int direction) {
     engines.y = direction;
+  }
+  void OmniCore::engineYForward() {
+    setYEngine(1);
+  }
+  void OmniCore::engineYBack() {
+    setYEngine(-1);
+  }
+  void OmniCore::engineYOff() {
+    setYEngine(0);
   }
 
   void OmniCore::setAngular(int direction) {
