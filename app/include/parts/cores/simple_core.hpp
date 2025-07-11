@@ -19,7 +19,7 @@ namespace parts {
     // left is -1 and right is 1
     int angular_engines = 0;
 
-    sf::Texture texture;
+    std::shared_ptr<sf::Texture> texture;
   public:
     SimpleCore();
     virtual void physicsTick(double dt) override;

@@ -1,4 +1,5 @@
 #include "core/game.hpp"
+#include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
 
 namespace core {
@@ -13,11 +14,8 @@ namespace core {
     // FIXME: make an asset load system
     // TODO: the background should maybe be parametrized
     // and the texture accessed through bg_loader or something like that 
-    sf::Texture bg_texture;
-    if(!bg_texture.loadFromFile("assets/graphics/SpaceBackground.png")) {
-      throw new std::runtime_error("Failed to load texture for background");
-    }
-    sf::Sprite bg_sprite(bg_texture);
+    auto bg_texture = assets::TextureManager::getTexture("SpaceBackground");
+    sf::Sprite bg_sprite(*bg_texture);
 
     sf::Clock clock;
 

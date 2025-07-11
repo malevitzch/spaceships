@@ -1,15 +1,15 @@
 #include "parts/cores/omni_core.hpp"
 #include "utility/normalizer.hpp"
+#include "assets/texture_manager.hpp"
+
 
 #include <functional>
 
 namespace parts {
 
   OmniCore::OmniCore() : SpaceshipCore(100, 100) {
-    if(!texture.loadFromFile("assets/graphics/OmniShip.png")) {
-      throw new std::runtime_error("Failed to load texture for background");
-    }
-    sprite = std::make_shared<sf::Sprite>(sf::Sprite(texture));
+    texture = assets::TextureManager::getTexture("OmniShip");
+    sprite = std::make_shared<sf::Sprite>(sf::Sprite(*texture));
     sprite->setOrigin({25, 25});
   }
 

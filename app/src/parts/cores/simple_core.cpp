@@ -4,6 +4,7 @@
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
+#include "assets/texture_manager.hpp"
 #include "physics/physics_object.hpp"
 #include "utility/normalizer.hpp"
 
@@ -11,11 +12,9 @@ namespace parts {
   //FIXME: cores should not have their position set on creation
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
     transform.position = {500, 500};
-    if(!texture.loadFromFile("assets/graphics/BasicShip.png")) {
-      throw new std::runtime_error("Failed to load texture for background");
-    }
-    sprite = std::make_shared<sf::Sprite>(sf::Sprite(texture));
-    sprite->setOrigin({25, 25});
+    texture = assets::TextureManager::getTexture("BasicShip");
+    sprite = std::make_shared<sf::Sprite>(sf::Sprite(*texture));
+    sprite->setOrigin({20, 25});
   }
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),

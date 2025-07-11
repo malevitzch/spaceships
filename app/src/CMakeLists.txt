@@ -20,6 +20,8 @@ set(SOURCES
 
   core/game.cpp
   core/menu.cpp
+
+  assets/texture_manager.cpp
 )
 
 add_executable(main main.cpp ${SOURCES})
