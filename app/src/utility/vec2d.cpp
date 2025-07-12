@@ -6,7 +6,7 @@ namespace util {
 
   Vec2d::Vec2d(double magnitude, Angle angle)
   : x(magnitude * cos(angle)), y(magnitude * sin(angle)) {}
-  
+
   Vec2d::Vec2d(sf::Vector2f vec) : x(vec.x), y(vec.y) {}
 
   Vec2d Vec2d::operator-() const {
@@ -63,6 +63,10 @@ namespace util {
     return *this;
   }
 
+  double Vec2d::operator*(const Vec2d& vec) const {
+    return (x * vec.x) + (y * vec.y);
+  }
+
   Vec2d::operator sf::Vector2f() const {
     return sf::Vector2f(float(x), float(y));
   }
@@ -86,6 +90,28 @@ namespace util {
     }
     (*this) *= (length / magnitude());
     return *this;
+  }
+
+  Vec2d Vec2d::zero() {
+    return {0, 0};
+  }
+  Vec2d Vec2d::unitX() {
+    return Vec2d(1, 0);
+  }
+
+  Vec2d Vec2d::unitY() {
+    return Vec2d(0, 1);
+  }
+
+  double Vec2d::scalarProjection(Vec2d& vec) {
+    double veclength = vec.magnitude();
+    if(veclength == 0) {
+      return 0;
+    }
+    return ((*this) * vec) / veclength;
+  }
+  Vec2d Vec2d::vectorProjection(Vec2d& vec) {
+    return vec * scalarProjection(vec);
   }
 
   Vec2d operator*(const double scalar, const Vec2d& vec) {

@@ -33,6 +33,8 @@ namespace util {
     Vec2d& operator*=(const double scalar);
     Vec2d& operator/=(const double scalar);
 
+    double operator*(const Vec2d& vec) const;
+
     operator sf::Vector2f() const; 
 
     double magnitude() const;
@@ -40,6 +42,13 @@ namespace util {
     Vec2d unit() const;
 
     Vec2d& rescale(const double length);
+
+    double scalarProjection(Vec2d& vec);
+    Vec2d vectorProjection(Vec2d& vec);
+
+    static Vec2d zero();
+    static Vec2d unitX();
+    static Vec2d unitY();
 
   };
   Vec2d operator*(const double scalar, const Vec2d& vec);
