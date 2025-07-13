@@ -25,7 +25,9 @@ namespace core {
     void makeDecisions();
     void physicsTick(double dt);
 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    virtual void draw(
+      sf::RenderTarget& target,
+      sf::RenderStates states) const override;
   };
 }
 

@@ -21,16 +21,19 @@ namespace core {
 
         if(event->is<sf::Event::Closed>()) {
           window.close();
-        } else if(const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+        } else if(
+          const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
           if(keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
             over = true;
           } else {
             playerEvents.push(event);
           }
         } else {
-          // Any event that is not directly consumed by the window itself is treated 
-          // as a "PlayerEvent" and sent ahead to the playerEvents queue which is then
-          // passed as an argument to the function that strips player input from events
+          // Any event that is not directly consumed by the window itself 
+          // is treated as a "PlayerEvent" and sent ahead to the 
+          // playerEvents queue
+          // FIXME: the contents of the queue should automatically be sent 
+          // to every PlayerController
           playerEvents.push(event);
         }
       }

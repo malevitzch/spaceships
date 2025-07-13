@@ -37,11 +37,14 @@ namespace core {
         // And Space/Enter is used to select the ship currently in the middle 
         if(event->is<sf::Event::Closed>()) {
           window.close();
-        } else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+        } else if (
+          const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
           if(keyPressed->scancode == sf::Keyboard::Scancode::A) {
-            selection_index = (ships.size() + selection_index - 1) % ships.size();
+            selection_index =
+              (ships.size() + selection_index - 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::D) {
-            selection_index = (ships.size() + selection_index + 1) % ships.size();
+            selection_index =
+              (ships.size() + selection_index + 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space
                     || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
             return ships[(ships.size() - selection_index) % ships.size()];
@@ -51,8 +54,10 @@ namespace core {
       window.clear();
       for(int i = 0; i < 3; i++) {
         window.draw(selections[i]);
-        auto& ship = ships[(i - selection_index + ships.size() - 1) % ships.size()];
-        ship->setPosition(util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
+        auto& ship =
+          ships[(i - selection_index + ships.size() - 1) % ships.size()];
+        ship->setPosition(
+          util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
         sf::RenderStates states;
         window.draw(*ship, states);
       }

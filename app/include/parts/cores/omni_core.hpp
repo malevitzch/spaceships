@@ -22,7 +22,9 @@ namespace parts {
   public:
     OmniCore();
     virtual void physicsTick(double dt) override;
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    virtual void draw(
+      sf::RenderTarget& target,
+      sf::RenderStates states) const override;
 
     virtual void handleInstructions(controls::ShipOrders input) override;
 

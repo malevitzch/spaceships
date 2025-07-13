@@ -23,7 +23,8 @@ namespace parts {
     util::Vec2d acceleration = {0, 0};
     if(engines_on) {
       acceleration =
-        {(float)(thrust * cos(transform.angle)), (float)(thrust * sin(transform.angle))};
+        {(float)(thrust * cos(transform.angle)),
+        (float)(thrust * sin(transform.angle))};
     }
 
     // Add the thrust to the transform so that its taken into account
@@ -40,7 +41,9 @@ namespace parts {
   }
 
   //FIXME: this could be implemented in SpaceshipCore
-  void SimpleCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+  void SimpleCore::draw(
+    sf::RenderTarget& target,
+    sf::RenderStates states) const {
 
     states.transform.translate(transform.position);
     states.transform.rotate(sf::radians(transform.angle));
@@ -60,7 +63,8 @@ namespace parts {
     if(input.left && input.right) {
       util::normalize(
         *this,
-        static_cast<double (SimpleCore::*)() const>(&PhysicsObject::getAngularVelocity),
+        static_cast<double (SimpleCore::*)() const>(
+          &PhysicsObject::getAngularVelocity),
         &SimpleCore::angularRight,
         &SimpleCore::angularLeft,
         &SimpleCore::angularOff);

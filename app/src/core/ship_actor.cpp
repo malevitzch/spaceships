@@ -23,7 +23,9 @@ namespace core {
     core->physicsTick(dt);
   }
 
-  void ShipActor::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+  void ShipActor::draw(
+    sf::RenderTarget& target,
+    sf::RenderStates states) const {
     //FIXME: this part is going to be replaced by calculation of on-screen
     // position out of the logical position that the ship holds
     states.transform.translate(core->getPosition());

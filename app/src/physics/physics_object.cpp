@@ -1,7 +1,8 @@
 #include "physics/physics_object.hpp"
 
 namespace physics {
-  PhysicsObject::PhysicsObject(PhysicsTransform transform) : transform(transform) {}
+  PhysicsObject::PhysicsObject(PhysicsTransform transform)
+  : transform(transform) {}
 
   void PhysicsObject::physicsTick(double dt) {
     transform.tick(dt);

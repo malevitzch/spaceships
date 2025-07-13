@@ -22,7 +22,6 @@ namespace controls {
     ShipOrders(bool left, bool right, bool ahead, bool back);
   };
 
-  ShipOrders getPlayerOrders(std::queue<std::optional<sf::Event>>& events);
 }
 
 #endif
