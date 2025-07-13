@@ -4,11 +4,6 @@
 
 namespace core {
 
-  ShipActor::ShipActor(
-    std::shared_ptr<parts::SpaceshipCore> core,
-    std::shared_ptr<controls::Controller> controller)
-      : core(core), controller(controller) {}
-
   Battle::Battle(sf::RenderWindow& window) : window(window) {}
   void Battle::start() {
     // FIXME: make an asset load system
@@ -40,29 +35,23 @@ namespace core {
         }
       }
 
+      for(ShipActor& ship : ships) {
+        ship.makeDecisions();
+      }
+
       // dt is in seconds
       double dt = clock.getElapsedTime().asSeconds();
       clock.restart();
 
       for(ShipActor& ship : ships) {
-        auto& core = *ship.core;
-
-        // This contains all player input (or the input of a machine-controlled ship)
-        controls::ShipOrders orders = ship.controller->getOrders();
-
-        // SpaceshipCore processes input and acts depending on them
-        // This is really convenient as different types of esoteric ships might
-        // not necessarily operate under the same rules 
-        core.handleInstructions(orders);
-
-        core.physicsTick(dt);
+        ship.physicsTick(dt);
       }
 
 
       window.clear();
       window.draw(bg_sprite);
       for(ShipActor& ship : ships)
-        window.draw(*ship.core, sf::RenderStates());
+        window.draw(ship, sf::RenderStates());
 
       window.display();
     }

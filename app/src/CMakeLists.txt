@@ -27,6 +27,7 @@ set(CONTROLSLIB_SOURCES
 set(CORELIB_SOURCES
   core/game.cpp
   core/menu.cpp
+  core/ship_actor.cpp
 )
 
 set(ASSETSLIB_SOURCES

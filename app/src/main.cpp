@@ -4,6 +4,7 @@
 #include "controls/controllers/player_controller.hpp"
 #include "core/game.hpp"
 #include "core/menu.hpp"
+#include "core/ship_actor.hpp"
 #include "parts.hpp"
 
 
@@ -15,6 +16,9 @@ int main() {
   core::Menu menu(window);
 
   while(window.isOpen()) {
+
+    // FIXME: this should pick out both the ship texture
+    // and the core
     auto ship = menu.pickShip();
 
     // If ship selection fails it's usually becuase user closed the window
@@ -27,7 +31,8 @@ int main() {
       = std::make_shared<controls::PlayerController>();
     core::ShipActor player(
       ship,
-      player_controller
+      player_controller,
+      "OmniShip"
     );
 
     player.core->setPosition({500, 500});

@@ -7,16 +7,9 @@
 #include "controls/controllers/player_controller.hpp"
 #include "parts/cores/spaceship_core.hpp"
 #include "controls/controllers/controller.hpp"
+#include "core/ship_actor.hpp"
 
 namespace core {
-  struct ShipActor {
-    std::shared_ptr<parts::SpaceshipCore> core;
-    std::shared_ptr<controls::Controller> controller;
-
-    ShipActor(
-      std::shared_ptr<parts::SpaceshipCore> core,
-      std::shared_ptr<controls::Controller> controller);
-  };
 
   class Battle {
   private:
