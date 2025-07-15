@@ -7,11 +7,7 @@
 
 namespace parts {
 
-  OmniCore::OmniCore() : SpaceshipCore(100, 100) {
-    texture = assets::TextureManager::getTexture("OmniShip");
-    sprite = std::make_shared<sf::Sprite>(sf::Sprite(*texture));
-    sprite->setOrigin({25, 25});
-  }
+  OmniCore::OmniCore() : SpaceshipCore(100, 100) {}
 
   void OmniCore::physicsTick(double dt) {
     using util::Vec2d, util::Angle;
@@ -30,14 +26,6 @@ namespace parts {
 
     transform.acceleration -= ax + ay;
     transform.angular_acceleration -= ang;
-  }
-
-  //FIXME: this could be implemented in SpaceshipCore
-  void OmniCore::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    states.transform.translate(transform.position);
-    states.transform.rotate(sf::radians(transform.angle));
-
-    target.draw(*sprite, states);
   }
 
   void OmniCore::handleInstructions(controls::ShipOrders input) {

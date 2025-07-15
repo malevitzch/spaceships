@@ -3,8 +3,11 @@
 
 #include "controls/controllers/controller.hpp"
 #include "parts/cores/spaceship_core.hpp"
+#include "core/ship.hpp"
+
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>
+
 
 namespace core {
 
@@ -14,11 +17,11 @@ namespace core {
   private:
   protected:
   public:
-    std::shared_ptr<parts::SpaceshipCore> core;
+    std::shared_ptr<Ship> ship;
     std::shared_ptr<controls::Controller> controller;
     mutable sf::Sprite sprite;
     ShipActor(
-      std::shared_ptr<parts::SpaceshipCore> core,
+      std::shared_ptr<Ship> core,
       std::shared_ptr<controls::Controller> controller, 
       std::string texture_name);
 

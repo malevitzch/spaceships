@@ -7,17 +7,21 @@
 #include <memory>
 
 namespace core {
-  class Ship : sf::Drawable {
+  class Ship : public sf::Drawable {
   private:
     std::string name;
     std::shared_ptr<parts::SpaceshipCore> core;
   protected:
+    // FIXME: the ship sprite logic should just be separate
+    // like a ShipSprite object or something where it codes
+    // stuff like origin etc
     std::shared_ptr<sf::Sprite> sprite;
+    std::shared_ptr<sf::Texture> texture;
   public:
     Ship(std::string name,
          std::shared_ptr<parts::SpaceshipCore> core,
          std::string texture_name);
-    std::shared_ptr<parts::SpaceshipCore> getCore() const;
+    parts::SpaceshipCore& getCore() const;
 
     // This sets the origin of the sprite properly
     virtual void setupSprite();

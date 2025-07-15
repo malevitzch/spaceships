@@ -4,11 +4,11 @@
 
 namespace core {
   ShipActor::ShipActor(
-    std::shared_ptr<parts::SpaceshipCore> core,
+    std::shared_ptr<Ship> ship,
     std::shared_ptr<controls::Controller> controller,
     std::string texture_name)
   :
-    core(core),
+    ship(ship),
     controller(controller),
     sprite(*assets::TextureManager::getTexture(texture_name)) {
     sprite.setOrigin({25, 25});
@@ -16,11 +16,11 @@ namespace core {
 
   void ShipActor::makeDecisions() {
     controls::ShipOrders orders = controller->getOrders();
-    core->handleInstructions(orders);
+    ship->getCore().handleInstructions(orders);
   }
 
   void ShipActor::physicsTick(double dt) {
-    core->physicsTick(dt);
+    ship->getCore().physicsTick(dt);
   }
 
   void ShipActor::draw(
@@ -28,9 +28,9 @@ namespace core {
     sf::RenderStates states) const {
     //FIXME: this part is going to be replaced by calculation of on-screen
     // position out of the logical position that the ship holds
-    states.transform.translate(core->getPosition());
-    states.transform.rotate(sf::radians(core->getAngle()));
+    states.transform.translate(ship->getCore().getPosition());
+    states.transform.rotate(sf::radians(ship->getCore().getAngle()));
 
-    target.draw(sprite, states);
+    target.draw(*ship, states);
   }
 }

@@ -13,14 +13,11 @@
 namespace parts {
   class SpaceshipCore :
     public Part,
-    public sf::Drawable,
     public physics::PhysicsObject {
   private:
     int hp;
     int mass;
   protected:
-    // TODO: consider a default texture
-    std::shared_ptr<sf::Sprite> sprite;
   public:
     SpaceshipCore(int hp, int mass);
 

@@ -1,6 +1,7 @@
 #include "core/game.hpp"
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
+#include <iostream>
 
 namespace core {
 
@@ -53,8 +54,9 @@ namespace core {
 
       window.clear();
       window.draw(bg_sprite);
-      for(ShipActor& ship : ships)
+      for(ShipActor& ship : ships) {
         window.draw(ship, sf::RenderStates());
+      }
 
       window.display();
     }

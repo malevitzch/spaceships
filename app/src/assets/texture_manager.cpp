@@ -1,4 +1,5 @@
 #include "assets/texture_manager.hpp"
+#include <stdexcept>
 
 namespace assets {
   std::unordered_map<
@@ -11,7 +12,10 @@ namespace assets {
       }
     }
     auto texture = 
-      std::make_shared<sf::Texture>("assets/graphics/" + name + ".png");
+      std::make_shared<sf::Texture>();
+    if(!texture->loadFromFile("assets/graphics/" + name + ".png")) {
+      throw new std::runtime_error("Failed to load texture \"" + name + "\"");
+    }
     textures[name] = texture;
     return texture;
   }

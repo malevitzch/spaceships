@@ -9,13 +9,7 @@
 #include "utility/normalizer.hpp"
 
 namespace parts {
-  //FIXME: cores should not have their position set on creation
-  SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {
-    transform.position = {500, 500};
-    texture = assets::TextureManager::getTexture("BasicShip");
-    sprite = std::make_shared<sf::Sprite>(sf::Sprite(*texture));
-    sprite->setOrigin({20, 25});
-  }
+  SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {}
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),
     // then we compute the physics tick
@@ -40,16 +34,6 @@ namespace parts {
     transform.angular_acceleration -= angular_thrust * angular_engines;
   }
 
-  //FIXME: this could be implemented in SpaceshipCore
-  void SimpleCore::draw(
-    sf::RenderTarget& target,
-    sf::RenderStates states) const {
-
-    states.transform.translate(transform.position);
-    states.transform.rotate(sf::radians(transform.angle));
-
-    target.draw(*sprite, states);
-  }
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
     return {};
   }

@@ -23,9 +23,6 @@ namespace parts {
   public:
     SimpleCore();
     virtual void physicsTick(double dt) override;
-    virtual void draw(
-      sf::RenderTarget& target,
-      sf::RenderStates states) const override;
     virtual std::vector<std::shared_ptr<Part>> getChildren() override;
 
     virtual void handleInstructions(controls::ShipOrders input) override;

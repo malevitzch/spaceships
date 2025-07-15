@@ -17,14 +17,9 @@ namespace parts {
 
     double angular_thrust = 1;
     int angular_engines = 0;
-
-    std::shared_ptr<sf::Texture> texture;
   public:
     OmniCore();
     virtual void physicsTick(double dt) override;
-    virtual void draw(
-      sf::RenderTarget& target,
-      sf::RenderStates states) const override;
 
     virtual void handleInstructions(controls::ShipOrders input) override;
 

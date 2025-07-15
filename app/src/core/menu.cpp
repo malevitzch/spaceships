@@ -10,15 +10,26 @@
 
 namespace core {
   Menu::Menu(sf::RenderWindow& window) : window(window) {
-    ships.push_back(std::make_shared<parts::SimpleCore>());
-    ships.push_back(std::make_shared<parts::OmniCore>());
-    ships.push_back(std::make_shared<parts::OmniCore>());
+    ships.push_back(std::make_shared<Ship>(
+      "Bird Mk. 1",
+      std::make_shared<parts::SimpleCore>(),
+      "BasicShip"));
+    ships.push_back(std::make_shared<Ship>(
+      "Borg Mk. 1",
+      std::make_shared<parts::OmniCore>(),
+      "OmniShip"));
+    ships.push_back(std::make_shared<Ship>(
+      "Borg Mk. 2",
+      std::make_shared<parts::OmniCore>(),
+      "OmniShip"));
+    //ships.push_back(std::make_shared<parts::OmniCore>());
+    //ships.push_back(std::make_shared<parts::OmniCore>());
   }
-  std::shared_ptr<parts::SpaceshipCore> Menu::pickShip() {
-    std::shared_ptr<parts::SpaceshipCore> ship = nullptr;
+  std::shared_ptr<Ship> Menu::pickShip() {
+    std::shared_ptr<Ship> ship = nullptr;
     for(auto& ship : ships) {
-      ship->resetTransform();
-      ship->setAngle(util::degrees(-90));
+      ship->getCore().resetTransform();
+      ship->getCore().setAngle(util::degrees(-90));
     }
     //FIXME: selections should probably just hold a struct or smth
     sf::RectangleShape selections[3];
@@ -56,9 +67,11 @@ namespace core {
         window.draw(selections[i]);
         auto& ship =
           ships[(i - selection_index + ships.size() - 1) % ships.size()];
-        ship->setPosition(
+        ship->getCore().setPosition(
           util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
         sf::RenderStates states;
+        states.transform.translate(ship->getCore().getPosition());
+        states.transform.rotate(sf::radians(ship->getCore().getAngle()));
         window.draw(*ship, states);
       }
       window.display();

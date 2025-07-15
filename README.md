@@ -1,8 +1,7 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
-- Separate ship from ShipActor, a ship is a core and whatever is attached to it + sprite and eventually a collider, ShipActor is ship + something controlling it
-- Make ship sprites be tied to ShipActor and not SpaceshipCore
+- Add colliders?
 - Somehow make center of mass and the origin of the sprite separate
 - Clean up the ship sprites since they are done in a band-aid currently
 - Clean up SimpleCore and OmniCore draw()
