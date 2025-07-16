@@ -17,8 +17,6 @@ int main() {
 
   while(window.isOpen()) {
 
-    // FIXME: this should pick out both the ship texture
-    // and the core
     auto ship = menu.pickShip();
 
     // If ship selection fails it's usually becuase user closed the window
