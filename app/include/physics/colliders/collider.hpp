@@ -6,13 +6,17 @@
 
 namespace physics {
   namespace colliders {
+    class SphereCollider;
+
     class Collider {
     private:
       util::Angle offset_angle;
       double offset_distance;
     public:
+      util::Angle getAngle(util::Vec2d origin_pos,
+                           util::Angle origin_angle);
       util::Vec2d getPosition(util::Vec2d origin_pos,
-                                    util::Angle origin_angle);
+                              util::Angle origin_angle);
 
       // Returns the collider "radius" which is an approximation
       // of the maximum distane it can reach from origin
@@ -24,6 +28,11 @@ namespace physics {
       // from the origin and calculates the real origin as a sum of that + radius
       // virtual double getRadius(util::Vec2d center_distance);
       virtual bool collidesWith(Collider& collider,
+                                util::Vec2d my_origin_pos,
+                                util::Vec2d other_origin_pos,
+                                util::Angle my_origin_angle,
+                                util::Angle other_origin_angle) = 0;
+      virtual bool collidesWithSphere(SphereCollider& sphere,
                                 util::Vec2d my_origin_pos,
                                 util::Vec2d other_origin_pos,
                                 util::Angle my_origin_angle,

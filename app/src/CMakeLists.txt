@@ -11,6 +11,8 @@ set(PARTSLIB_SOURCES
 set(PHYSICSLIB_SOURCES
   physics/physics_transform.cpp
   physics/physics_object.cpp
+  physics/colliders/collider.cpp
+  physics/colliders/sphere_collider.cpp
 )
 
 set(UTILITYLIB_SOURCES
