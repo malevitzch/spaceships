@@ -1,13 +1,21 @@
 #include "core/game.hpp"
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
+#include <chrono>
+#include <thread>
 #include <iostream>
 
 namespace core {
 
   Battle::Battle(sf::RenderWindow& window) : window(window) {}
   void Battle::start() {
-    // FIXME: make an asset load system
+
+    //FIXME: font loader
+    sf::Font debug_font;
+    if(!debug_font.openFromFile("assets/fonts/metal/Metal.ttf")) {
+      //TODO: error handling of sorts
+    }
+
     // TODO: the background should maybe be parametrized
     // and the texture accessed through bg_loader or something like that 
     auto bg_texture = assets::TextureManager::getTexture("SpaceBackground");
@@ -16,7 +24,15 @@ namespace core {
     sf::Clock clock;
 
     bool over = false;
+
+    sf::Text framerate_text(debug_font);
+    framerate_text.setPosition({0, 0});
+
+    double total_time = 0;
+    long long total_frames = 0;
+
     while(window.isOpen() && !over) {
+      total_frames++;
       std::queue<std::optional<sf::Event>> playerEvents;
       while(const std::optional event = window.pollEvent()) {
 
@@ -45,6 +61,7 @@ namespace core {
 
       // dt is in seconds
       double dt = clock.getElapsedTime().asSeconds();
+      total_time += dt;
       clock.restart();
 
       for(ShipActor& ship : ships) {
@@ -53,12 +70,22 @@ namespace core {
 
 
       window.clear();
+
       window.draw(bg_sprite);
       for(ShipActor& ship : ships) {
         window.draw(ship, sf::RenderStates());
       }
+      double framerate = 0;
+      if(total_time > 0) framerate = total_frames / total_time;
+      framerate_text.setString(std::to_string((int) framerate) + " fps");
+      window.draw(framerate_text);
 
       window.display();
+      if(dt < frame_length) {
+        // This is in milliseconds because sleep works with integers
+        int wait_time = (frame_length - dt) * 1000;
+        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
+      }
     }
 
   }

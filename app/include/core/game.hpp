@@ -13,6 +13,7 @@ namespace core {
 
   class Battle {
   private:
+    double frame_length = 1.0 / 60.0;
     sf::RenderWindow& window;
 
     // The removal of destroyed ships is done simply by
