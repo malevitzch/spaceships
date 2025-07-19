@@ -27,11 +27,13 @@ namespace parts {
     void engineXForward();
     void engineXBack();
     void engineXOff();
+    double getXEngineVelocity() const;
 
     void setYEngine(int direction);
     void engineYForward();
     void engineYBack();
     void engineYOff();
+    double getYEngineVelocity() const;
 
     void setAngular(int direction);
   };

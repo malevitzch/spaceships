@@ -47,6 +47,7 @@ namespace util {
     Vec2d vectorProjection(Vec2d& vec);
 
     static Vec2d zero();
+    static Vec2d unit(Angle angle);
     static Vec2d unitX();
     static Vec2d unitY();
 

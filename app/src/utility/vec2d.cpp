@@ -103,6 +103,10 @@ namespace util {
     return Vec2d(0, 1);
   }
 
+  Vec2d Vec2d::unit(Angle angle) {
+    return Vec2d(1, angle);
+  }
+
   double Vec2d::scalarProjection(Vec2d& vec) {
     double veclength = vec.magnitude();
     if(veclength == 0) {
