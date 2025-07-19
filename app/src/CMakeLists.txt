@@ -78,6 +78,12 @@ add_custom_command(
   COMMENT "Copying assets"
 )
 
+add_custom_target(clean_assets
+  COMMAND ${CMAKE_COMMAND} -E remove_directory "${ASSETS_TARGET_DIR}"
+  COMMENT "Cleaning up assets"
+)
+
+
 
 
 add_custom_target(run

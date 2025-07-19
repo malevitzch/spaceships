@@ -12,7 +12,7 @@ namespace core {
 
     //FIXME: font loader
     sf::Font debug_font;
-    if(!debug_font.openFromFile("assets/fonts/metal/Metal.ttf")) {
+    if(!debug_font.openFromFile("assets/fonts/orbitron/orbitron.ttf")) {
       //TODO: error handling of sorts
     }
 
@@ -84,7 +84,10 @@ namespace core {
       if(dt < frame_length) {
         // This is in milliseconds because sleep works with integers
         int wait_time = (frame_length - dt) * 1000;
-        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
+
+        // Warning: the +10 here fixes a certain problem for 60fps but might
+        // be a limiter for when someone wants to run the game in 144fps
+        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time + 10));
       }
     }
 
