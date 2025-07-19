@@ -1,9 +1,9 @@
 #include "core/game.hpp"
 #include "assets/texture_manager.hpp"
+#include "assets/paths.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include <chrono>
 #include <thread>
-#include <iostream>
 
 namespace core {
 
@@ -12,7 +12,8 @@ namespace core {
 
     //FIXME: font loader
     sf::Font debug_font;
-    if(!debug_font.openFromFile("assets/fonts/orbitron/orbitron.ttf")) {
+    if(!debug_font.openFromFile(assets::paths::getAssetsPath()
+                                + "/fonts/orbitron/orbitron.ttf")) {
       //TODO: error handling of sorts
     }
 
@@ -30,6 +31,7 @@ namespace core {
 
     double total_time = 0;
     long long total_frames = 0;
+    double framerate = 60;
 
     while(window.isOpen() && !over) {
       total_frames++;
@@ -75,8 +77,8 @@ namespace core {
       for(ShipActor& ship : ships) {
         window.draw(ship, sf::RenderStates());
       }
-      double framerate = 0;
-      if(total_time > 0) framerate = total_frames / total_time;
+
+      if(total_frames % 10 == 0) framerate = total_frames / total_time;
       framerate_text.setString(std::to_string((int) framerate) + " fps");
       window.draw(framerate_text);
 

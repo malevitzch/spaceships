@@ -35,6 +35,7 @@ set(CORELIB_SOURCES
 
 set(ASSETSLIB_SOURCES
   assets/texture_manager.cpp
+  assets/paths.cpp
 )
 
 add_library(partslib ${PARTSLIB_SOURCES})
