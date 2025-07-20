@@ -13,7 +13,11 @@ namespace core {
 
   class Battle {
   private:
-    double frame_length = 1.0 / 144.0;
+    // TODO: this can be set to something reasonable
+    // like 60 or 144 but for now is pretty much uncapped
+    // so that the performance effects of various
+    // design decisions can be seen
+    const double frame_length = 0.0000001;
     sf::RenderWindow& window;
 
     // The removal of destroyed ships is done simply by

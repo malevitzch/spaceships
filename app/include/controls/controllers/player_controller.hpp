@@ -8,6 +8,7 @@ namespace controls {
   class PlayerController : public Controller {
   private:
     std::queue<sf::Event> events;
+    void addHolddownKeys(ShipOrders& orders) const;
   public:
     virtual ShipOrders getOrders() override;
 

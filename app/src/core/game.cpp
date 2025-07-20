@@ -40,8 +40,14 @@ namespace core {
 
         if(event->is<sf::Event::Closed>()) {
           window.close();
-        } else if(
-          const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
+        }
+        // This is a bit ugly but it handles keypresses which we don't want
+        // to be related to the player's actions but to the game itself
+        // like pressing "Escape" to leave go back to hangar
+        // TODO: consider switch statement
+        else if(const auto* keyPressed =
+          event->getIf<sf::Event::KeyPressed>()) {
+
           if(keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
             over = true;
           } else {
@@ -51,10 +57,16 @@ namespace core {
           // Any event that is not directly consumed by the window itself 
           // is treated as a "PlayerEvent" and sent ahead to the 
           // playerEvents queue
-          // FIXME: the contents of the queue should automatically be sent 
-          // to every PlayerController
           playerEvents.push(event);
         }
+      }
+
+      // Send out the playerEvents to their corresponding pr
+      while(!playerEvents.empty()) {
+        for(auto player : players) {
+          player->addEvent(*playerEvents.front());
+        }
+        playerEvents.pop();
       }
 
       for(ShipActor& ship : ships) {
