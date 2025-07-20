@@ -34,20 +34,22 @@ namespace parts {
 
     setXEngine(dx);
     setYEngine(dy);
-
-    if(!input.right && !input.left) {
-      util::normalize(*this,
-                      &OmniCore::getYEngineVelocity,
-                      &OmniCore::engineYForward,
-                      &OmniCore::engineYBack,
-                      &OmniCore::engineYOff);
-    }
-    if(!input.ahead && !input.back) {
-      util::normalize(*this,
-                      &OmniCore::getXEngineVelocity,
-                      &OmniCore::engineXForward,
-                      &OmniCore::engineXBack,
-                      &OmniCore::engineXOff);
+    dampener = dampener ^ (input.space % 2);
+    if(dampener) {
+      if(!input.right && !input.left) {
+        util::normalize(*this,
+                        &OmniCore::getYEngineVelocity,
+                        &OmniCore::engineYForward,
+                        &OmniCore::engineYBack,
+                        &OmniCore::engineYOff);
+      }
+      if(!input.ahead && !input.back) {
+        util::normalize(*this,
+                        &OmniCore::getXEngineVelocity,
+                        &OmniCore::engineXForward,
+                        &OmniCore::engineXBack,
+                        &OmniCore::engineXOff);
+      }
     }
 
     int ang = input.right_arrow - input.left_arrow;

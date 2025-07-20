@@ -26,11 +26,11 @@ namespace controls {
     // Special keys, mostly for things such 
     // brakes, mode switching, etc
     // TODO: they should be able to operate both in holddown mode
-    // and in keypress mode
-    bool space = false;
-    bool alt = false; // left alt
-    bool ctrl = false; // left ctrl
-    bool shift = false; // left shift
+    // and in keypress mode (2 bools per key, one set by 
+    int8_t space = false;
+    int8_t alt = false; // left alt
+    int8_t ctrl = false; // left ctrl
+    int8_t shift = false; // left shift
 
     // Actions, generally maps to keys 1-8
     // They are given as integers as there can be multiple presses

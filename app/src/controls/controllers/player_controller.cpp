@@ -22,8 +22,12 @@ namespace controls {
     addHolddownKeys(orders);
 
     while(!events.empty()) {
-      // FIXME: events are currently being ignored
-      // but only because player clicks don't mean anything yet`
+      sf::Event event = events.front();
+      if(const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+        if(keyPressed->scancode == sf::Keyboard::Scancode::Space) {
+          orders.space++;
+        }
+      }
       events.pop();
     }
 

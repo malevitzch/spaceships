@@ -17,6 +17,9 @@ namespace parts {
 
     double angular_thrust = 1;
     int angular_engines = 0;
+
+    bool dampener = true;
+
   public:
     OmniCore();
     virtual void physicsTick(double dt) override;
