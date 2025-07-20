@@ -34,6 +34,7 @@ set(CORELIB_SOURCES
 )
 
 set(ASSETSLIB_SOURCES
+  assets/font_manager.cpp
   assets/texture_manager.cpp
   assets/paths.cpp
 )
