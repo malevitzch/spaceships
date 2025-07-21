@@ -1,7 +1,6 @@
 #include "core/game.hpp"
 #include "assets/font_manager.hpp"
 #include "assets/texture_manager.hpp"
-#include "assets/paths.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include <chrono>
 #include <memory>

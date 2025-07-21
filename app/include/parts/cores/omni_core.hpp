@@ -8,8 +8,9 @@ namespace parts {
   // Short for OmnidirectionalCore
   class OmniCore : public SpaceshipCore {
   private:
-    // TODO: thrust should perhaps not be locked like this
-    double thrust = 7000;
+    double front_thrust = 0;
+    double back_thrust = 0;
+    double side_thrust = 0;
     // First is forward/backward
     // Second is left/right
     // All relative to ship orientation
@@ -21,7 +22,7 @@ namespace parts {
     bool dampener = true;
 
   public:
-    OmniCore();
+    OmniCore(double front_thrust, double back_thrust, double side_thrust);
     virtual void physicsTick(double dt) override;
 
     virtual void handleInstructions(controls::ShipOrders input) override;

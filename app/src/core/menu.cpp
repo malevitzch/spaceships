@@ -16,14 +16,12 @@ namespace core {
       "BasicShip"));
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 1",
-      std::make_shared<parts::OmniCore>(),
+      std::make_shared<parts::OmniCore>(5000, 3000, 5000),
       "OmniShip"));
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 2",
-      std::make_shared<parts::OmniCore>(),
+      std::make_shared<parts::OmniCore>(7000, 5000, 3000),
       "OmniShip"));
-    //ships.push_back(std::make_shared<parts::OmniCore>());
-    //ships.push_back(std::make_shared<parts::OmniCore>());
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<Ship> ship = nullptr;

@@ -1,13 +1,14 @@
 #include "parts/cores/omni_core.hpp"
 #include "utility/normalizer.hpp"
-#include "assets/texture_manager.hpp"
-
-
-#include <functional>
 
 namespace parts {
 
-  OmniCore::OmniCore() : SpaceshipCore(100, 100) {}
+  OmniCore::OmniCore(double front_thrust, double back_thrust, double side_thrust)
+  : 
+  front_thrust(front_thrust),
+  back_thrust(back_thrust),
+  side_thrust(side_thrust),
+  SpaceshipCore(100, 100) {}
 
   void OmniCore::physicsTick(double dt) {
     using util::Vec2d, util::Angle;
@@ -15,8 +16,9 @@ namespace parts {
     // Those are not actualy X and Y axes
     // but rather the one parallel the ship direction
     // and the one perpendicular to it
-    Vec2d ax = engines.x * Vec2d(thrust, getAngle());
-    Vec2d ay = engines.y * Vec2d(thrust, getAngle() + util::degrees(90));
+    double xthrust = engines.x > 0 ? front_thrust : back_thrust;
+    Vec2d ax = engines.x * Vec2d(xthrust, getAngle());
+    Vec2d ay = engines.y * Vec2d(side_thrust, getAngle() + util::degrees(90));
     transform.acceleration += ax + ay;
 
     double ang = angular_thrust * angular_engines;
