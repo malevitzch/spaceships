@@ -11,7 +11,7 @@ namespace core {
     // a null pointer dereference or an any other exception
     // and instead just return some silly missing ship texture
     texture =
-      assets::TextureManager::getTexture(texture_name);
+      assets::TextureManager::getShipTexture(texture_name);
     sprite = std::make_shared<sf::Sprite>(*texture);
     setupSprite();
   }

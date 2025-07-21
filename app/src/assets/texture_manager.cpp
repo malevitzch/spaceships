@@ -19,4 +19,10 @@ namespace assets {
     textures[name] = texture;
     return texture;
   }
+  std::shared_ptr<sf::Texture> TextureManager::getShipTexture(std::string name) {
+    return getTexture("ships/" + name);
+  }
+  std::shared_ptr<sf::Texture> TextureManager::getBackgroundTexture(std::string name) {
+    return getTexture("backgrounds/" + name);
+  }
 }

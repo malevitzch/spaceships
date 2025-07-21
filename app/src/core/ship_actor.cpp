@@ -10,7 +10,7 @@ namespace core {
   :
     ship(ship),
     controller(controller),
-    sprite(*assets::TextureManager::getTexture(texture_name)) {
+    sprite(*assets::TextureManager::getShipTexture(texture_name)) {
     sprite.setOrigin({25, 25});
   }
 
