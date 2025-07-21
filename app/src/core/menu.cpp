@@ -21,7 +21,7 @@ namespace core {
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 2",
       std::make_shared<parts::OmniCore>(7000, 5000, 3000),
-      "OmniShip"));
+      "OmniShipMk2"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<Ship> ship = nullptr;
