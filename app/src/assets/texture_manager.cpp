@@ -8,10 +8,8 @@ namespace assets {
     std::string,
     std::weak_ptr<sf::Texture>> TextureManager::textures;
   std::shared_ptr<sf::Texture> TextureManager::getTexture(std::string name) {
-    if(textures.contains(name)) {
-      if(auto texture = textures[name].lock()) {
-        return texture;
-      }
+    if(textures.contains(name) && textures[name].lock()) {
+      return textures[name].lock();
     }
     auto texture = 
       std::make_shared<sf::Texture>();

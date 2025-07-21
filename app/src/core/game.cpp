@@ -1,8 +1,10 @@
 #include "core/game.hpp"
+#include "assets/font_manager.hpp"
 #include "assets/texture_manager.hpp"
 #include "assets/paths.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include <chrono>
+#include <memory>
 #include <thread>
 
 namespace core {
@@ -10,12 +12,7 @@ namespace core {
   Battle::Battle(sf::RenderWindow& window) : window(window) {}
   void Battle::start() {
 
-    //FIXME: font loader
-    sf::Font debug_font;
-    if(!debug_font.openFromFile(assets::paths::getAssetsPath()
-                                + "/fonts/orbitron/orbitron.ttf")) {
-      //TODO: error handling of sorts
-    }
+    std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
 
     // TODO: the background should maybe be parametrized
     // and the texture accessed through bg_loader or something like that 
@@ -26,7 +23,7 @@ namespace core {
 
     bool over = false;
 
-    sf::Text framerate_text(debug_font);
+    sf::Text framerate_text(*debug_font);
     framerate_text.setPosition({0, 0});
 
     double total_time = 0;
