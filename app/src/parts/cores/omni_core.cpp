@@ -36,6 +36,10 @@ namespace parts {
 
     setXEngine(dx);
     setYEngine(dy);
+
+    double ang = input.right_arrow - input.left_arrow;
+    setAngular(ang);
+
     dampener = dampener ^ (input.space % 2);
     if(dampener) {
       if(!input.right && !input.left) {
@@ -52,13 +56,19 @@ namespace parts {
                         &OmniCore::engineXBack,
                         &OmniCore::engineXOff);
       }
+      if(!input.left_arrow && !input.right_arrow) {
+        util::normalize(*this,
+                        static_cast<double (OmniCore::*)() const>(
+                          &PhysicsObject::getAngularVelocity),
+                        &OmniCore::angularRight,
+                        &OmniCore::angularLeft,
+                        &OmniCore::angularOff);
+      }
     }
 
-    int ang = input.right_arrow - input.left_arrow;
-    setAngular(ang);
   }
 
-  void OmniCore::setXEngine(int direction) {
+  void OmniCore::setXEngine(double direction) {
     engines.x = direction;
   }
   void OmniCore::engineXForward() {
@@ -75,7 +85,7 @@ namespace parts {
     return getVelocity().scalarProjection(xengine_unit);
   }
 
-  void OmniCore::setYEngine(int direction) {
+  void OmniCore::setYEngine(double direction) {
     engines.y = direction;
   }
   void OmniCore::engineYForward() {
@@ -87,12 +97,21 @@ namespace parts {
   void OmniCore::engineYOff() {
     setYEngine(0);
   }
-  double OmniCore::getYEngineVelocity()const {
+  double OmniCore::getYEngineVelocity() const {
     util::Vec2d yengine_unit = util::Vec2d::unit(getAngle() + util::degrees(90));
     return getVelocity().scalarProjection(yengine_unit);
   }
 
-  void OmniCore::setAngular(int direction) {
+  void OmniCore::setAngular(double direction) {
     angular_engines = direction;
+  }
+  void OmniCore::angularLeft() {
+    angular_engines = -1;
+  }
+  void OmniCore::angularRight() {
+    angular_engines = 1;
+  }
+  void OmniCore::angularOff() {
+    angular_engines = 0;
   }
 }

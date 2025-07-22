@@ -17,7 +17,7 @@ namespace parts {
     util::Vec2d engines = {0, 0};
 
     double angular_thrust = 1;
-    int angular_engines = 0;
+    double angular_engines = 0;
 
     bool dampener = true;
 
@@ -27,19 +27,22 @@ namespace parts {
 
     virtual void handleInstructions(controls::ShipOrders input) override;
 
-    void setXEngine(int direction);
+    void setXEngine(double direction);
     void engineXForward();
     void engineXBack();
     void engineXOff();
     double getXEngineVelocity() const;
 
-    void setYEngine(int direction);
+    void setYEngine(double direction);
     void engineYForward();
     void engineYBack();
     void engineYOff();
     double getYEngineVelocity() const;
 
-    void setAngular(int direction);
+    void setAngular(double direction);
+    void angularLeft();
+    void angularRight();
+    void angularOff();
   };
 }
 #endif
