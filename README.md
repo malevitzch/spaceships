@@ -1,6 +1,8 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
+- Player camera
+- Weapons and ship equipment (basically a vector of stuff attached to a core, new core functionality of adding/removing equipment)
 - A factory for ships
 - Do not translate symbolic units to screen pixels directly, rather implement a game camera
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)
