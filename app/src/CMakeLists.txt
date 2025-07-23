@@ -42,6 +42,8 @@ set(ASSETSLIB_SOURCES
 
 add_library(partslib ${PARTSLIB_SOURCES})
 target_link_libraries(partslib PUBLIC SFML::Graphics)
+target_link_libraries(partslib PUBLIC utilitylib)
+target_link_libraries(partslib PUBLIC physicslib)
 
 add_library(physicslib ${PHYSICSLIB_SOURCES})
 target_link_libraries(physicslib PUBLIC SFML::Graphics)
