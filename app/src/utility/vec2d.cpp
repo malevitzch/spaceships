@@ -125,6 +125,10 @@ namespace util {
     return Vec2d(vec.x * scalar, vec.y * scalar);
   }
 
+  Vec2d vecBetween(Vec2d from, Vec2d to, double length) {
+    return (to - from).rescale(length);
+  }
+
   double distance(Vec2d v1, Vec2d v2) {
     return (v1 - v2).magnitude();
   }

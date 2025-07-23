@@ -1,14 +1,13 @@
 #include "core/camera.hpp"
-#include <iostream>
 namespace core {
   using util::Vec2d;
   Camera::Camera(sf::RenderWindow& target) : target(target) {}
 
   Vec2d Camera::toPixelPosition(Vec2d pos) {
-    return {pos.x, pos.y};
+    return pos + origin;
   }
   Vec2d Camera::toRelativePosition(Vec2d pos) {
-    return pos - (camera_pos - origin);
+    return pos - (camera_pos);
   }
   Vec2d Camera::translatePosition(Vec2d pos) {
     return toPixelPosition(toRelativePosition(pos));
@@ -22,7 +21,6 @@ namespace core {
       // Remove most of the ShipActor draw code so that it only
       // Draws its sprite
       Vec2d pixel_pos = translatePosition(ship_pos);
-      std::cout << pixel_pos << "\n";
       sf::RenderStates states;
       states.transform.translate(pixel_pos);
       states.transform.rotate(sf::radians(ship->getAngle()));

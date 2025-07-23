@@ -55,8 +55,9 @@ namespace util {
   };
   Vec2d operator*(const double scalar, const Vec2d& vec);
 
-  
   std::ostream& operator<<(std::ostream& o, const Vec2d vec);
+
+  Vec2d vecBetween(Vec2d from, Vec2d to, double length);
 
   double distance(Vec2d v1, Vec2d v2);
 }
