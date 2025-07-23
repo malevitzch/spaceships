@@ -33,7 +33,7 @@ int main() {
       "OmniShip"
     );
 
-    player.ship->getCore().setPosition({500, 500});
+    player.ship->getCore().setPosition({0, 0});
 
     battle.addPlayerShip(player, player_controller);
     battle.start();

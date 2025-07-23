@@ -118,6 +118,9 @@ namespace util {
     return vec * scalarProjection(vec);
   }
 
+  std::ostream& operator<<(std::ostream& o, const Vec2d vec) {
+    return o << "(" << vec.x << " " << vec.y << ")";
+  }
   Vec2d operator*(const double scalar, const Vec2d& vec) {
     return Vec2d(vec.x * scalar, vec.y * scalar);
   }

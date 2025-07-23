@@ -1,6 +1,7 @@
 #ifndef VEC2D
 #define VEC2D
 
+#include <iostream>
 #include <SFML/System/Vector2.hpp>
 
 #include "angle.hpp"
@@ -53,6 +54,9 @@ namespace util {
 
   };
   Vec2d operator*(const double scalar, const Vec2d& vec);
+
+  
+  std::ostream& operator<<(std::ostream& o, const Vec2d vec);
 
   double distance(Vec2d v1, Vec2d v2);
 }

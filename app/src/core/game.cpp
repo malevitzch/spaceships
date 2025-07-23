@@ -1,4 +1,5 @@
 #include "core/game.hpp"
+#include "core/camera.hpp"
 #include "assets/font_manager.hpp"
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
@@ -28,6 +29,8 @@ namespace core {
     double total_time = 0;
     long long total_frames = 0;
     double framerate = 60;
+
+    Camera camera(window);
 
     while(window.isOpen() && !over) {
       total_frames++;
@@ -82,9 +85,10 @@ namespace core {
       window.clear();
 
       window.draw(bg_sprite);
-      for(ShipActor& ship : ships) {
+      camera.drawShips(ships);
+      /*for(ShipActor& ship : ships) {
         window.draw(ship, sf::RenderStates());
-      }
+      }*/
 
       if(total_frames % 10 == 0) framerate = total_frames / total_time;
       framerate_text.setString(std::to_string((int) framerate) + " fps");

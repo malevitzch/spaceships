@@ -22,7 +22,8 @@ namespace core {
          std::shared_ptr<parts::SpaceshipCore> core,
          std::string texture_name);
     parts::SpaceshipCore& getCore() const;
-
+    util::Vec2d getPosition() const;
+    util::Angle getAngle() const;
     // This sets the origin of the sprite properly
     virtual void setupSprite();
     // TODO: drawCentered for all sorts of displays,

@@ -19,6 +19,12 @@ namespace core {
   parts::SpaceshipCore& Ship::getCore() const {
     return *core;
   }
+  util::Vec2d Ship::getPosition() const {
+    return getCore().getPosition();
+  }
+  util::Angle Ship::getAngle() const {
+    return getCore().getAngle();
+  }
 
   void Ship::setupSprite() {
     sprite->setOrigin({25, 25});
@@ -26,11 +32,6 @@ namespace core {
 
   void Ship::draw(sf::RenderTarget& target,
                   sf::RenderStates states) const {
-    //FIXME: ship does not draw itself based on its position
-
-    //states.transform.translate(getCore().getPosition());
-    //states.transform.rotate(sf::radians(getCore().getAngle()));
-
     target.draw(*sprite, states);
   }
 }
