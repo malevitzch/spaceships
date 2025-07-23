@@ -27,6 +27,7 @@ set(CONTROLSLIB_SOURCES
 )
 
 set(CORELIB_SOURCES
+  core/camera.cpp
   core/game.cpp
   core/menu.cpp
   core/ship.cpp

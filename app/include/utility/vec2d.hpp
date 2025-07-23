@@ -53,6 +53,8 @@ namespace util {
 
   };
   Vec2d operator*(const double scalar, const Vec2d& vec);
+
+  double distance(Vec2d v1, Vec2d v2);
 }
 
 #endif

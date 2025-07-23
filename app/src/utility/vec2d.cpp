@@ -122,4 +122,7 @@ namespace util {
     return Vec2d(vec.x * scalar, vec.y * scalar);
   }
 
+  double distance(Vec2d v1, Vec2d v2) {
+    return (v1 - v2).magnitude();
+  }
 }
