@@ -1,4 +1,5 @@
 #include "core/camera.hpp"
+#include "assets/texture_manager.hpp"
 namespace core {
   using util::Vec2d;
   Camera::Camera(sf::RenderWindow& target) : target(target) {}
@@ -26,6 +27,21 @@ namespace core {
       states.transform.rotate(sf::radians(ship->getAngle()));
 
       target.draw(*ship, states);
+    }
+  }
+
+  void Camera::drawBackground() {
+    double x = util::mathfmod(camera_pos.x, 1000);
+    double y = util::mathfmod(camera_pos.y, 1000);
+
+    sf::Sprite sprite(*assets::TextureManager::getBackgroundTexture("SpaceBackground"));
+
+    for(int i = -1; i <= 1; i++) {
+      for(int j = -1; j <= 1; j++) {
+        sf::RenderStates states;
+        states.transform.translate(Vec2d(i * 1000.0 - x, j * 1000.0 - y));
+        target.draw(sprite, states);
+      }
     }
   }
 }

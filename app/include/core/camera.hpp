@@ -25,6 +25,7 @@ namespace core {
     util::Vec2d translatePosition(util::Vec2d pos);
 
     void drawShips(std::vector<ShipActor> ships);
+    void drawBackground();
   };
 }
 

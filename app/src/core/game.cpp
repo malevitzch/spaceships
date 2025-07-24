@@ -84,7 +84,8 @@ namespace core {
 
       window.clear();
 
-      window.draw(bg_sprite);
+      //window.draw(bg_sprite);
+      camera.drawBackground();
       camera.drawShips(ships);
       /*for(ShipActor& ship : ships) {
         window.draw(ship, sf::RenderStates());
