@@ -1,9 +1,18 @@
 #include "core/camera.hpp"
 #include "assets/texture_manager.hpp"
 #include <cmath>
+#include <string>
 namespace core {
   using util::Vec2d;
-  Camera::Camera(sf::RenderWindow& target) : target(target) {}
+  Camera::Camera(sf::RenderWindow& target) : target(target) {
+    static const int backgroundCount = 2;
+    for(int i = 0; i < backgroundCount; i++) {
+      space_tx.push_back(assets::TextureManager::getBackgroundTexture("Space" + std::to_string(i)));
+    }
+    for(int i = 0; i < backgroundCount; i++) {
+      backgrounds.push_back(sf::Sprite(*space_tx[i]));
+    }
+  }
 
   void Camera::moveTowards(Vec2d target, double dt) {
     double dist = util::distance(camera_pos, target);
@@ -40,12 +49,14 @@ namespace core {
     double x = util::mathfmod(camera_pos.x, 1000);
     double y = util::mathfmod(camera_pos.y, 1000);
 
-    sf::Sprite sprite(*assets::TextureManager::getBackgroundTexture("SpaceBackground"));
+    long long x_bg = (camera_pos.x - x) / 1000; 
+    long long y_bg = (camera_pos.y - y) / 1000;
 
     for(int i = -1; i <= 1; i++) {
       for(int j = -1; j <= 1; j++) {
         sf::RenderStates states;
         states.transform.translate(Vec2d(i * 1000.0 - x, j * 1000.0 - y));
+        auto& sprite = backgrounds[labs((x_bg + i) + (y_bg + j)) % 2];
         target.draw(sprite, states);
       }
     }

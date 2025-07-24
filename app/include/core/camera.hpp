@@ -14,6 +14,8 @@ namespace core {
     util::Vec2d camera_pos = {0, 0};
     util::Vec2d origin = {500, 500};
     sf::RenderWindow& target;
+    std::vector<std::shared_ptr<sf::Texture>> space_tx;
+    std::vector<sf::Sprite> backgrounds;
   public:
     Camera(sf::RenderWindow& target);
 

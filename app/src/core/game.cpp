@@ -14,11 +14,6 @@ namespace core {
 
     std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
 
-    // TODO: the background should maybe be parametrized
-    // and the texture accessed through bg_loader or something like that 
-    auto bg_texture = assets::TextureManager::getBackgroundTexture("SpaceBackground");
-    sf::Sprite bg_sprite(*bg_texture);
-
     sf::Clock clock;
 
     bool over = false;
