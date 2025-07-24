@@ -25,6 +25,7 @@ namespace core {
     // This is "inefficient" but is generally done rarely
     // compared to usual iteration
     std::vector<ShipActor> ships;
+    std::shared_ptr<Ship> player_ship;
     std::vector<std::shared_ptr<controls::PlayerController>> players;
   public:
     Battle(sf::RenderWindow& window);

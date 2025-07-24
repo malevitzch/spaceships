@@ -1,16 +1,22 @@
 #include "core/camera.hpp"
 #include "assets/texture_manager.hpp"
+#include <cmath>
 namespace core {
   using util::Vec2d;
   Camera::Camera(sf::RenderWindow& target) : target(target) {}
 
-  Vec2d Camera::toPixelPosition(Vec2d pos) {
+  void Camera::moveTowards(Vec2d target, double dt) {
+    double dist = util::distance(camera_pos, target);
+    camera_pos += util::vecBetween(camera_pos, target, dt * std::pow(dist, 1.6) / 3);
+  }
+
+  Vec2d Camera::toPixelPosition(Vec2d pos) const {
     return pos + origin;
   }
-  Vec2d Camera::toRelativePosition(Vec2d pos) {
+  Vec2d Camera::toRelativePosition(Vec2d pos) const {
     return pos - (camera_pos);
   }
-  Vec2d Camera::translatePosition(Vec2d pos) {
+  Vec2d Camera::translatePosition(Vec2d pos) const {
     return toPixelPosition(toRelativePosition(pos));
   }
 

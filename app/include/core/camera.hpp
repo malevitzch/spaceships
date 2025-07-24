@@ -17,12 +17,13 @@ namespace core {
   public:
     Camera(sf::RenderWindow& target);
 
+    void moveTowards(util::Vec2d target, double dt);
     // This translates in-game position to pixel-wise positioning
-    util::Vec2d toPixelPosition(util::Vec2d pos);
+    util::Vec2d toPixelPosition(util::Vec2d pos) const;
     // Position -> position relative to camera 
-    util::Vec2d toRelativePosition(util::Vec2d pos);
+    util::Vec2d toRelativePosition(util::Vec2d pos) const;
     // Position -> position on camera screen, relative to the center
-    util::Vec2d translatePosition(util::Vec2d pos);
+    util::Vec2d translatePosition(util::Vec2d pos) const;
 
     void drawShips(std::vector<ShipActor> ships);
     void drawBackground();

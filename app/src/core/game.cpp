@@ -85,6 +85,7 @@ namespace core {
       window.clear();
 
       //window.draw(bg_sprite);
+      camera.moveTowards(player_ship->getPosition(), dt);
       camera.drawBackground();
       camera.drawShips(ships);
       /*for(ShipActor& ship : ships) {
@@ -115,6 +116,7 @@ namespace core {
     ShipActor ship,
     std::shared_ptr<controls::PlayerController> player) {
     addShip(ship);
+    player_ship = ship.ship;
     players.push_back(player);
   }
 
