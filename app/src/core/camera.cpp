@@ -5,9 +5,10 @@
 namespace core {
   using util::Vec2d;
   Camera::Camera(sf::RenderWindow& target) : target(target) {
-    static const int backgroundCount = 2;
+    static const int backgroundCount = 6;
     for(int i = 0; i < backgroundCount; i++) {
-      space_tx.push_back(assets::TextureManager::getBackgroundTexture("Space" + std::to_string(i)));
+      space_tx.push_back(assets::TextureManager::getBackgroundTexture(
+        "starfield0" + std::to_string(i+1)));
     }
     for(int i = 0; i < backgroundCount; i++) {
       backgrounds.push_back(sf::Sprite(*space_tx[i]));
@@ -56,7 +57,7 @@ namespace core {
       for(int j = -1; j <= 1; j++) {
         sf::RenderStates states;
         states.transform.translate(Vec2d(i * 1000.0 - x, j * 1000.0 - y));
-        auto& sprite = backgrounds[labs((x_bg + i) + (y_bg + j)) % 2];
+        auto& sprite = backgrounds[labs((x_bg + i) * 11 + (y_bg + j) * 7) % 2];
         target.draw(sprite, states);
       }
     }
