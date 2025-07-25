@@ -10,6 +10,7 @@ namespace util {
   struct Vec2d {
     double x, y;
 
+    Vec2d() = default;
     Vec2d(double x, double y);
     Vec2d(double magnitude, Angle angle);
     Vec2d(sf::Vector2f vec);

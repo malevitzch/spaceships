@@ -4,11 +4,13 @@
 #include "parts/cores/spaceship_core.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
+#include "assets/font_manager.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <memory>
 
 namespace core {
+  using util::Vec2d;
   Menu::Menu(sf::RenderWindow& window) : window(window) {
     ships.push_back(std::make_shared<Ship>(
       "Bird Mk. 1",
@@ -31,6 +33,7 @@ namespace core {
       "Round"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
+    std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");
     std::shared_ptr<Ship> ship = nullptr;
     for(auto& ship : ships) {
       ship->getCore().resetTransform();
@@ -43,7 +46,7 @@ namespace core {
       auto& rect = selections[i];
       rect.setOrigin({50, 50});
       rect.setSize({100, 100});
-      rect.setPosition(util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
+      rect.setPosition(Vec2d(500, 500) + (i - 1) * Vec2d(150, 0));
     }
     selections[1].setOrigin({60, 60});
     selections[1].setSize({120, 120});
@@ -57,10 +60,10 @@ namespace core {
           const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
           if(keyPressed->scancode == sf::Keyboard::Scancode::A) {
             selection_index =
-              (ships.size() + selection_index - 1) % ships.size();
+              (ships.size() + selection_index + 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::D) {
             selection_index =
-              (ships.size() + selection_index + 1) % ships.size();
+              (ships.size() + selection_index - 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space
                     || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
             return ships[(ships.size() - selection_index) % ships.size()];
@@ -71,13 +74,29 @@ namespace core {
       for(int i = 0; i < 3; i++) {
         window.draw(selections[i]);
         auto& ship =
-          ships[(i - selection_index + ships.size() - 1) % ships.size()];
-        ship->getCore().setPosition(
-          util::Vec2d(500, 500) + (i - 1) * util::Vec2d(150, 0));
+          *ships[(i - selection_index + ships.size() - 1) % ships.size()];
+        Vec2d pos = {500.0 + (i - 1) * 150, 500};
+
+        Vec2d text_pos = pos - Vec2d(0, -55);
+        sf::Text name(*font);
+
+        name.setOrigin({50, 0});
+        name.setCharacterSize(20);
+        if(i == 1) {
+          text_pos.y += 10;
+          name.setCharacterSize(25);
+          name.setOrigin({60, 0});
+        }
+
+        name.setString(ship.getName());
+        name.setPosition(text_pos);
+
+        window.draw(name);
+
         sf::RenderStates states;
-        states.transform.translate(ship->getCore().getPosition());
-        states.transform.rotate(sf::radians(ship->getCore().getAngle()));
-        window.draw(*ship, states);
+        states.transform.translate(pos);
+        states.transform.rotate(sf::degrees(-90));
+        window.draw(ship, states);
       }
       window.display();
     }

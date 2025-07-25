@@ -16,15 +16,15 @@ namespace core {
     setupSprite();
   }
 
-  parts::SpaceshipCore& Ship::getCore() const {
-    return *core;
-  }
+  parts::SpaceshipCore& Ship::getCore() const { return *core; }
   util::Vec2d Ship::getPosition() const {
     return getCore().getPosition();
   }
   util::Angle Ship::getAngle() const {
     return getCore().getAngle();
   }
+
+  std::string Ship::getName() const { return name; }
 
   void Ship::setupSprite() {
     sprite->setOrigin({25, 25});
