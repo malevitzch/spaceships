@@ -14,14 +14,21 @@ namespace core {
       "Bird Mk. 1",
       std::make_shared<parts::SimpleCore>(),
       "BasicShip"));
+
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 1",
       std::make_shared<parts::OmniCore>(5000, 3000, 5000),
       "OmniShip"));
+
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 2",
       std::make_shared<parts::OmniCore>(7000, 5000, 3000),
       "OmniShipMk2"));
+
+    ships.push_back(std::make_shared<Ship>(
+      "Round",
+      std::make_shared<parts::OmniCore>(7000, 7000, 7000),
+      "Round"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<Ship> ship = nullptr;
