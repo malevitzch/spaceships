@@ -29,6 +29,15 @@ namespace core {
   Vec2d Camera::translatePosition(Vec2d pos) const {
     return toPixelPosition(toRelativePosition(pos));
   }
+  Vec2d Camera::inverseToPixelPosition(util::Vec2d pos) const {
+    return pos - origin;
+  }
+  Vec2d Camera::inverseToRelativePosition(Vec2d pos) const {
+    return pos + camera_pos;
+  }
+  Vec2d Camera::inverseTranslatePosition(Vec2d pos) const {
+    return inverseToRelativePosition(inverseToPixelPosition(pos));
+  }
 
   void Camera::drawShips(std::vector<ShipActor> ships) {
     for(ShipActor& ship_actor : ships) {
