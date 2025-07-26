@@ -1,4 +1,5 @@
 #include "controls/controllers/player_controller.hpp"
+#include "core/game.hpp"
 
 namespace controls {
   void PlayerController::addHolddownKeys(ShipOrders& orders) const {
@@ -17,9 +18,14 @@ namespace controls {
     orders.right_arrow =
       sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right);
   }
+  void PlayerController::setTarget(ShipOrders& orders) const {
+    util::Vec2d mouse_pos = sf::Mouse::getPosition(battle->getWindow());
+    orders.target = battle->getCamera().inverseTranslatePosition(mouse_pos);
+  }
   ShipOrders PlayerController::getOrders() {
     ShipOrders orders;
     addHolddownKeys(orders);
+    setTarget(orders);
 
     while(!events.empty()) {
       sf::Event event = events.front();

@@ -14,6 +14,7 @@ namespace util {
     Vec2d(double x, double y);
     Vec2d(double magnitude, Angle angle);
     Vec2d(sf::Vector2f vec);
+    Vec2d(sf::Vector2i vec);
 
     Vec2d operator-() const;
 

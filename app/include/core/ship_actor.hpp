@@ -1,6 +1,7 @@
 #ifndef CORE_SHIP_ACTOR_HPP
 #define CORE_SHIP_ACTOR_HPP
 
+#include <SFML/Graphics.hpp>
 #include "controls/controllers/controller.hpp"
 #include "parts/cores/spaceship_core.hpp"
 #include "core/ship.hpp"

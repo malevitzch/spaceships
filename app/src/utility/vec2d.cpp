@@ -8,6 +8,7 @@ namespace util {
   : x(magnitude * cos(angle)), y(magnitude * sin(angle)) {}
 
   Vec2d::Vec2d(sf::Vector2f vec) : x(vec.x), y(vec.y) {}
+  Vec2d::Vec2d(sf::Vector2i vec) : x(vec.x), y(vec.y) {}
 
   Vec2d Vec2d::operator-() const {
     return (*this) * -1;

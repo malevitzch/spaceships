@@ -9,8 +9,9 @@
 
 namespace core {
 
-  Battle::Battle(sf::RenderWindow& window) : window(window) {}
+  Battle::Battle(sf::RenderWindow& window) : window(window), camera(window) {}
   void Battle::start() {
+    camera.setPosition({0, 0});
 
     std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
 
@@ -24,8 +25,6 @@ namespace core {
     double total_time = 0;
     long long total_frames = 0;
     double framerate = 60;
-
-    Camera camera(window);
 
     while(window.isOpen() && !over) {
       total_frames++;
@@ -76,16 +75,11 @@ namespace core {
         ship.physicsTick(dt);
       }
 
-
       window.clear();
 
-      //window.draw(bg_sprite);
       camera.moveTowards(player_ship->getPosition(), dt);
       camera.drawBackground();
       camera.drawShips(ships);
-      /*for(ShipActor& ship : ships) {
-        window.draw(ship, sf::RenderStates());
-      }*/
 
       if(total_frames % 10 == 0) framerate = total_frames / total_time;
       framerate_text.setString(std::to_string((int) framerate) + " fps");
@@ -108,11 +102,19 @@ namespace core {
     ships.push_back(ship);
   }
   void Battle::addPlayerShip(
-    ShipActor ship,
-    std::shared_ptr<controls::PlayerController> player) {
+      ShipActor ship,
+      std::shared_ptr<controls::PlayerController> player) {
     addShip(ship);
     player_ship = ship.ship;
+    player->battle = this;
     players.push_back(player);
+  }
+
+  const Camera& Battle::getCamera() const {
+    return camera;
+  }
+  sf::Window& Battle::getWindow() {
+    return window;
   }
 
 }

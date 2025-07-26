@@ -15,6 +15,10 @@ namespace core {
     }
   }
 
+  util::Vec2d Camera::getPosition() const { return camera_pos; }
+  void Camera::setPosition(Vec2d target) {
+    camera_pos = target;
+  }
   void Camera::moveTowards(Vec2d target, double dt) {
     double dist = util::distance(camera_pos, target);
     camera_pos += util::vecBetween(camera_pos, target, dt * std::pow(dist, 1.6) / 3);
@@ -43,10 +47,9 @@ namespace core {
     for(ShipActor& ship_actor : ships) {
       auto& ship = ship_actor.ship;
       Vec2d ship_pos = ship->getPosition();
-      // FIXME: use RenderStates transform
-      // Remove most of the ShipActor draw code so that it only
-      // Draws its sprite
+
       Vec2d pixel_pos = translatePosition(ship_pos);
+
       sf::RenderStates states;
       states.transform.translate(pixel_pos);
       states.transform.rotate(sf::radians(ship->getAngle()));

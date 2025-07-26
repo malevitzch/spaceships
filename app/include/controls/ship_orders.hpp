@@ -1,13 +1,16 @@
 #ifndef CONTROLS_SHIP_ORDERS_HPP
 #define CONTROLS_SHIP_ORDERS_HPP
 
-#include <SFML/Graphics.hpp>
+
+#include "utility/vec2d.hpp"
 
 #include <cstdint>
 
 namespace controls {
   // Struct that contains information about the controller's orders
   struct ShipOrders {
+
+    util::Vec2d target = {0, 0};
 
     // Main movement orders
     bool left = false;

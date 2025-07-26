@@ -8,6 +8,7 @@
 #include "parts/cores/spaceship_core.hpp"
 #include "controls/controllers/controller.hpp"
 #include "core/ship_actor.hpp"
+#include "core/camera.hpp"
 
 namespace core {
 
@@ -19,6 +20,7 @@ namespace core {
     // design decisions can be seen
     const double frame_length = 0.0000001;
     sf::RenderWindow& window;
+    Camera camera;
 
     // The removal of destroyed ships is done simply by
     // swapping with the last one and doing pop_back
@@ -36,6 +38,9 @@ namespace core {
     void addPlayerShip(
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player);
+
+    const Camera& getCamera() const;
+    sf::Window& getWindow();
   };
 
 }

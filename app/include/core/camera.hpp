@@ -19,6 +19,8 @@ namespace core {
   public:
     Camera(sf::RenderWindow& target);
 
+    util::Vec2d getPosition() const;
+    void setPosition(util::Vec2d target);
     void moveTowards(util::Vec2d target, double dt);
 
     // This translates in-game position to pixel-wise positioning
