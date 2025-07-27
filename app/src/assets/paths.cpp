@@ -1,5 +1,12 @@
 #include "assets/paths.hpp"
 #include <filesystem>
+
+#ifdef _WIN32
+
+#include <windows.h>
+
+#endif
+
 namespace assets {
   namespace paths {
     std::string getAssetsPath() {
