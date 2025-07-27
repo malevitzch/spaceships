@@ -1,6 +1,8 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
+- ShipSprite separate from ship, spritemanager?
+- Integrate the Cobra into the game
 - Camera adds center of mass to ship position when drawing (offset to the visual center of the sprite which is the origin?)
 - Weapons and ship equipment (basically a vector of stuff attached to a core, new core functionality of adding/removing equipment)
 - Projectiles
