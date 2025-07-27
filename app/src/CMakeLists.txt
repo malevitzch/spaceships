@@ -32,6 +32,7 @@ set(CORELIB_SOURCES
   core/menu.cpp
   core/ship.cpp
   core/ship_actor.cpp
+  core/ship_sprite.cpp
 )
 
 set(ASSETSLIB_SOURCES
@@ -64,7 +65,7 @@ target_link_libraries(assetslib PUBLIC SFML::Graphics)
 
 add_executable(game main.cpp)
 target_compile_features(game PRIVATE cxx_std_20)
-target_link_libraries(game PRIVATE 
+target_link_libraries(game PRIVATE
   partslib
   physicslib
   utilitylib

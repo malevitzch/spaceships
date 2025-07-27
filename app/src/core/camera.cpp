@@ -21,7 +21,7 @@ namespace core {
   }
   void Camera::moveTowards(Vec2d target, double dt) {
     double dist = util::distance(camera_pos, target);
-    camera_pos += util::vecBetween(camera_pos, target, dt * std::pow(dist, 1.6) / 3);
+    if(dist > 10) camera_pos += util::vecBetween(camera_pos, target, dt * std::pow(dist, 1.6) / 3);
   }
 
   Vec2d Camera::toPixelPosition(Vec2d pos) const {

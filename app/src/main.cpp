@@ -11,6 +11,7 @@
 int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");
   window.setPosition({0, 0});
+  //TODO: don't hard limit to 144
   window.setFramerateLimit(144);
 
   core::Menu menu(window);
