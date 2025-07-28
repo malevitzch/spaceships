@@ -2,6 +2,8 @@
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
 - Update the Menu to draw sprites using ShipImage
+- For each SpaceshipCore add a special function which resets it to default state
+- For ShipOrders add prolong() which generates orders as if nothing happened
 - Update the introduction in the README (this document)
 - Fix the... intersting problems with origin, rotation etc
 - Investigate the stupid framerate counter giving absurdly high values and slowly decreasing as game is running
