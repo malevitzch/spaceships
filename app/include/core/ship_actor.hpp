@@ -14,13 +14,12 @@ namespace core {
 
   //FIXME: for now its pretty much a struct cause I don't want to write
   // all the necessary accessors
-  class ShipActor : public sf::Drawable {
+  class ShipActor {
   private:
   protected:
   public:
     std::shared_ptr<Ship> ship;
     std::shared_ptr<controls::Controller> controller;
-    mutable sf::Sprite sprite;
     ShipActor(
       std::shared_ptr<Ship> core,
       std::shared_ptr<controls::Controller> controller, 
@@ -29,9 +28,6 @@ namespace core {
     void makeDecisions();
     void physicsTick(double dt);
 
-    virtual void draw(
-      sf::RenderTarget& target,
-      sf::RenderStates states) const override;
   };
 }
 

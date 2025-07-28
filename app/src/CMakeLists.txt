@@ -38,6 +38,7 @@ set(CORELIB_SOURCES
 set(ASSETSLIB_SOURCES
   assets/font_manager.cpp
   assets/texture_manager.cpp
+  assets/sprite_manager.cpp
   assets/paths.cpp
 )
 
@@ -61,6 +62,7 @@ target_link_libraries(corelib PRIVATE partslib)
 
 add_library(assetslib ${ASSETSLIB_SOURCES})
 target_link_libraries(assetslib PUBLIC SFML::Graphics)
+target_link_libraries(assetslib PUBLIC corelib)
 
 
 add_executable(game main.cpp)

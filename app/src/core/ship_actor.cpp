@@ -9,10 +9,7 @@ namespace core {
     std::string texture_name)
   :
     ship(ship),
-    controller(controller),
-    sprite(*assets::TextureManager::getShipTexture(texture_name)) {
-    sprite.setOrigin({25, 25});
-  }
+    controller(controller) {}
 
   void ShipActor::makeDecisions() {
     controls::ShipOrders orders = controller->getOrders();
@@ -23,14 +20,4 @@ namespace core {
     ship->getCore().physicsTick(dt);
   }
 
-  void ShipActor::draw(
-    sf::RenderTarget& target,
-    sf::RenderStates states) const {
-    //FIXME: this part is going to be replaced by calculation of on-screen
-    // position out of the logical position that the ship holds
-    states.transform.translate(ship->getCore().getPosition());
-    states.transform.rotate(sf::radians(ship->getCore().getAngle()));
-
-    target.draw(*ship, states);
-  }
 }

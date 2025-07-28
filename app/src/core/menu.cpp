@@ -15,17 +15,17 @@ namespace core {
     ships.push_back(std::make_shared<Ship>(
       "Bird Mk. 1",
       std::make_shared<parts::SimpleCore>(),
-      "BasicShip"));
+      "Bird"));
 
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 1",
       std::make_shared<parts::OmniCore>(5000, 3000, 5000),
-      "OmniShip"));
+      "BorgMk1"));
 
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 2",
       std::make_shared<parts::OmniCore>(7000, 5000, 3000),
-      "OmniShipMk2"));
+      "BorgMk2"));
 
     ships.push_back(std::make_shared<Ship>(
       "Round",
