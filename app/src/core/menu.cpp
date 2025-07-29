@@ -95,8 +95,8 @@ namespace core {
 
         sf::RenderStates states;
         states.transform.translate(pos);
-        states.transform.rotate(sf::degrees(-90));
-        window.draw(ship, states);
+
+        window.draw(ship.getSprite().getImageSprite(), states);
       }
       window.display();
     }

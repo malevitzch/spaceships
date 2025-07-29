@@ -24,9 +24,7 @@ namespace core {
     util::Angle getAngle() const;
 
     std::string getName() const;
-    // This sets the origin of the sprite properly
-    // TODO: drawCentered for all sorts of displays,
-    // where (center of sprite != center of mass)
+    ShipSprite& getSprite();
     virtual void draw(sf::RenderTarget& target,
                       sf::RenderStates states) const override;
   };

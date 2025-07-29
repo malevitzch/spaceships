@@ -4,7 +4,7 @@
 namespace assets {
   std::map<std::string,
            SpriteManager::ShipSpriteInfo> SpriteManager::sprites = {
-    {"Bird",    {"BasicShip", {50, 50}, {25, 25}, 1}},
+    {"Bird",    {"BasicShip", {50, 50}, {15, 25}, 1}},
     {"BorgMk1", {"OmniShip", {50, 50}, {25, 25}, 1}},
     {"BorgMk2", {"OmniShipMk2", {50, 50}, {25, 25}, 1}},
     {"Round",   {"Round", {50, 50}, {25, 25}, 1}},
