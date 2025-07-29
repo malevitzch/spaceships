@@ -21,6 +21,10 @@ namespace parts {
   public:
     SpaceshipCore(int hp, int mass);
 
+    // Any override of this function should call the super
+    virtual void resetState();
+
+    // TODO: this probably needs some other implementatoin
     virtual int getHp() override;
     virtual int getMass() override;
 

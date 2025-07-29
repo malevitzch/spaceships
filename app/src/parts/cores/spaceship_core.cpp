@@ -13,7 +13,12 @@ namespace parts {
     mass(mass) {
     PhysicsObject::setAngle(util::degrees(-90));
   }
-  int SpaceshipCore::getHp() {return hp;}
-  int SpaceshipCore::getMass() {return mass;}
+
+  void SpaceshipCore::resetState() {
+    physics::PhysicsObject::resetTransform();
+  }
+
+  int SpaceshipCore::getHp() { return hp; }
+  int SpaceshipCore::getMass() { return mass; }
 
 }

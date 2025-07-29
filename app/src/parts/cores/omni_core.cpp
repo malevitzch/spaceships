@@ -68,6 +68,13 @@ namespace parts {
 
   }
 
+  void OmniCore::resetState() {
+    SpaceshipCore::resetState();
+    engines = {0, 0};
+    angular_engines = 0;
+    dampener = true;
+  }
+
   void OmniCore::setXEngine(double direction) {
     engines.x = direction;
   }

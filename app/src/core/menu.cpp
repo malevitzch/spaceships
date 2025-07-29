@@ -36,7 +36,7 @@ namespace core {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");
     std::shared_ptr<Ship> ship = nullptr;
     for(auto& ship : ships) {
-      ship->getCore().resetTransform();
+      ship->getCore().resetState();
       ship->getCore().setAngle(util::degrees(-90));
     }
     //FIXME: selections should probably just hold a struct or smth

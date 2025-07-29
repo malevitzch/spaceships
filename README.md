@@ -1,7 +1,6 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
-- For each SpaceshipCore add a special function which resets it to default state
 - Destroy all textures when the window is closed so that the game does not crash: closing the window needs to get rid of all the textures from texture manager (Also we should use weak pointers rather than shared pointers so that
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 - Update the introduction in the README (this document)
