@@ -29,7 +29,7 @@ namespace controls {
     // Special keys, mostly for things such 
     // brakes, mode switching, etc
     // TODO: they should be able to operate both in holddown mode
-    // and in keypress mode (2 bools per key, one set by 
+    // and in keypress mode (A bool holddown)
     int8_t space = false;
     int8_t alt = false; // left alt
     int8_t ctrl = false; // left ctrl
@@ -42,6 +42,13 @@ namespace controls {
 
     ShipOrders() = default;
     ShipOrders(bool left, bool right, bool ahead, bool back);
+
+    // This function exists mostly for network-based stuff
+    // It creates a copy of the current orders but without the
+    // things that are one-use only
+    // This is important to maintain continuity when someone has
+    // high ping or lag
+    ShipOrders prolong() const;
   };
 
 }

@@ -3,7 +3,8 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 # todo
 - Update the Menu to draw sprites using ShipImage
 - For each SpaceshipCore add a special function which resets it to default state
-- For ShipOrders add prolong() which generates orders as if nothing happened
+- Destroy all textures when the window is closed so that the game does not crash: closing the window needs to get rid of all the textures from texture manager (Also we should use weak pointers rather than shared pointers so that
+- Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 - Update the introduction in the README (this document)
 - Fix the... intersting problems with origin, rotation etc
 - Investigate the stupid framerate counter giving absurdly high values and slowly decreasing as game is running
@@ -11,7 +12,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Integrate the Cobra into the game
 - Weapons and ship equipment (basically a vector of stuff attached to a core, new core functionality of adding/removing equipment)
 - Projectiles
-- Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 - A factory for ships
 - Randomly generate a bunch of backgrounds
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)

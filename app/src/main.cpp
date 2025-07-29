@@ -39,4 +39,5 @@ int main() {
     battle.addPlayerShip(player, player_controller);
     battle.start();
   }
+  return 0;
 }
