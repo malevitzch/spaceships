@@ -12,7 +12,7 @@
 
 namespace core {
 
-  //FIXME: for now its pretty much a struct cause I don't want to write
+  // FIXME: for now its pretty much a struct cause I don't want to write
   // all the necessary accessors
   class ShipActor {
   private:

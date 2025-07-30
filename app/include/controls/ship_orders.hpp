@@ -30,10 +30,10 @@ namespace controls {
     // brakes, mode switching, etc
     // TODO: they should be able to operate both in holddown mode
     // and in keypress mode (A bool holddown)
-    int8_t space = false;
-    int8_t alt = false; // left alt
-    int8_t ctrl = false; // left ctrl
-    int8_t shift = false; // left shift
+    int8_t space = 0;
+    int8_t alt = 0; // left alt
+    int8_t ctrl = 0; // left ctrl
+    int8_t shift = 0; // left shift
 
     // Actions, generally maps to keys 1-8
     // They are given as integers as there can be multiple presses

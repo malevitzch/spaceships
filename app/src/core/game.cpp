@@ -54,7 +54,7 @@ namespace core {
         }
       }
 
-      // Send out the playerEvents to their corresponding pr
+      // Send out the playerEvents to their corresponding player
       while(!playerEvents.empty()) {
         for(auto player : players) {
           player->addEvent(*playerEvents.front());

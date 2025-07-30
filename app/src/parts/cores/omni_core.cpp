@@ -4,7 +4,7 @@
 namespace parts {
 
   OmniCore::OmniCore(double front_thrust, double back_thrust, double side_thrust)
-  : 
+  :
   front_thrust(front_thrust),
   back_thrust(back_thrust),
   side_thrust(side_thrust),
