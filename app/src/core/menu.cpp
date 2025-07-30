@@ -31,6 +31,11 @@ namespace core {
       "Round",
       std::make_shared<parts::OmniCore>(7000, 7000, 7000),
       "Round"));
+
+    ships.push_back(std::make_shared<Ship>(
+      "Bug Mk1",
+      std::make_shared<parts::SimpleCore>(),
+      "Bug"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");

@@ -9,6 +9,7 @@ namespace assets {
     {"BorgMk2", {"OmniShipMk2", {50, 50}, {25, 25}, 1}},
     {"Round",   {"Round", {50, 50}, {25, 25}, 1}},
     {"Cobra",   {"Cobra", {256, 256}, {128, 128}, 50.0 / 256.0}},
+    {"Bug",     {"Bug", {256, 256}, {100, 128}, 50.0 / 256.0}},
   };
   std::shared_ptr<core::ShipSprite> SpriteManager::ShipSpriteInfo::get() {
     if(sprite == nullptr) {
