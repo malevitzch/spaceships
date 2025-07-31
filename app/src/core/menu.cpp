@@ -33,7 +33,7 @@ namespace core {
       "Round"));
 
     ships.push_back(std::make_shared<Ship>(
-      "Bug Mk1",
+      "Bug Mk. 1",
       std::make_shared<parts::SimpleCore>(),
       "Bug"));
   }
