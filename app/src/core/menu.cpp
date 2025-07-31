@@ -44,6 +44,13 @@ namespace core {
       ship->getCore().resetState();
       ship->getCore().setAngle(util::degrees(-90));
     }
+
+    constexpr int SELECTIONS_COUNT = 3;
+    constexpr int CENTER = SELECTIONS_COUNT / 2;
+
+    const Vec2d REGULAR_SIZE = {60.0, 60.0};
+    const Vec2d CENTER_SIZE = {90.0, 90.0};
+
     //FIXME: selections should probably just hold a struct or smth
     sf::RectangleShape selections[3];
     for(int i = 0; i < 3; i++) {
@@ -53,8 +60,8 @@ namespace core {
       rect.setSize({100, 100});
       rect.setPosition(Vec2d(500, 500) + (i - 1) * Vec2d(150, 0));
     }
-    selections[1].setOrigin({60, 60});
-    selections[1].setSize({120, 120});
+    selections[CENTER].setOrigin({60, 60});
+    selections[CENTER].setSize({120, 120});
     while(window.isOpen() && ship == nullptr) {
       while(const std::optional event = window.pollEvent()) {
         // Keys A-D are used to move the selection left or right
@@ -101,7 +108,17 @@ namespace core {
         sf::RenderStates states;
         states.transform.translate(pos);
 
-        window.draw(ship.getSprite().getImageSprite(), states);
+        auto ship_sprite = ship.getSprite().getImageSprite();
+
+        if(i == CENTER) {
+          Vec2d size = ship_sprite.getGlobalBounds().size;
+          ship_sprite.scale(Vec2d( CENTER_SIZE.x / size.x, CENTER_SIZE.y / size.y));
+        } else {
+          Vec2d size = ship_sprite.getGlobalBounds().size;
+          ship_sprite.scale(Vec2d( REGULAR_SIZE.x / size.x, REGULAR_SIZE.y / size.y));
+        }
+
+        window.draw(ship_sprite, states);
       }
       window.display();
     }
