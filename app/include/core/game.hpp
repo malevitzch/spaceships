@@ -18,7 +18,11 @@ namespace core {
     // like 60 or 144 but for now is pretty much uncapped
     // so that the performance effects of various
     // design decisions can be seen
-    const double frame_length = 0.0000001;
+
+    // const double targetFrameTime = 1.0f / 144.0f;
+    const double target_frame_time = 0.0000001; // e.g = 1.0f / 144.0f for 144 fps
+    const double target_fps_time = 0.5f;        // frequency of updating fps
+
     sf::RenderWindow& window;
     Camera camera;
 

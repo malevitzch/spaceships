@@ -15,19 +15,21 @@ namespace core {
 
     std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
 
-    sf::Clock clock;
+    constexpr int BUFFER_SIZE = 100;
+    float frame_times[BUFFER_SIZE] = {};
+    int frame_index = 0;
+    bool buffer_filled = false;
+    sf::Clock frame_clock;
+    sf::Clock fps_clock;
 
     bool over = false;
 
     sf::Text framerate_text(*debug_font);
     framerate_text.setPosition({0, 0});
 
-    double total_time = 0;
-    long long total_frames = 0;
-    double framerate = 60;
-
     while(window.isOpen() && !over) {
-      total_frames++;
+      float dt = frame_clock.restart().asSeconds();
+
       std::queue<std::optional<sf::Event>> playerEvents;
       while(const std::optional event = window.pollEvent()) {
 
@@ -66,33 +68,39 @@ namespace core {
         ship.makeDecisions();
       }
 
-      // dt is in seconds
-      double dt = clock.getElapsedTime().asSeconds();
-      total_time += dt;
-      clock.restart();
-
       for(ShipActor& ship : ships) {
         ship.physicsTick(dt);
       }
+      
+      camera.moveTowards(player_ship->getPosition(), dt);
+
+      frame_times[frame_index] = dt;
+      frame_index = (frame_index + 1) % BUFFER_SIZE;
+      if (frame_index == 0) buffer_filled = true;
+
+      int count = buffer_filled ? BUFFER_SIZE : frame_index;
+      float total_time = 0.f;
+      for (int i = 0; i < count; ++i) {
+        total_time += frame_times[i];
+      }
+      float average_dt = total_time / count;
+
+      if (fps_clock.getElapsedTime().asSeconds() >= target_fps_time) {
+        fps_clock.restart();
+        int fps = static_cast<int>(1.f / average_dt);
+        framerate_text.setString(std::to_string(fps) + " fps");
+      }
 
       window.clear();
-
-      camera.moveTowards(player_ship->getPosition(), dt);
       camera.drawBackground();
       camera.drawShips(ships);
-
-      if(total_frames % 10 == 0) framerate = total_frames / total_time;
-      framerate_text.setString(std::to_string((int) framerate) + " fps");
       window.draw(framerate_text);
-
       window.display();
-      if(dt < frame_length) {
-        // This is in milliseconds because sleep works with integers
-        int wait_time = (frame_length - dt) * 1000;
 
-        // Warning: the +10 here fixes a certain problem for 60fps but might
-        // be a limiter for when someone wants to run the game in 144fps
-        std::this_thread::sleep_for(std::chrono::milliseconds(wait_time + 10));
+      float elapsed = frame_clock.getElapsedTime().asSeconds();
+      if (elapsed < target_frame_time) {
+        int sleep_ms = static_cast<int>((target_frame_time - elapsed) * 1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(sleep_ms));
       }
     }
 
