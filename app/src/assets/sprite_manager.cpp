@@ -11,6 +11,7 @@ namespace assets {
     {"Cobra",   {"Cobra", {256, 256}, {128, 128}, 50.0 / 256.0}},
     {"Bug",     {"Bug", {256, 256}, {100, 128}, 100.0 / 256.0}},
     {"Phage",   {"Phage", {256, 256}, {80, 128}, 100.0 / 256.0}},
+    {"Spore",   {"Spore", {256, 256}, {128, 128}, 100.0 / 256.0}},
   };
   std::shared_ptr<core::ShipSprite> SpriteManager::ShipSpriteInfo::get() {
     if(sprite == nullptr) {
