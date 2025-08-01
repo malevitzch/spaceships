@@ -39,7 +39,7 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 1",
-      std::make_shared<parts::SimpleCore>(),
+      std::make_shared<parts::SimpleCore>(5000, 4),
       "Phage"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {

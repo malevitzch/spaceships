@@ -10,6 +10,10 @@
 
 namespace parts {
   SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {}
+  SimpleCore::SimpleCore(double thrust, double angular_thrust) 
+    : SpaceshipCore(100, 100),
+      thrust(thrust),
+      angular_thrust(angular_thrust) {}
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),
     // then we compute the physics tick
@@ -17,21 +21,21 @@ namespace parts {
     util::Vec2d acceleration = {0, 0};
     if(engines_on) {
       acceleration =
-        {(float)(thrust * cos(transform.angle)),
-        (float)(thrust * sin(transform.angle))};
+        {(float)(thrust * cos(getTransform().angle)),
+        (float)(thrust * sin(getTransform().angle))};
     }
 
     // Add the thrust to the transform so that its taken into account
-    transform.acceleration += acceleration;
-    transform.angular_acceleration += angular_thrust * angular_engines;
+    getTransform().acceleration += acceleration;
+    getTransform().angular_acceleration += angular_thrust * angular_engines;
 
     PhysicsObject::physicsTick(dt);
 
     // Subtract back the thrust
     // This is much more convenient than keeping an ON/OFF meter since the meter
     // Would have to somehow be a part of the transform
-    transform.acceleration -= acceleration;
-    transform.angular_acceleration -= angular_thrust * angular_engines;
+    getTransform().acceleration -= acceleration;
+    getTransform().angular_acceleration -= angular_thrust * angular_engines;
   }
 
   std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {

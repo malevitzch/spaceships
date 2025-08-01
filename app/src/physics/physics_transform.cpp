@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <numbers>
 #include <cmath>
 
@@ -60,8 +61,6 @@ namespace physics {
     }
 
   void PhysicsTransform::tick(double dt) {
-    // TODO: make position not directly linked to the pixel position on the 
-    // display
     position += (velocity * dt + (acceleration * (dt * dt)) / 2.0) / 100.0;
     velocity += acceleration * dt;
 
@@ -108,13 +107,14 @@ namespace physics {
   angular_velocity_cap(angular_velocity_cap) {
   }
   void CappedTransform::tick(double dt) {
-    PhysicsTransform::tick(dt);
     if(velocity.magnitude() >= velocity_cap) {
       velocity.rescale(velocity_cap);
     }
-    if(std::fabs(angular_velocity) >= angular_velocity_cap) {
-      angular_velocity = angular_velocity_cap * (angular_velocity < 0 ? -1 : 1);
-    }
+    angular_velocity = std::clamp(
+      angular_velocity,
+      -angular_velocity_cap,
+      angular_velocity_cap);
+    PhysicsTransform::tick(dt);
   }
 
 }

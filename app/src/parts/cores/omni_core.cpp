@@ -19,15 +19,15 @@ namespace parts {
     double xthrust = engines.x > 0 ? front_thrust : back_thrust;
     Vec2d ax = engines.x * Vec2d(xthrust, getAngle());
     Vec2d ay = engines.y * Vec2d(side_thrust, getAngle() + util::degrees(90));
-    transform.acceleration += ax + ay;
+    getTransform().acceleration += ax + ay;
 
     double ang = angular_thrust * angular_engines;
-    transform.angular_acceleration += ang;
+    getTransform().angular_acceleration += ang;
 
     PhysicsObject::physicsTick(dt);
 
-    transform.acceleration -= ax + ay;
-    transform.angular_acceleration -= ang;
+    getTransform().acceleration -= ax + ay;
+    getTransform().angular_acceleration -= ang;
   }
 
   void OmniCore::handleInstructions(controls::ShipOrders input) {

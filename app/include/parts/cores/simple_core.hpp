@@ -22,6 +22,8 @@ namespace parts {
     std::shared_ptr<sf::Texture> texture;
   public:
     SimpleCore();
+    SimpleCore(double thrust, double angular_thrust);
+
     virtual void physicsTick(double dt) override;
     virtual std::vector<std::shared_ptr<Part>> getChildren() override;
 

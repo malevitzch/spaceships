@@ -9,9 +9,9 @@ namespace physics {
   class PhysicsObject {
   private:
   protected:
-    PhysicsTransform transform;
+    std::unique_ptr<PhysicsTransform> transform;
   public:
-    PhysicsObject(PhysicsTransform transform);
+    PhysicsObject(std::unique_ptr<PhysicsTransform> transform);
     virtual void physicsTick(double dt);
 
     util::Vec2d getPosition() const;
@@ -39,6 +39,8 @@ namespace physics {
     void setAngularAcceleration(util::Angle angle);
 
     void resetTransform();
+
+    PhysicsTransform& getTransform();
   };
 }
 

@@ -59,7 +59,7 @@ namespace physics {
       double velocity_cap,
       double angular_velocity_cap);
 
-  virtual void tick(double dt) override;
+    virtual void tick(double dt) override;
   };
 }
 
