@@ -85,7 +85,7 @@ namespace util {
     return Vec2d(*this) / length;
   }
 
-  Vec2d& Vec2d::rescale(const double length) {
+  Vec2d Vec2d::rescale(const double length) {
     if(magnitude() == 0) {
       return *this;
     }

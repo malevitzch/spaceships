@@ -44,7 +44,7 @@ namespace util {
 
     Vec2d unit() const;
 
-    Vec2d& rescale(const double length);
+    Vec2d rescale(const double length);
 
     double scalarProjection(Vec2d& vec);
     Vec2d vectorProjection(Vec2d& vec);

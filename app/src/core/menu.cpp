@@ -1,5 +1,6 @@
 #include "core/menu.hpp"
 #include "parts/cores.hpp"
+#include "parts/cores/mouse_core.hpp"
 #include "parts/cores/omni_core.hpp"
 #include "parts/cores/spaceship_core.hpp"
 #include "utility/angle.hpp"
@@ -44,7 +45,7 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Spore Mk. 1",
-      std::make_shared<parts::OmniCore>(7000, 5000, 3000),
+      std::make_shared<parts::MouseCore>(7000),
       "Spore"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {

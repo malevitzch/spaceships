@@ -6,6 +6,7 @@ set(PARTSLIB_SOURCES
   parts/cores/spaceship_core.cpp
   parts/cores/simple_core.cpp
   parts/cores/omni_core.cpp
+  parts/cores/mouse_core.cpp
 )
 
 set(PHYSICSLIB_SOURCES
