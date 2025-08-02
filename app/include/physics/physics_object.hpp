@@ -13,6 +13,7 @@ namespace physics {
   public:
     PhysicsObject(std::unique_ptr<PhysicsTransform> transform);
     virtual void physicsTick(double dt);
+    virtual void physicsTick(double dt, std::vector<PhysicsTransform> transforms);
 
     util::Vec2d getPosition() const;
     double getPositionX() const;

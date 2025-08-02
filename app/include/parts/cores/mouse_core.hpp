@@ -2,12 +2,13 @@
 #define PARTS_CORES_MOUSE_CORE
 
 #include "parts/cores/spaceship_core.hpp"
+#include "physics/physics_transform.hpp"
 
 namespace parts {
   class MouseCore : public SpaceshipCore {
   private:
     double thrust = 0;
-    util::Vec2d engines = {0, 0};
+    physics::PhysicsTransform engine_transform;
   public:
     MouseCore(double thrust);
     virtual void physicsTick(double dt) override;

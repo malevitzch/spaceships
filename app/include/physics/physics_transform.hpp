@@ -4,6 +4,7 @@
 #include <SFML/System/Angle.hpp>
 #include "utility/vec2d.hpp"
 #include "utility/angle.hpp"
+#include <vector>
 
 namespace physics {
   struct PhysicsTransform {
@@ -40,6 +41,8 @@ namespace physics {
         const PhysicsTransform& transform);
 
       virtual void tick(double dt);
+      virtual void tick(double dt,
+                        std::vector<PhysicsTransform> transforms);
       virtual void reset();
   };
 

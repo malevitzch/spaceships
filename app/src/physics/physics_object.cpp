@@ -5,7 +5,10 @@ namespace physics {
   : transform(std::move(transform)) {}
 
   void PhysicsObject::physicsTick(double dt) {
-    transform->tick(dt);
+    getTransform().tick(dt);
+  }
+  void PhysicsObject::physicsTick(double dt, std::vector<PhysicsTransform> transforms) {
+    getTransform().tick(dt, transforms);
   }
 
   util::Vec2d PhysicsObject::getPosition() const {
@@ -18,7 +21,7 @@ namespace physics {
     return getPosition().y;
   }
   void PhysicsObject::setPosition(util::Vec2d target) {
-    this->transform->position = target;
+    getTransform().position = target;
   }
 
   util::Vec2d PhysicsObject::getVelocity() const {

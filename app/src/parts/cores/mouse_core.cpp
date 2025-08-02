@@ -1,20 +1,20 @@
 #include "parts/cores/mouse_core.hpp"
+#include "physics/physics_transform.hpp"
 
 namespace parts {
-  MouseCore::MouseCore(double thrust) : SpaceshipCore(100, 100), thrust(thrust) {}
+  MouseCore::MouseCore(double thrust) : thrust(thrust), SpaceshipCore(100, 100) {}
 
   void MouseCore::physicsTick(double dt) {
-    getTransform().acceleration += engines * thrust;
-    PhysicsObject::physicsTick(dt);
-    getTransform().acceleration -= engines * thrust;
+    PhysicsObject::physicsTick(dt, {engine_transform});
   }
 
   void MouseCore::handleInstructions(controls::ShipOrders input) {
-    engines = util::vecBetween(getPosition(), input.target, 1.0);
+    engine_transform.acceleration =
+      util::vecBetween(getPosition(), input.target, thrust);
   }
 
   void MouseCore::resetState() {
     SpaceshipCore::resetState();
-    engines = {0, 0};
-  }
+      engine_transform.reset();
+    }
 }

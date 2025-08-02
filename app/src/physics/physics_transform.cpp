@@ -67,6 +67,15 @@ namespace physics {
     angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0);
     angular_velocity += angular_acceleration * dt;
   }
+  void PhysicsTransform::tick(double dt, std::vector<PhysicsTransform> transforms) {
+    for(PhysicsTransform transform : transforms) {
+      *this += transform;
+    }
+    tick(dt);
+    for(PhysicsTransform transform : transforms) {
+      *this -= transform;
+    }
+  }
 
   void PhysicsTransform::reset() {
     position = {0, 0};
