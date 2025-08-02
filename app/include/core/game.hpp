@@ -14,12 +14,12 @@ namespace core {
 
   class Battle {
   private:
+    bool over = false;
+
     // TODO: this can be set to something reasonable
     // like 60 or 144 but for now is pretty much uncapped
     // so that the performance effects of various
     // design decisions can be seen
-
-    // const double targetFrameTime = 1.0f / 144.0f;
     const double target_frame_time = 0.0000001; // e.g = 1.0f / 144.0f for 144 fps
     const double target_fps_time = 0.1f;        // frequency of updating fps
 
@@ -42,6 +42,8 @@ namespace core {
     void addPlayerShip(
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player);
+
+    virtual void processEvents();
 
     const Camera& getCamera() const;
     sf::Window& getWindow();

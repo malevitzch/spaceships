@@ -22,7 +22,7 @@ namespace core {
     sf::Clock frame_clock;
     sf::Clock fps_clock;
 
-    bool over = false;
+    over = false;
 
     sf::Text framerate_text(*debug_font);
     framerate_text.setPosition({0, 0});
@@ -30,39 +30,7 @@ namespace core {
     while(window.isOpen() && !over) {
       float dt = frame_clock.restart().asSeconds();
 
-      std::queue<std::optional<sf::Event>> playerEvents;
-      while(const std::optional event = window.pollEvent()) {
-
-        if(event->is<sf::Event::Closed>()) {
-          window.close();
-        }
-        // This is a bit ugly but it handles keypresses which we don't want
-        // to be related to the player's actions but to the game itself
-        // like pressing "Escape" to leave go back to hangar
-        // TODO: consider switch statement
-        else if(const auto* keyPressed =
-          event->getIf<sf::Event::KeyPressed>()) {
-
-          if(keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
-            over = true;
-          } else {
-            playerEvents.push(event);
-          }
-        } else {
-          // Any event that is not directly consumed by the window itself 
-          // is treated as a "PlayerEvent" and sent ahead to the 
-          // playerEvents queue
-          playerEvents.push(event);
-        }
-      }
-
-      // Send out the playerEvents to their corresponding player
-      while(!playerEvents.empty()) {
-        for(auto player : players) {
-          player->addEvent(*playerEvents.front());
-        }
-        playerEvents.pop();
-      }
+      processEvents();
 
       for(ShipActor& ship : ships) {
         ship.makeDecisions();
@@ -71,7 +39,7 @@ namespace core {
       for(ShipActor& ship : ships) {
         ship.physicsTick(dt);
       }
-      
+
       camera.moveTowards(player_ship->getPosition(), dt);
 
       frame_times[frame_index] = dt;
@@ -123,6 +91,44 @@ namespace core {
   }
   sf::Window& Battle::getWindow() {
     return window;
+  }
+
+  void Battle::processEvents() {
+    std::queue<std::optional<sf::Event>> player_events;
+    while(const std::optional event = window.pollEvent()) {
+
+      if(event->is<sf::Event::Closed>()) {
+        window.close();
+      }
+      // This is a bit ugly but it handles keypresses which we don't want
+      // to be related to the player's actions but to the game itself
+      // like pressing "Escape" to leave go back to hangar
+      else if(const auto* key_pressed =
+        event->getIf<sf::Event::KeyPressed>()) {
+        switch(key_pressed->scancode) {
+          case sf::Keyboard::Scancode::Escape:
+            over = true;
+            break;
+          default:
+            player_events.push(event);
+            break;
+        }
+      } else {
+        // Any event that is not directly consumed by the window itself
+        // is treated as a "PlayerEvent" and sent ahead to the
+        // player_events queue
+        player_events.push(event);
+      }
+    }
+
+    // Send out the player_events to their corresponding player
+    while(!player_events.empty()) {
+      for(auto player : players) {
+        player->addEvent(*player_events.front());
+      }
+      player_events.pop();
+    }
+
   }
 
 }

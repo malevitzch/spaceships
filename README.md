@@ -1,7 +1,8 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
-- Add configuration to SimpleCore, allowing modified thrust
+- Battle should have its own file, not game.cpp
+- Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
 - Sprite infromation can be in config files rather than hardcoded (json or something)
 - Actually, a lot of the information could be kept in json
 - Make menu bigger
