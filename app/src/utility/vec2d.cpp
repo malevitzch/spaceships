@@ -86,11 +86,31 @@ namespace util {
   }
 
   Vec2d Vec2d::rescale(const double length) {
-    if(magnitude() == 0) {
-      return *this;
-    }
+    if(magnitude() == 0) return *this;
     (*this) *= (length / magnitude());
     return *this;
+  }
+  Vec2d Vec2d::rescaled(const double length) const {
+    if(magnitude() == 0) return *this;
+    return (*this) * length / magnitude();
+  }
+  Vec2d Vec2d::normalize() {
+    return rescale(1.0);
+  }
+  Vec2d Vec2d::normalized() const {
+    return rescaled(1.0);
+  }
+
+  double Vec2d::scalarProjection(Vec2d& vec) {
+    double veclength = vec.magnitude();
+    if(veclength == 0) {
+      return 0;
+    }
+    return ((*this) * vec) / veclength;
+  }
+
+  Vec2d Vec2d::vectorProjection(Vec2d& vec) {
+    return vec * scalarProjection(vec);
   }
 
   Vec2d Vec2d::zero() {
@@ -106,17 +126,6 @@ namespace util {
 
   Vec2d Vec2d::unit(Angle angle) {
     return Vec2d(1, angle);
-  }
-
-  double Vec2d::scalarProjection(Vec2d& vec) {
-    double veclength = vec.magnitude();
-    if(veclength == 0) {
-      return 0;
-    }
-    return ((*this) * vec) / veclength;
-  }
-  Vec2d Vec2d::vectorProjection(Vec2d& vec) {
-    return vec * scalarProjection(vec);
   }
 
   std::ostream& operator<<(std::ostream& o, const Vec2d vec) {
