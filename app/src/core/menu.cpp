@@ -40,7 +40,7 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Spore Mk. 1",
-      std::make_shared<parts::MouseCore>(7000),
+      std::make_shared<parts::MouseCore>(7000, 0.5),
       "Spore"));
 
     ships.push_back(std::make_shared<Ship>(

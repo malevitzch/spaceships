@@ -2,7 +2,6 @@
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
 - Consider using engine transforms in SimpleCore and OmniCore
-- Finish MouseCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
 - Sprite infromation can be in config files rather than hardcoded (json or something)

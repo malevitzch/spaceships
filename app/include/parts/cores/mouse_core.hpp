@@ -8,14 +8,15 @@ namespace parts {
   class MouseCore : public SpaceshipCore {
   private:
     double thrust = 0;
+    double angular_thrust = 0;
     physics::PhysicsTransform engine_transform;
   public:
-    MouseCore(double thrust);
+    MouseCore(double thrust, double angular_thrust);
     virtual void physicsTick(double dt) override;
-
     virtual void handleInstructions(controls::ShipOrders input) override;
-
     virtual void resetState() override;
+
+    virtual double getThrust() const;
   };
 }
 
