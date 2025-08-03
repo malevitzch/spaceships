@@ -27,7 +27,7 @@ namespace util {
   }
 
   Angle& Angle::operator+=(const Angle angle) {
-    this->val += mathfmod(this->val + angle.get(), twopi);
+    this->val = mathfmod(this->val + angle.get(), twopi);
     return *this;
   }
   Angle& Angle::operator+=(const double value) {
@@ -35,7 +35,7 @@ namespace util {
     return *this;
   }
   Angle& Angle::operator-=(const Angle angle) {
-    this->val += mathfmod(this->val - angle.get(), twopi);
+    this->val = mathfmod(this->val - angle.get(), twopi);
     return *this;
   }
   Angle& Angle::operator-=(const double value) {

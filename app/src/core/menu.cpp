@@ -39,14 +39,15 @@ namespace core {
       "Bug"));
 
     ships.push_back(std::make_shared<Ship>(
+      "Spore Mk. 1",
+      std::make_shared<parts::MouseCore>(7000),
+      "Spore"));
+
+    ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 1",
       std::make_shared<parts::SimpleCore>(5000, 4),
       "Phage"));
 
-    ships.push_back(std::make_shared<Ship>(
-      "Spore Mk. 1",
-      std::make_shared<parts::MouseCore>(7000),
-      "Spore"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");

@@ -1,7 +1,6 @@
 # spaceships
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
-- Find out why MouseCore is the only one that starts the game sideways
 - Consider using engine transforms in SimpleCore and OmniCore
 - Finish MouseCore
 - Battle should have its own file, not game.cpp

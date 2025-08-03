@@ -7,7 +7,7 @@ namespace util {
   // Angles are measured in radians
   class Angle {
   private:
-    double val;
+    double val = 0;
   public:
     Angle();
     Angle(double value);
