@@ -25,7 +25,6 @@ namespace parts {
     SimpleCore(double thrust, double angular_thrust);
 
     virtual void physicsTick(double dt) override;
-    virtual std::vector<std::shared_ptr<Part>> getChildren() override;
 
     virtual void handleInstructions(controls::ShipOrders input) override;
 

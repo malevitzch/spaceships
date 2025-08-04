@@ -38,9 +38,6 @@ namespace parts {
     getTransform().angular_acceleration -= angular_thrust * angular_engines;
   }
 
-  std::vector<std::shared_ptr<Part>> SimpleCore::getChildren() {
-    return {};
-  }
   void SimpleCore::handleInstructions(controls::ShipOrders input) {
     if(input.ahead) {
       turnOnEngines();
