@@ -9,7 +9,7 @@
 namespace core {
   class ShipSprite : public sf::Drawable {
   private:
-    std::shared_ptr<sf::Texture> texture;
+    std::weak_ptr<sf::Texture> texture;
     std::unique_ptr<sf::Sprite> sprite;
     util::Vec2d center_of_mass;
 

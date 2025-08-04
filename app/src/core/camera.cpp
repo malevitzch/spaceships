@@ -11,7 +11,7 @@ namespace core {
         "starfield0" + std::to_string(i+1)));
     }
     for(int i = 0; i < backgroundCount; i++) {
-      backgrounds.push_back(sf::Sprite(*space_tx[i]));
+      backgrounds.push_back(sf::Sprite(*space_tx[i].lock()));
     }
   }
 

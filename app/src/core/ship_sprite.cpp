@@ -11,7 +11,7 @@ namespace core {
                            sprite_size(sprite_size),
                            scale(scale) {
     texture = assets::TextureManager::getShipTexture(name);
-    sprite = std::make_unique<sf::Sprite>(*texture);
+    sprite = std::make_unique<sf::Sprite>(*texture.lock());
 
     sprite->setScale(util::Vec2d(scale, scale));
     // TODO: investigate
@@ -27,7 +27,7 @@ namespace core {
     target.draw(*sprite, states);
   }
   sf::Sprite ShipSprite::getImageSprite() const {
-    sf::Sprite sprite(*texture);
+    sf::Sprite sprite(*texture.lock());
     sprite.setScale(util::Vec2d(scale, scale));
     // TODO: investigate
 

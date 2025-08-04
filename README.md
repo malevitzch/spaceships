@@ -7,7 +7,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Sprite infromation can be in config files rather than hardcoded (json or something)
 - Actually, a lot of the information could be kept in json
 - Make menu bigger
-- Destroy all textures when the window is closed so that the game does not crash: closing the window needs to get rid of all the textures from texture manager (Also we should use weak pointers rather than shared pointers so that the main shared pointer can destroy everything)
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 - Update the introduction in the README (this document)
 - Fix the... intersting problems with origin, rotation etc

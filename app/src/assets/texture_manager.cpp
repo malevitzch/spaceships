@@ -6,10 +6,10 @@
 namespace assets {
   std::unordered_map<
     std::string,
-    std::weak_ptr<sf::Texture>> TextureManager::textures;
-  std::shared_ptr<sf::Texture> TextureManager::getTexture(std::string name) {
-    if(textures.contains(name) && textures[name].lock()) {
-      return textures[name].lock();
+    std::shared_ptr<sf::Texture>> TextureManager::textures;
+  std::weak_ptr<sf::Texture> TextureManager::getTexture(std::string name) {
+    if(textures.contains(name)) {
+      return textures[name];
     }
     auto texture = 
       std::make_shared<sf::Texture>();
@@ -19,10 +19,14 @@ namespace assets {
     textures[name] = texture;
     return texture;
   }
-  std::shared_ptr<sf::Texture> TextureManager::getShipTexture(std::string name) {
+  std::weak_ptr<sf::Texture> TextureManager::getShipTexture(std::string name) {
     return getTexture("ships/" + name);
   }
-  std::shared_ptr<sf::Texture> TextureManager::getBackgroundTexture(std::string name) {
+  std::weak_ptr<sf::Texture> TextureManager::getBackgroundTexture(std::string name) {
     return getTexture("backgrounds/" + name);
+  }
+
+  void TextureManager::reset() {
+    textures.clear();
   }
 }

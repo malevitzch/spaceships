@@ -1,4 +1,5 @@
 #include "core/menu.hpp"
+#include "assets/texture_manager.hpp"
 #include "parts/cores.hpp"
 #include "parts/cores/mouse_core.hpp"
 #include "parts/cores/omni_core.hpp"
@@ -79,7 +80,9 @@ namespace core {
         // Keys A-D are used to move the selection left or right
         // And Space/Enter is used to select the ship currently in the middle 
         if(event->is<sf::Event::Closed>()) {
+          assets::TextureManager::reset();
           window.close();
+          break;
         } else if (
           const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
           if(keyPressed->scancode == sf::Keyboard::Scancode::A) {
@@ -93,6 +96,11 @@ namespace core {
             return ships[(ships.size() - selection_index) % ships.size()];
           }
         }
+      }
+      //FIXME: this is very ugly but we can't let the last loop execution
+      // come to the next part if the window gets closed
+      if(!window.isOpen()) {
+        continue;
       }
       window.clear();
       for(int i = 0; i < 3; i++) {

@@ -31,6 +31,9 @@ namespace core {
       float dt = frame_clock.restart().asSeconds();
 
       processEvents();
+      // FIXME: this is ugly but needs to happen so that textures
+      // are properly considered invalid later
+      if(!window.isOpen()) break;
 
       for(ShipActor& ship : ships) {
         ship.makeDecisions();
@@ -98,6 +101,7 @@ namespace core {
     while(const std::optional event = window.pollEvent()) {
 
       if(event->is<sf::Event::Closed>()) {
+        assets::TextureManager::reset();
         window.close();
       }
       // This is a bit ugly but it handles keypresses which we don't want
