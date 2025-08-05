@@ -35,13 +35,13 @@ namespace controls {
     int8_t ctrl = 0; // left ctrl
     int8_t shift = 0; // left shift
 
-    // Actions, generally maps to keys 1-8
+    // Actions, they generally map to keys 1-8
+    // But additional keys can be used 
     // They are given as integers as there can be multiple presses
     // per frame and I don't want them lost in some cases
-    int8_t actions[8] = {};
+    int8_t actions[16] = {};
 
     ShipOrders() = default;
-    ShipOrders(bool left, bool right, bool ahead, bool back);
 
     // This function exists mostly for network-based stuff
     // It creates a copy of the current orders but without the

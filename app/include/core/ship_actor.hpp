@@ -12,21 +12,21 @@
 
 namespace core {
 
-  // FIXME: for now its pretty much a struct cause I don't want to write
-  // all the necessary accessors
   class ShipActor {
   private:
-  protected:
-  public:
     std::shared_ptr<Ship> ship;
     std::shared_ptr<controls::Controller> controller;
+  public:
     ShipActor(
       std::shared_ptr<Ship> core,
-      std::shared_ptr<controls::Controller> controller, 
-      std::string texture_name);
+      std::shared_ptr<controls::Controller> controller);
 
     void makeDecisions();
     void physicsTick(double dt);
+
+    Ship& getShip();
+    std::shared_ptr<Ship> getShipPointer();
+    controls::Controller& getController();
 
   };
 }

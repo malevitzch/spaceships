@@ -16,7 +16,7 @@ namespace parts {
     int mass;
   protected:
   public:
-    SpaceshipCore(int hp, int mass);
+    SpaceshipCore();
 
     // Any override of this function should call the super
     virtual void resetState();

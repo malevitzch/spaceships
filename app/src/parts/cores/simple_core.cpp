@@ -4,25 +4,21 @@
 #include <SFML/System/Angle.hpp>
 #include <cmath>
 
-#include "assets/texture_manager.hpp"
 #include "physics/physics_object.hpp"
 #include "utility/normalizer.hpp"
 
 namespace parts {
-  SimpleCore::SimpleCore() : SpaceshipCore(100, 100) {}
-  SimpleCore::SimpleCore(double thrust, double angular_thrust) 
-    : SpaceshipCore(100, 100),
-      thrust(thrust),
-      angular_thrust(angular_thrust) {}
+  SimpleCore::SimpleCore() {}
+  SimpleCore::SimpleCore(double thrust, double angular_thrust) :
+    thrust(thrust),
+    angular_thrust(angular_thrust) {}
   void SimpleCore::physicsTick(double dt) {
     // We first add the thrust to the transform (if engines are on),
     // then we compute the physics tick
     // And finally we subtract it back
     util::Vec2d acceleration = {0, 0};
     if(engines_on) {
-      acceleration =
-        {(float)(thrust * cos(getTransform().angle)),
-        (float)(thrust * sin(getTransform().angle))};
+      acceleration = util::Vec2d(thrust, getTransform().angle);
     }
 
     // Add the thrust to the transform so that its taken into account

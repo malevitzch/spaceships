@@ -5,11 +5,7 @@
 
 namespace parts {
   using physics::CappedTransform;
-  //TODO: properly call constructors of parent classes
-  SpaceshipCore::SpaceshipCore(
-    int hp,
-    int mass)
-  :
+  SpaceshipCore::SpaceshipCore() :
     PhysicsObject(std::make_unique<CappedTransform>(100000, 15)) {}
 
   void SpaceshipCore::resetState() {

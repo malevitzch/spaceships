@@ -45,16 +45,16 @@ namespace core {
 
   void Camera::drawShips(std::vector<ShipActor> ships) {
     for(ShipActor& ship_actor : ships) {
-      auto& ship = ship_actor.ship;
-      Vec2d ship_pos = ship->getPosition();
+      auto& ship = ship_actor.getShip();
+      Vec2d ship_pos = ship.getPosition();
 
       Vec2d pixel_pos = translatePosition(ship_pos);
 
       sf::RenderStates states;
       states.transform.translate(pixel_pos);
-      states.transform.rotate(sf::radians(ship->getAngle()));
+      states.transform.rotate(sf::radians(ship.getAngle()));
 
-      target.draw(*ship, states);
+      target.draw(ship, states);
     }
   }
 

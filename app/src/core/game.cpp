@@ -84,7 +84,7 @@ namespace core {
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player) {
     addShip(ship);
-    player_ship = ship.ship;
+    player_ship = ship.getShipPointer();
     player->battle = this;
     players.push_back(player);
   }

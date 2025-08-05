@@ -14,9 +14,6 @@ namespace core {
     sprite = std::make_unique<sf::Sprite>(*texture.lock());
 
     sprite->setScale(util::Vec2d(scale, scale));
-    // TODO: investigate
-
-    //sprite->setRotation(sf::degrees(-90));
     sprite->setOrigin(center_of_mass);
   }
   sf::Sprite& ShipSprite::getSprite() {
@@ -29,7 +26,6 @@ namespace core {
   sf::Sprite ShipSprite::getImageSprite() const {
     sf::Sprite sprite(*texture.lock());
     sprite.setScale(util::Vec2d(scale, scale));
-    // TODO: investigate
 
     sprite.setRotation(sf::degrees(-90));
 

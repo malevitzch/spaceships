@@ -3,13 +3,10 @@
 #include "controls/ship_orders.hpp"
 
 namespace core {
-  ShipActor::ShipActor(
-    std::shared_ptr<Ship> ship,
-    std::shared_ptr<controls::Controller> controller,
-    std::string texture_name)
-  :
-    ship(ship),
-    controller(controller) {}
+  ShipActor::ShipActor(std::shared_ptr<Ship> ship,
+                       std::shared_ptr<controls::Controller> controller) :
+      ship(ship),
+      controller(controller) {}
 
   void ShipActor::makeDecisions() {
     controls::ShipOrders orders = controller->getOrders();
@@ -19,5 +16,9 @@ namespace core {
   void ShipActor::physicsTick(double dt) {
     ship->getCore().physicsTick(dt);
   }
+
+  Ship& ShipActor::getShip() { return *ship; }
+  std::shared_ptr<Ship> ShipActor::getShipPointer() { return ship; }
+  controls::Controller& ShipActor::getController() { return *controller; }
 
 }

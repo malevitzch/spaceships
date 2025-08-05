@@ -11,8 +11,6 @@
 int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");
   window.setPosition({0, 0});
-  //TODO: don't hard limit to 144
-  window.setFramerateLimit(144);
 
   core::Menu menu(window);
 
@@ -28,13 +26,9 @@ int main() {
     core::Battle battle(window);
     std::shared_ptr<controls::PlayerController> player_controller
       = std::make_shared<controls::PlayerController>();
-    core::ShipActor player(
-      ship,
-      player_controller,
-      "OmniShip"
-    );
+    core::ShipActor player(ship, player_controller);
 
-    player.ship->getCore().setPosition({0, 0});
+    player.getShip().getCore().setPosition({0, 0});
 
     battle.addPlayerShip(player, player_controller);
     battle.start();

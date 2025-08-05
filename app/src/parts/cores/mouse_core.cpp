@@ -6,8 +6,7 @@ namespace parts {
 
   MouseCore::MouseCore(double thrust, double angular_thrust) :
     thrust(thrust),
-    angular_thrust(angular_thrust),
-    SpaceshipCore(100, 100) {}
+    angular_thrust(angular_thrust) {}
 
   void MouseCore::physicsTick(double dt) {
     SpaceshipCore::physicsTick(dt, {engine_transform});

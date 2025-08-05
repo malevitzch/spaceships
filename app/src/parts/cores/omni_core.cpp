@@ -7,8 +7,7 @@ namespace parts {
   :
   front_thrust(front_thrust),
   back_thrust(back_thrust),
-  side_thrust(side_thrust),
-  SpaceshipCore(100, 100) {}
+  side_thrust(side_thrust) {}
 
   void OmniCore::physicsTick(double dt) {
     using util::Vec2d, util::Angle;
