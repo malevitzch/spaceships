@@ -28,15 +28,20 @@ namespace controls {
 
     // Special keys, mostly for things such 
     // brakes, mode switching, etc
-    // TODO: they should be able to operate both in holddown mode
-    // and in keypress mode (A bool holddown)
-    int8_t space = 0;
-    int8_t alt = 0; // left alt
-    int8_t ctrl = 0; // left ctrl
-    int8_t shift = 0; // left shift
+    int8_t space_p = 0;
+    int8_t alt_p = 0; // left alt
+    int8_t ctrl_p = 0; // left ctrl
+    int8_t shift_p = 0; // left shift
+
+    // Holddown versions of special keys for continued input
+    bool space = false;
+    bool alt = false;
+    bool ctrl = false;
+    bool shift = false;
 
     // Actions, they generally map to keys 1-8
-    // But additional keys can be used 
+    // But additional keys can be used, especially for more complicated
+    // And perhaps AI-controlled ships (not "real" AI, just bots)
     // They are given as integers as there can be multiple presses
     // per frame and I don't want them lost in some cases
     int8_t actions[16] = {};
