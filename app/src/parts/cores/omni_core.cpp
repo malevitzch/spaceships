@@ -39,7 +39,7 @@ namespace parts {
     double ang = input.right_arrow - input.left_arrow;
     setAngular(ang);
 
-    dampener = dampener ^ (input.space % 2);
+    dampener = dampener ^ (input.space_p % 2);
     if(dampener) {
       if(!input.right && !input.left) {
         util::normalize(*this,

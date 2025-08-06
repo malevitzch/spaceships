@@ -31,7 +31,7 @@ namespace controls {
       sf::Event event = events.front();
       if(const auto* keyPressed = event.getIf<sf::Event::KeyPressed>()) {
         if(keyPressed->scancode == sf::Keyboard::Scancode::Space) {
-          orders.space++;
+          orders.space_p++;
         }
       }
       events.pop();

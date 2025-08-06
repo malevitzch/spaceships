@@ -66,19 +66,25 @@ namespace core {
     constexpr int CENTER = SELECTIONS_COUNT / 2;
 
     const Vec2d REGULAR_SIZE = {60.0, 60.0};
-    const Vec2d CENTER_SIZE = {90.0, 90.0};
+    const Vec2d CENTER_SIZE = {150.0, 150.0};
+
+    const Vec2d SELECTION_SIZE = REGULAR_SIZE * 1.7;
+    const Vec2d CENTER_SELECTION_SIZE = CENTER_SIZE * 1.1;
+
+    constexpr double DISTANCE = 200;
 
     //FIXME: selections should probably just hold a struct or smth
     sf::RectangleShape selections[3];
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < SELECTIONS_COUNT; i++) {
       selections[i] = sf::RectangleShape();
       auto& rect = selections[i];
-      rect.setOrigin({50, 50});
-      rect.setSize({100, 100});
-      rect.setPosition(Vec2d(500, 500) + (i - 1) * Vec2d(150, 0));
+      rect.setOrigin(SELECTION_SIZE / 2);
+      rect.setSize(SELECTION_SIZE);
+      rect.setPosition(Vec2d(500, 500) + (i - CENTER) * Vec2d(DISTANCE, 0));
     }
-    selections[CENTER].setOrigin({60, 60});
-    selections[CENTER].setSize({120, 120});
+    selections[CENTER].setOrigin(CENTER_SELECTION_SIZE / 2);
+    selections[CENTER].setSize(CENTER_SELECTION_SIZE);
+
     while(window.isOpen() && ship == nullptr) {
       while(const std::optional event = window.pollEvent()) {
         // Keys A-D are used to move the selection left or right
@@ -107,21 +113,21 @@ namespace core {
         continue;
       }
       window.clear();
-      for(int i = 0; i < 3; i++) {
+      for(int i = 0; i < SELECTIONS_COUNT; i++) {
         window.draw(selections[i]);
         auto& ship =
           *ships[(i - selection_index + ships.size() - 1) % ships.size()];
-        Vec2d pos = {500.0 + (i - 1) * 150, 500};
+        Vec2d pos = {500.0 + (i - CENTER) * DISTANCE, 500};
 
-        Vec2d text_pos = pos - Vec2d(0, -55);
+        Vec2d text_pos = pos + Vec2d(0, SELECTION_SIZE.y / 2);
         sf::Text name(*font);
 
-        name.setOrigin({50, 0});
+        name.setOrigin({float(SELECTION_SIZE.x / 2), 0});
         name.setCharacterSize(20);
         if(i == 1) {
-          text_pos.y += 10;
+          text_pos.y = pos.y + CENTER_SELECTION_SIZE.y / 2;
           name.setCharacterSize(25);
-          name.setOrigin({60, 0});
+          name.setOrigin({float(CENTER_SELECTION_SIZE.x / 2), 0});
         }
 
         name.setString(ship.getName());
