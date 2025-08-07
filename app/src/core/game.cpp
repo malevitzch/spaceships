@@ -15,7 +15,7 @@ namespace core {
 
     std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
 
-    constexpr int BUFFER_SIZE = 100;
+    constexpr int BUFFER_SIZE = 500;
     float frame_times[BUFFER_SIZE] = {};
     int frame_index = 0;
     bool buffer_filled = false;

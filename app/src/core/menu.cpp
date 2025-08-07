@@ -62,7 +62,7 @@ namespace core {
       ship->getCore().setAngle(util::degrees(-90));
     }
 
-    constexpr int SELECTIONS_COUNT = 3;
+    constexpr int SELECTIONS_COUNT = 7;
     constexpr int CENTER = SELECTIONS_COUNT / 2;
 
     const Vec2d REGULAR_SIZE = {60.0, 60.0};
@@ -71,16 +71,22 @@ namespace core {
     const Vec2d SELECTION_SIZE = REGULAR_SIZE * 1.7;
     const Vec2d CENTER_SELECTION_SIZE = CENTER_SIZE * 1.1;
 
-    constexpr double DISTANCE = 200;
+    const double DISTANCE = SELECTION_SIZE.x + 10;
 
-    //FIXME: selections should probably just hold a struct or smth
-    sf::RectangleShape selections[3];
+    sf::RectangleShape selections[SELECTIONS_COUNT];
     for(int i = 0; i < SELECTIONS_COUNT; i++) {
       selections[i] = sf::RectangleShape();
       auto& rect = selections[i];
       rect.setOrigin(SELECTION_SIZE / 2);
       rect.setSize(SELECTION_SIZE);
-      rect.setPosition(Vec2d(500, 500) + (i - CENTER) * Vec2d(DISTANCE, 0));
+      Vec2d pos = {500.0 + (i - CENTER) * DISTANCE, 500};
+      if(i < CENTER) {
+        pos.x -= (CENTER_SELECTION_SIZE.x - SELECTION_SIZE.x) / 2;
+      } else {
+        pos.x += (CENTER_SELECTION_SIZE.x - SELECTION_SIZE.x) / 2;
+      }
+      if(i == CENTER) pos = {500.0, 500.0};
+      rect.setPosition(pos);
     }
     selections[CENTER].setOrigin(CENTER_SELECTION_SIZE / 2);
     selections[CENTER].setSize(CENTER_SELECTION_SIZE);
@@ -116,24 +122,24 @@ namespace core {
       for(int i = 0; i < SELECTIONS_COUNT; i++) {
         window.draw(selections[i]);
         auto& ship =
-          *ships[(i - selection_index + ships.size() - 1) % ships.size()];
+          *ships[(i - selection_index + ships.size() - CENTER) % ships.size()];
         Vec2d pos = {500.0 + (i - CENTER) * DISTANCE, 500};
-
-        Vec2d text_pos = pos + Vec2d(0, SELECTION_SIZE.y / 2);
-        sf::Text name(*font);
-
-        name.setOrigin({float(SELECTION_SIZE.x / 2), 0});
-        name.setCharacterSize(20);
-        if(i == 1) {
-          text_pos.y = pos.y + CENTER_SELECTION_SIZE.y / 2;
-          name.setCharacterSize(25);
-          name.setOrigin({float(CENTER_SELECTION_SIZE.x / 2), 0});
+        if(i < CENTER) {
+          pos.x -= (CENTER_SELECTION_SIZE.x - SELECTION_SIZE.x) / 2;
+        } else {
+          pos.x += (CENTER_SELECTION_SIZE.x - SELECTION_SIZE.x) / 2;
         }
+        if(i == CENTER) pos = {500.0, 500.0};
 
-        name.setString(ship.getName());
-        name.setPosition(text_pos);
-
-        window.draw(name);
+        if(i == CENTER) {
+          Vec2d text_pos = pos + Vec2d(0, CENTER_SELECTION_SIZE.y / 2);
+          sf::Text name(*font);
+          name.setString(ship.getName());
+          name.setPosition(text_pos);
+          name.setCharacterSize(50);
+          name.setOrigin({name.getLocalBounds().size.x / 2, 0});
+          window.draw(name);
+        }
 
         sf::RenderStates states;
         states.transform.translate(pos);
