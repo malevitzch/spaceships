@@ -2,12 +2,15 @@ set(ASSETS_SOURCE_DIR "${CMAKE_SOURCE_DIR}/app/assets")
 set(ASSETS_TARGET_DIR "${CMAKE_BINARY_DIR}/assets")
 
 set(PARTSLIB_SOURCES
+  parts/signal.cpp
+
   parts/cores/spaceship_core.cpp
   parts/cores/simple_core.cpp
   parts/cores/omni_core.cpp
   parts/cores/mouse_core.cpp
 
   parts/modules/module.cpp
+  parts/modules/trigger_module.cpp
 )
 
 set(PHYSICSLIB_SOURCES
