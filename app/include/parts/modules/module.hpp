@@ -9,12 +9,17 @@ namespace parts {
 
   class Module {
   private:
+    void setCore(SpaceshipCore& core);
   protected:
     // This uses raw pointers since the core pointer should be valid
-    // at all times
+    // at all times, if the core is destroyed then so is the module
     SpaceshipCore* core;
   public:
-    void setCore(SpaceshipCore& core);
+    // The behavior of this depends on the module
+    virtual void reset();
+
+
+  friend class SpaceshipCore;
   };
 
 }
