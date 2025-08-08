@@ -1,7 +1,7 @@
 #ifndef SPACESHIP_CORE_HPP
 #define SPACESHIP_CORE_HPP
 
-#include "parts/modules/module.hpp"
+#include "parts/modules/trigger_module.hpp"
 
 #include "physics/physics_object.hpp"
 
@@ -15,6 +15,15 @@ namespace parts {
     public physics::PhysicsObject {
   private:
   protected:
+    //TODO: this can honestly even be private later
+    std::vector<std::unique_ptr<TriggerModule>> trigger_modules;
+    void broadcastSignal(int code);
+    void broadcastSignal(int code, std::vector<std::string> args);
+    void broadcastSignal(Signal signal);
+
+    //FIXME: this should allow for some nicer argument passing
+    // and not require the creation of unique_ptr to the object
+    void addTriggerModule(std::unique_ptr<TriggerModule> module);
   public:
     SpaceshipCore();
 
