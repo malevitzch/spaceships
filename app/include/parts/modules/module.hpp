@@ -15,6 +15,8 @@ namespace parts {
     // at all times, if the core is destroyed then so is the module
     SpaceshipCore* core;
   public:
+    // The behavior of this depends on the module
+    virtual void reset();
 
 
   friend class SpaceshipCore;

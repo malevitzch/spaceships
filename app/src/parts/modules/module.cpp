@@ -4,4 +4,5 @@ namespace parts {
   void Module::setCore(SpaceshipCore& core) {
     this->core = &core;
   }
+  void Module::reset() {}
 }
