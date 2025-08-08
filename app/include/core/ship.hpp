@@ -2,7 +2,6 @@
 #define CORE_SHIP_HPP
 
 #include "core/ship_sprite.hpp"
-#include "parts.hpp"
 #include "parts/cores/spaceship_core.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>

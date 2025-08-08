@@ -5,7 +5,6 @@
 #include "core/game.hpp"
 #include "core/menu.hpp"
 #include "core/ship_actor.hpp"
-#include "parts.hpp"
 
 
 int main() {
