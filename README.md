@@ -26,3 +26,4 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 
 ## other
 - Update the introduction in the README (this document)
+- Add some testing library

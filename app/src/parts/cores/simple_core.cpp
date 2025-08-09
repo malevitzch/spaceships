@@ -35,6 +35,11 @@ namespace parts {
   }
 
   void SimpleCore::handleInstructions(controls::ShipOrders input) {
+    for(int i = 0; i < 16; i++) {
+      for(int j = 0; j < input.actions[i]; i++) {
+        broadcastSignal(i);
+      }
+    }
     if(input.ahead) {
       turnOnEngines();
     } else {
