@@ -1,19 +1,12 @@
 #include "assets/sprite_manager.hpp"
+#include "assets/paths.hpp"
+#include "nlohmann/json.hpp"
+#include <fstream>
 #include <stdexcept>
 
 namespace assets {
   std::map<std::string,
-           SpriteManager::ShipSpriteInfo> SpriteManager::sprites = {
-    {"Bird",    {"BasicShip", {50, 50}, {15, 25}, 1}},
-    {"BorgMk1", {"OmniShip", {50, 50}, {25, 25}, 1}},
-    {"BorgMk2", {"OmniShipMk2", {50, 50}, {25, 25}, 1}},
-    {"Round",   {"Round", {50, 50}, {25, 25}, 1}},
-    {"Cobra",   {"Cobra", {256, 256}, {128, 128}, 50.0 / 256.0}},
-    {"Bug",     {"Bug", {256, 256}, {100, 128}, 100.0 / 256.0}},
-    {"Phage",   {"Phage", {256, 256}, {80, 128}, 100.0 / 256.0}},
-    {"PhageMk2",{"PhageMk2", {256, 256}, {80, 128}, 100.0 / 256.0}},
-    {"Spore",   {"Spore", {256, 256}, {128, 128}, 100.0 / 256.0}},
-  };
+           SpriteManager::ShipSpriteInfo> SpriteManager::sprites;
   std::shared_ptr<core::ShipSprite> SpriteManager::ShipSpriteInfo::get() {
     if(sprite == nullptr) {
       sprite = std::make_shared<core::ShipSprite>(texture_name,
@@ -24,6 +17,20 @@ namespace assets {
     return sprite;
   }
 
+  void SpriteManager::init() {
+    using nlohmann::json;
+    std::ifstream spritestream(
+      assets::paths::getAssetsPath() + "/json/ship_sprites.json");
+    json data = json::parse(spritestream);
+    for(auto& sprite_data : data["sprites"]) {
+      sprites[sprite_data["name"]] = {
+        sprite_data["filename"],
+        {sprite_data["size"]["x"], sprite_data["size"]["y"]},
+        {sprite_data["origin"]["x"], sprite_data["origin"]["y"]},
+        sprite_data["scale"]
+      };
+    }
+  }
 
   std::shared_ptr<core::ShipSprite> SpriteManager::getShipSprite(std::string name) {
     if(!sprites.contains(name)) {

@@ -1,0 +1,67 @@
+{
+  "sprites": [
+    {
+      "name": "Bird",
+      "filename": "BasicShip",
+      "size": { "x": 50, "y": 50 },
+      "origin": { "x": 15, "y": 25 },
+      "scale": 1
+    },
+    {
+      "name": "BorgMk1",
+      "filename": "OmniShip",
+      "size": { "x": 50, "y": 50 },
+      "origin": { "x": 25, "y": 25 },
+      "scale": 1
+    },
+    {
+      "name": "BorgMk2",
+      "filename": "OmniShipMk2",
+      "size": { "x": 50, "y": 50 },
+      "origin": { "x": 25, "y": 25 },
+      "scale": 1
+    },
+    {
+      "name": "Round",
+      "filename": "Round",
+      "size": { "x": 50, "y": 50 },
+      "origin": { "x": 25, "y": 25 },
+      "scale": 1
+    },
+    {
+      "name": "Cobra",
+      "filename": "Cobra",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 128, "y": 128 },
+      "scale": 0.1953125
+    },
+    {
+      "name": "Bug",
+      "filename": "Bug",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 100, "y": 128 },
+      "scale": 0.390625
+    },
+    {
+      "name": "Phage",
+      "filename": "Phage",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 80, "y": 128 },
+      "scale": 0.390625
+    },
+    {
+      "name": "PhageMk2",
+      "filename": "PhageMk2",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 80, "y": 128 },
+      "scale": 0.390625
+    },
+    {
+      "name": "Spore",
+      "filename": "Spore",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 128, "y": 128 },
+      "scale": 0.390625
+    }
+  ]
+}
