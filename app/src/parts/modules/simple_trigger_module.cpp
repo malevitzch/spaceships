@@ -8,11 +8,15 @@ namespace parts {
                                            double cooldown) :
     sig_code(signal_code), cooldown(cooldown) {}
 
+  void SimpleTriggerModule::failed() {}
+
   void SimpleTriggerModule::processSignal(Signal& signal) {
     if(signal.code == sig_code &&
        timer.getElapsedTime().asSeconds() >= cooldown) {
       timer.restart();
       trigger();
+    } else {
+      failed();
     }
   }
 

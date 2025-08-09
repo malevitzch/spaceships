@@ -20,6 +20,7 @@ namespace assets {
   private:
     static std::map<std::string, ShipSpriteInfo> sprites;
   public:
+    static void init();
     static std::shared_ptr<core::ShipSprite> getShipSprite(std::string name);
   };
 }

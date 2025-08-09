@@ -9,7 +9,8 @@ namespace parts {
   private:
   protected:
   public:
-    virtual void processSignal(Signal& signal);
+    virtual ~TriggerModule();
+    virtual void processSignal(Signal& signal) = 0;
   };
 }
 #endif

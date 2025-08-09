@@ -64,9 +64,10 @@ target_link_libraries(controlslib PUBLIC SFML::Graphics)
 
 add_library(corelib ${CORELIB_SOURCES})
 target_link_libraries(corelib PUBLIC SFML::Graphics)
-target_link_libraries(corelib PRIVATE partslib)
+target_link_libraries(corelib PUBLIC partslib)
 
 add_library(assetslib ${ASSETSLIB_SOURCES})
+target_link_libraries(assetslib PUBLIC nlohmann_json::nlohmann_json)
 target_link_libraries(assetslib PUBLIC SFML::Graphics)
 target_link_libraries(assetslib PUBLIC corelib)
 

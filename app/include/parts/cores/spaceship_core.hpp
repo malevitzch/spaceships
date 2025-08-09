@@ -21,11 +21,12 @@ namespace parts {
     void broadcastSignal(int code, std::vector<std::string> args);
     void broadcastSignal(Signal signal);
 
+  public:
+    SpaceshipCore();
+
     //FIXME: this should allow for some nicer argument passing
     // and not require the creation of unique_ptr to the object
     void addTriggerModule(std::unique_ptr<TriggerModule> module);
-  public:
-    SpaceshipCore();
 
     // Any override of this function should call the parent version
     // in 99.9% of situations

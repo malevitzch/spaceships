@@ -14,6 +14,7 @@ namespace parts {
   public:
     SimpleTriggerModule(int signal_code, double cooldown);
     virtual void trigger() = 0;
+    virtual void failed();
     virtual void processSignal(Signal& signal) override;
 
     virtual void reset() override;

@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
+#include "assets/sprite_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include "core/game.hpp"
 #include "core/menu.hpp"
@@ -8,6 +9,8 @@
 
 
 int main() {
+  assets::SpriteManager::init();
+
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");
   window.setPosition({0, 0});
 

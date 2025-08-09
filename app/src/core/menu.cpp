@@ -52,7 +52,6 @@ namespace core {
       "Phage Mk. 2",
       std::make_shared<parts::SimpleCore>(5000, 4),
       "PhageMk2"));
-
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");

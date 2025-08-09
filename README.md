@@ -2,6 +2,7 @@
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
 ## fixes
+- CMake asset copying
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
@@ -10,7 +11,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 ## features
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - Ship "Teams" which will be used for collision and targeting
-- Sprite infromation can be in config files rather than hardcoded (json or something)
 - Actually, a lot of the information could be kept in json
 - Integrate the Cobra into the game
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)
@@ -26,3 +26,4 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 
 ## other
 - Update the introduction in the README (this document)
+- Add some testing library
