@@ -9,12 +9,11 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- Projectiles
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
-- Ship "Teams" which will be used for collision and targeting
 - Actually, a lot of the information could be kept in json
 - Integrate the Cobra into the game
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)
-- Projectiles
 - A factory for ships
 - Separate the drawing pipeline from physics, likely running them on two threads (which will be later useful for network play etc)
 

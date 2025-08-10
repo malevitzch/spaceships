@@ -1,5 +1,4 @@
 #include "core/ship_actor.hpp"
-#include "assets/texture_manager.hpp"
 #include "controls/ship_orders.hpp"
 
 namespace core {
@@ -20,5 +19,7 @@ namespace core {
   Ship& ShipActor::getShip() { return *ship; }
   std::shared_ptr<Ship> ShipActor::getShipPointer() { return ship; }
   controls::Controller& ShipActor::getController() { return *controller; }
+  int ShipActor::getTeam() const { return team; }
+  void ShipActor::setTeam(int team) { this->team = team; }
 
 }

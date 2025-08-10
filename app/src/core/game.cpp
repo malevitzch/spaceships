@@ -77,13 +77,16 @@ namespace core {
 
   }
 
-  void Battle::addShip(ShipActor ship) {
+  void Battle::addShip(ShipActor ship, int team) {
+    ship.setTeam(team);
     ships.push_back(ship);
   }
   void Battle::addPlayerShip(
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player) {
-    addShip(ship);
+
+    addShip(ship, 0);
+
     player_ship = ship.getShipPointer();
     player->battle = this;
     players.push_back(player);
