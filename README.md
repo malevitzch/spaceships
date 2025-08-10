@@ -3,6 +3,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 # todo
 ## fixes
 - CMake asset copying
+- Rename SpaceshipCore to ShipCore
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other

@@ -39,6 +39,8 @@ set(CORELIB_SOURCES
   core/ship.cpp
   core/ship_actor.cpp
   core/ship_sprite.cpp
+
+  core/objects/space_object.cpp
 )
 
 set(ASSETSLIB_SOURCES
