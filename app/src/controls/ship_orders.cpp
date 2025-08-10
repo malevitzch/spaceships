@@ -14,6 +14,10 @@ namespace controls {
     orders.up_arrow = up_arrow;
     orders.down_arrow = down_arrow;
 
+    orders.mouse_left = mouse_left;
+    orders.mouse_right = mouse_right;
+    orders.mouse_middle = mouse_middle;
+
     return orders;
   }
 }

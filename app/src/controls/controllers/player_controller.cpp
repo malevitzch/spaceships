@@ -22,10 +22,19 @@ namespace controls {
     util::Vec2d mouse_pos = sf::Mouse::getPosition(battle->getWindow());
     orders.target = battle->getCamera().inverseTranslatePosition(mouse_pos);
   }
+  void PlayerController::addMouseEvents(ShipOrders& orders) const {
+    orders.mouse_left = 
+      sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    orders.mouse_right = 
+      sf::Mouse::isButtonPressed(sf::Mouse::Button::Right);
+    orders.mouse_middle = 
+      sf::Mouse::isButtonPressed(sf::Mouse::Button::Middle);
+  }
   ShipOrders PlayerController::getOrders() {
     ShipOrders orders;
     addHolddownKeys(orders);
     setTarget(orders);
+    addMouseEvents(orders);
 
     while(!events.empty()) {
       sf::Event event = events.front();
