@@ -1,6 +1,9 @@
 #include "physics/physics_object.hpp"
 
 namespace physics {
+
+  PhysicsObject::PhysicsObject() : transform(std::make_unique<PhysicsTransform>()) {}
+
   PhysicsObject::PhysicsObject(std::unique_ptr<PhysicsTransform> transform)
   : transform(std::move(transform)) {}
 

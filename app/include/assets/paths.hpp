@@ -3,10 +3,8 @@
 
 #include <string>
 
-namespace assets {
-  namespace paths {
-    std::string getAssetsPath();
-  }
+namespace assets::paths {
+  std::string getAssetsPath();
 }
 
 #endif

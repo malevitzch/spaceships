@@ -38,7 +38,7 @@ namespace core {
 
     virtual void start();
 
-    void addShip(ShipActor ship);
+    void addShip(ShipActor ship, int team);
     void addPlayerShip(
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player);
