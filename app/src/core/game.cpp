@@ -120,6 +120,13 @@ namespace core {
             player_events.push(event);
             break;
         }
+      } else if(const auto* mouse_pressed =
+        event->getIf<sf::Event::MouseButtonPressed>()) {
+        switch(mouse_pressed->button) {
+          default:
+            player_events.push(event);
+            break;
+        }
       } else {
         // Any event that is not directly consumed by the window itself
         // is treated as a "PlayerEvent" and sent ahead to the

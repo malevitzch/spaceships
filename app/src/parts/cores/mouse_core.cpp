@@ -14,14 +14,13 @@ namespace parts {
 
   void MouseCore::handleInstructions(controls::ShipOrders input) {
 
-    double dy = input.right - input.left;
-    double dx = input.ahead - input.back;
+    double delta = input.mouse_left - input.mouse_right;
 
     Vec2d forward =
       util::vecBetween(getPosition(), input.target, getThrust());
     Vec2d side = {-forward.y, forward.x};
 
-    engine_transform.acceleration = forward * dx + side * dy;
+    engine_transform.acceleration = forward * delta;
     engine_transform.acceleration.rescale(thrust);
 
 

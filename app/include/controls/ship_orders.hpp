@@ -39,6 +39,11 @@ namespace controls {
     bool ctrl = false;
     bool shift = false;
 
+    // Mouse buttons
+    bool mouse_left = false;
+    bool mouse_right = false;
+    bool mouse_middle = false;
+
     // Actions, they generally map to keys 1-8
     // But additional keys can be used, especially for more complicated
     // And perhaps AI-controlled ships (not "real" AI, just bots)
