@@ -43,7 +43,8 @@ namespace core {
     return inverseToRelativePosition(inverseToPixelPosition(pos));
   }
 
-  void Camera::drawShips(std::vector<ShipActor> ships) {
+
+  void Camera::drawShips(std::vector<ShipActor>& ships) {
     for(ShipActor& ship_actor : ships) {
       auto& ship = ship_actor.getShip();
       Vec2d ship_pos = ship.getPosition();
@@ -55,6 +56,19 @@ namespace core {
       states.transform.rotate(sf::radians(ship.getAngle()));
 
       target.draw(ship, states);
+    }
+  }
+
+  void Camera::drawObjects(std::vector<std::shared_ptr<SpaceObject>>& objects) {
+    for(auto& object : objects) {
+      Vec2d pos = object->getPosition();
+      Vec2d pixel_pos = translatePosition(pos);
+
+      sf::RenderStates states;
+      states.transform.translate(pixel_pos);
+      states.transform.rotate(sf::radians(object->getAngle()));
+
+      target.draw(*object, states);
     }
   }
 

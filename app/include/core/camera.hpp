@@ -4,6 +4,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "utility/vec2d.hpp"
 #include "core/ship_actor.hpp"
+#include "core/objects/space_object.hpp"
 #include <vector>
 
 namespace core {
@@ -35,7 +36,8 @@ namespace core {
     util::Vec2d inverseToRelativePosition(util::Vec2d pos) const;
     util::Vec2d inverseTranslatePosition(util::Vec2d pos) const;
 
-    void drawShips(std::vector<ShipActor> ships);
+    void drawShips(std::vector<ShipActor>& ships);
+    void drawObjects(std::vector<std::shared_ptr<SpaceObject>>& objects);
     void drawBackground();
   };
 }

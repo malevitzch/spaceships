@@ -7,7 +7,6 @@ namespace core {
   class SpaceObject : public physics::PhysicsObject, public sf::Drawable {
   private:
   protected:
-    std::weak_ptr<sf::Texture> texture;
   public:
     SpaceObject();
     virtual bool isDestroyed() = 0;

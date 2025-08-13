@@ -12,6 +12,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 ## features
 - Projectiles
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
+- PhysicObject could have some nicer constructors
 - Actually, a lot of the information could be kept in json
 - Integrate the Cobra into the game
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)

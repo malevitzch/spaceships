@@ -41,6 +41,7 @@ set(CORELIB_SOURCES
   core/ship_sprite.cpp
 
   core/objects/space_object.cpp
+  core/objects/simple_projectile.cpp
 )
 
 set(ASSETSLIB_SOURCES
