@@ -2,9 +2,12 @@
 #define CORE_OBJECTS_SPACE_OBJECT_HPP
 
 #include "physics/physics_object.hpp"
+#include <SFML/Graphics/Drawable.hpp>
 namespace core {
-  class SpaceObject : physics::PhysicsObject {
+  class SpaceObject : public physics::PhysicsObject, public sf::Drawable {
   private:
+  protected:
+    std::weak_ptr<sf::Texture> texture;
   public:
     SpaceObject();
     virtual bool isDestroyed() = 0;

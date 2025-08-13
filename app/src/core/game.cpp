@@ -13,7 +13,8 @@ namespace core {
   void Battle::start() {
     camera.setPosition({0, 0});
 
-    std::shared_ptr<sf::Font> debug_font = assets::FontManager::getFont("orbitron");
+    std::shared_ptr<sf::Font> debug_font =
+      assets::FontManager::getFont("orbitron");
 
     constexpr int BUFFER_SIZE = 500;
     float frame_times[BUFFER_SIZE] = {};
@@ -31,9 +32,19 @@ namespace core {
       float dt = frame_clock.restart().asSeconds();
 
       processEvents();
-      // FIXME: this is ugly but needs to happen so that textures
-      // are properly considered invalid later
+      // If the processing of events causes the window to close,
+      // we need to immediately exit the loop because SFML textures
+      // require a valid OpenGL context which (on some systems) 
+      // is destroyed when the window is closed
       if(!window.isOpen()) break;
+
+      // Cleanup old objects such as expired projectiles
+      for(int i = 0; i < objects.size(); i++) {
+        while(i < objects.size() && objects[i]->isDestroyed()) {
+          std::swap(objects[i], objects.back());
+          objects.pop_back();
+        }
+      }
 
       for(ShipActor& ship : ships) {
         ship.makeDecisions();
@@ -41,6 +52,10 @@ namespace core {
 
       for(ShipActor& ship : ships) {
         ship.physicsTick(dt);
+      }
+
+      for(std::shared_ptr<SpaceObject> object : objects) {
+        object->physicsTick(dt);
       }
 
       camera.moveTowards(player_ship->getPosition(), dt);
@@ -90,6 +105,10 @@ namespace core {
     player_ship = ship.getShipPointer();
     player->battle = this;
     players.push_back(player);
+  }
+
+  void Battle::addObject(std::shared_ptr<SpaceObject> object) {
+    objects.push_back(object);
   }
 
   const Camera& Battle::getCamera() const {

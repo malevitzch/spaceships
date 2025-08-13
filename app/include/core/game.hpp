@@ -5,8 +5,7 @@
 #include <memory>
 #include <vector>
 #include "controls/controllers/player_controller.hpp"
-#include "parts/cores/spaceship_core.hpp"
-#include "controls/controllers/controller.hpp"
+#include "core/objects/space_object.hpp"
 #include "core/ship_actor.hpp"
 #include "core/camera.hpp"
 
@@ -31,6 +30,7 @@ namespace core {
     // This is "inefficient" but is generally done rarely
     // compared to usual iteration
     std::vector<ShipActor> ships;
+    std::vector<std::shared_ptr<SpaceObject>> objects;
     std::shared_ptr<Ship> player_ship;
     std::vector<std::shared_ptr<controls::PlayerController>> players;
   public:
@@ -42,6 +42,8 @@ namespace core {
     void addPlayerShip(
       ShipActor ship,
       std::shared_ptr<controls::PlayerController> player);
+
+    void addObject(std::shared_ptr<SpaceObject> object);
 
     virtual void processEvents();
 
