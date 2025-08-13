@@ -79,6 +79,7 @@ namespace core {
 
       window.clear();
       camera.drawBackground();
+      camera.drawObjects(objects);
       camera.drawShips(ships);
       window.draw(framerate_text);
       window.display();

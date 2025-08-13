@@ -1,4 +1,6 @@
 #include "core/objects/simple_projectile.hpp"
+#include "assets/sprite_manager.hpp"
+#include "assets/texture_manager.hpp"
 
 namespace core {
 
@@ -12,6 +14,11 @@ namespace core {
     setPosition(position);
     setVelocity(velocity);
     setAcceleration(acceleration);
+
+
+    // FIXME: use a sprite manager to just seamlessly get a sprite
+    texture = assets::TextureManager::getShipTexture("BasicShip");
+    sprite = std::make_unique<sf::Sprite>(*texture.lock());
   }
 
   void SimpleProjectile::physicsTick(double dt) {
