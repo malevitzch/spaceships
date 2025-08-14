@@ -2,7 +2,7 @@
 #define CORE_SHIP_HPP
 
 #include "assets/ship_sprite.hpp"
-#include "parts/cores/spaceship_core.hpp"
+#include "parts/cores/ship_core.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>
 
@@ -10,15 +10,15 @@ namespace core {
   class Ship : public sf::Drawable {
   private:
     std::string name;
-    std::shared_ptr<parts::SpaceshipCore> core;
+    std::shared_ptr<parts::ShipCore> core;
   protected:
     std::shared_ptr<ShipSprite> sprite;
   public:
     Ship(std::string name,
-         std::shared_ptr<parts::SpaceshipCore> core,
+         std::shared_ptr<parts::ShipCore> core,
          std::string sprite_name);
 
-    parts::SpaceshipCore& getCore() const;
+    parts::ShipCore& getCore() const;
     util::Vec2d getPosition() const;
     util::Angle getAngle() const;
 

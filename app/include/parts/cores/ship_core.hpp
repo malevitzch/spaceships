@@ -1,5 +1,5 @@
-#ifndef SPACESHIP_CORE_HPP
-#define SPACESHIP_CORE_HPP
+#ifndef PARTS_CORES_SHIP_CORE_HPP
+#define PARTS_CORES_SHIP_CORE_HPP
 
 #include "parts/modules/trigger_module.hpp"
 
@@ -11,7 +11,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace parts {
-  class SpaceshipCore :
+  class ShipCore :
     public physics::PhysicsObject {
   private:
   protected:
@@ -22,7 +22,7 @@ namespace parts {
     void broadcastSignal(Signal signal);
 
   public:
-    SpaceshipCore();
+    ShipCore();
 
     //FIXME: this should allow for some nicer argument passing
     // and not require the creation of unique_ptr to the object

@@ -2,7 +2,7 @@
 #define CORE_MENU_HPP
 
 #include "core/ship.hpp"
-#include "parts/cores/spaceship_core.hpp"
+#include "parts/cores/ship_core.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <vector>
 

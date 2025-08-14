@@ -9,7 +9,7 @@ namespace parts {
     angular_thrust(angular_thrust) {}
 
   void MouseCore::physicsTick(double dt) {
-    SpaceshipCore::physicsTick(dt, {engine_transform});
+    ShipCore::physicsTick(dt, {engine_transform});
   }
 
   void MouseCore::handleInstructions(controls::ShipOrders input) {
@@ -29,7 +29,7 @@ namespace parts {
   }
 
   void MouseCore::resetState() {
-    SpaceshipCore::resetState();
+    ShipCore::resetState();
     engine_transform.reset();
   }
 

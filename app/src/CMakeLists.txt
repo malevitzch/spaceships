@@ -4,7 +4,7 @@ set(ASSETS_TARGET_DIR "${CMAKE_BINARY_DIR}/assets")
 set(PARTSLIB_SOURCES
   parts/signal.cpp
 
-  parts/cores/spaceship_core.cpp
+  parts/cores/ship_core.cpp
   parts/cores/simple_core.cpp
   parts/cores/omni_core.cpp
   parts/cores/mouse_core.cpp

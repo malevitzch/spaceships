@@ -68,7 +68,7 @@ namespace parts {
   }
 
   void OmniCore::resetState() {
-    SpaceshipCore::resetState();
+    ShipCore::resetState();
     engines = {0, 0};
     angular_engines = 0;
     dampener = true;

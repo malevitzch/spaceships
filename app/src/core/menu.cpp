@@ -3,7 +3,7 @@
 #include "parts/cores.hpp"
 #include "parts/cores/mouse_core.hpp"
 #include "parts/cores/omni_core.hpp"
-#include "parts/cores/spaceship_core.hpp"
+#include "parts/cores/ship_core.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 #include "assets/font_manager.hpp"

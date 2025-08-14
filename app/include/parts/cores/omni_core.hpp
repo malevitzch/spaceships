@@ -1,12 +1,12 @@
 #ifndef PARTS_CORES_OMNI_CORE_HPP
 #define PARTS_CORES_OMNI_CORE_HPP
 
-#include "spaceship_core.hpp"
+#include "ship_core.hpp"
 #include "utility/vec2d.hpp"
 
 namespace parts {
   // Short for OmnidirectionalCore
-  class OmniCore : public SpaceshipCore {
+  class OmniCore : public ShipCore {
   private:
     double front_thrust = 0;
     double back_thrust = 0;

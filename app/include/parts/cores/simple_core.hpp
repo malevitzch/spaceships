@@ -1,7 +1,7 @@
 #ifndef SIMPLE_CORE_HPP
 #define SIMPLE_CORE_HPP
 
-#include "spaceship_core.hpp"
+#include "ship_core.hpp"
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
@@ -10,7 +10,7 @@
 #include "utility/normalizer.hpp"
 
 namespace parts {
-  class SimpleCore : public SpaceshipCore {
+  class SimpleCore : public ShipCore {
   private:
     double thrust = 8000;
     bool engines_on = false;

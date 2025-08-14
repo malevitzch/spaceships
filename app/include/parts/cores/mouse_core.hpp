@@ -1,11 +1,11 @@
 #ifndef PARTS_CORES_MOUSE_CORE
 #define PARTS_CORES_MOUSE_CORE
 
-#include "parts/cores/spaceship_core.hpp"
+#include "parts/cores/ship_core.hpp"
 #include "physics/physics_transform.hpp"
 
 namespace parts {
-  class MouseCore : public SpaceshipCore {
+  class MouseCore : public ShipCore {
   private:
     double thrust = 0;
     double angular_thrust = 0;
