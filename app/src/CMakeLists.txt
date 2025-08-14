@@ -38,7 +38,6 @@ set(CORELIB_SOURCES
   core/menu.cpp
   core/ship.cpp
   core/ship_actor.cpp
-  core/ship_sprite.cpp
 
   core/objects/space_object.cpp
   core/objects/simple_projectile.cpp
@@ -49,6 +48,7 @@ set(ASSETSLIB_SOURCES
   assets/texture_manager.cpp
   assets/sprite_manager.cpp
   assets/paths.cpp
+  assets/ship_sprite.cpp
 )
 
 add_library(partslib ${PARTSLIB_SOURCES})

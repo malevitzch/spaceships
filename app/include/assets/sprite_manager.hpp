@@ -1,7 +1,7 @@
 #ifndef ASSETS_SPRITE_MANAGER
 #define ASSETS_SPRITE_MANAGER
 
-#include "core/ship_sprite.hpp"
+#include "assets/ship_sprite.hpp"
 #include "utility/vec2d.hpp"
 #include <map>
 
@@ -21,6 +21,8 @@ namespace assets {
     static std::map<std::string, ShipSpriteInfo> sprites;
   public:
     static void init();
+
+    static void loadShipSprites();
     static std::shared_ptr<core::ShipSprite> getShipSprite(std::string name);
   };
 }

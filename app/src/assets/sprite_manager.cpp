@@ -18,6 +18,10 @@ namespace assets {
   }
 
   void SpriteManager::init() {
+    loadShipSprites();
+  }
+
+  void SpriteManager::loadShipSprites() {
     using nlohmann::json;
     std::ifstream spritestream(
       assets::paths::getAssetsPath() + "/json/ship_sprites.json");

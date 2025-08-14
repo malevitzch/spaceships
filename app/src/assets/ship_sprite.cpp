@@ -1,4 +1,4 @@
-#include "core/ship_sprite.hpp"
+#include "assets/ship_sprite.hpp"
 #include "assets/texture_manager.hpp"
 
 namespace core {

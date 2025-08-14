@@ -1,5 +1,5 @@
-#ifndef CORE_SHIP_SPRITE_HPP
-#define CORE_SHIP_SPRITE_HPP
+#ifndef ASSETS_SHIP_SPRITE_HPP
+#define ASSETS_SHIP_SPRITE_HPP
 
 #include "utility/vec2d.hpp"
 #include <SFML/Graphics.hpp>
