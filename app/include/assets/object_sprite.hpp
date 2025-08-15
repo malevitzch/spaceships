@@ -1,5 +1,5 @@
-#ifndef ASSETS_PROJECTILE_SPRITE_HPP
-#define ASSETS_PROJECTILE_SPRITE_HPP
+#ifndef ASSETS_OBJECT_SPRITE_HPP
+#define ASSETS_OBJECT_SPRITE_HPP
 
 #include "utility/vec2d.hpp"
 #include <SFML/Graphics.hpp>
@@ -7,7 +7,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 namespace core {
-  class ProjectileSprite : public sf::Drawable {
+  class ObjectSprite : public sf::Drawable {
   private:
     std::weak_ptr<sf::Texture> texture;
     std::unique_ptr<sf::Sprite> sprite;
@@ -16,8 +16,8 @@ namespace core {
     util::Vec2d sprite_size;
     double scale;
   public:
-    ProjectileSprite() = default;
-    ProjectileSprite(std::string name,
+    ObjectSprite() = default;
+    ObjectSprite(std::string name,
                util::Vec2d sprite_size,
                util::Vec2d center_of_mass,
                double scale);

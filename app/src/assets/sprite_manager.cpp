@@ -10,9 +10,9 @@ namespace assets {
   std::map<std::string,
            SpriteManager::SpriteInfo> SpriteManager::projectile_sprites;
 
-  std::shared_ptr<core::ShipSprite> SpriteManager::SpriteInfo::get() {
+  std::shared_ptr<core::ObjectSprite> SpriteManager::SpriteInfo::get() {
     if(sprite == nullptr) {
-      sprite = std::make_shared<core::ShipSprite>(texture_name,
+      sprite = std::make_shared<core::ObjectSprite>(texture_name,
                                                   center_of_mass,
                                                   sprite_size,
                                                   scale);
@@ -62,7 +62,7 @@ namespace assets {
     }
   }
 
-  std::shared_ptr<core::ShipSprite> SpriteManager::getShipSprite(
+  std::shared_ptr<core::ObjectSprite> SpriteManager::getShipSprite(
     std::string name) {
     if(!ship_sprites.contains(name)) {
       throw std::runtime_error("Unknown sprite name: \"" + name + "\"");
@@ -70,7 +70,7 @@ namespace assets {
     return ship_sprites[name].get();
   }
 
-  std::shared_ptr<core::ShipSprite> SpriteManager::getProjectileSprite(
+  std::shared_ptr<core::ObjectSprite> SpriteManager::getProjectileSprite(
     std::string name) {
     if(!projectile_sprites.contains(name)) {
       throw std::runtime_error("Unknown sprite name: \"" + name + "\"");

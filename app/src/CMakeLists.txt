@@ -48,8 +48,7 @@ set(ASSETSLIB_SOURCES
   assets/texture_manager.cpp
   assets/sprite_manager.cpp
   assets/paths.cpp
-  assets/ship_sprite.cpp
-  assets/projectile_sprite.cpp
+  assets/object_sprite.cpp
 )
 
 add_library(partslib ${PARTSLIB_SOURCES})

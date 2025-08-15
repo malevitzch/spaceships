@@ -1,7 +1,7 @@
 #ifndef CORE_SHIP_HPP
 #define CORE_SHIP_HPP
 
-#include "assets/ship_sprite.hpp"
+#include "assets/object_sprite.hpp"
 #include "parts/cores/ship_core.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>
@@ -12,7 +12,7 @@ namespace core {
     std::string name;
     std::shared_ptr<parts::ShipCore> core;
   protected:
-    std::shared_ptr<ShipSprite> sprite;
+    std::shared_ptr<ObjectSprite> sprite;
   public:
     Ship(std::string name,
          std::shared_ptr<parts::ShipCore> core,
@@ -23,7 +23,7 @@ namespace core {
     util::Angle getAngle() const;
 
     std::string getName() const;
-    ShipSprite& getSprite();
+    ObjectSprite& getSprite();
     virtual void draw(sf::RenderTarget& target,
                       sf::RenderStates states) const override;
   };

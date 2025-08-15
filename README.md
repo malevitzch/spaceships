@@ -3,7 +3,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 # todo
 ## fixes
 - CMake asset copying
-- ProjectileSprite is literally a copy of ShipSprite (for now), they should probably have a common superclass that handles the shared behavior (rather than a literal Ctrl+C and Ctrl+V of the file with find and replace Ship -> Projectile)
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other

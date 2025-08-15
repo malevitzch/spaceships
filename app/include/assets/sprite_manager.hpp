@@ -1,7 +1,7 @@
 #ifndef ASSETS_SPRITE_MANAGER
 #define ASSETS_SPRITE_MANAGER
 
-#include "assets/ship_sprite.hpp"
+#include "assets/object_sprite.hpp"
 #include "utility/vec2d.hpp"
 #include <map>
 
@@ -13,9 +13,9 @@ namespace assets {
       util::Vec2d sprite_size;
       double scale;
 
-      std::shared_ptr<core::ShipSprite> sprite = nullptr;
+      std::shared_ptr<core::ObjectSprite> sprite = nullptr;
 
-      std::shared_ptr<core::ShipSprite> get();
+      std::shared_ptr<core::ObjectSprite> get();
     };
   private:
     static std::map<std::string, SpriteInfo> ship_sprites;
@@ -25,8 +25,8 @@ namespace assets {
 
     static void loadShipSprites();
     static void loadProjectileSprites();
-    static std::shared_ptr<core::ShipSprite> getShipSprite(std::string name);
-    static std::shared_ptr<core::ShipSprite> getProjectileSprite(std::string name);
+    static std::shared_ptr<core::ObjectSprite> getShipSprite(std::string name);
+    static std::shared_ptr<core::ObjectSprite> getProjectileSprite(std::string name);
   };
 }
 
