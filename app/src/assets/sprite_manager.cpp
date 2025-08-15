@@ -10,18 +10,31 @@ namespace assets {
   std::map<std::string,
            SpriteManager::SpriteInfo> SpriteManager::projectile_sprites;
 
-  std::shared_ptr<core::ObjectSprite> SpriteManager::SpriteInfo::get() {
+  std::shared_ptr<ObjectSprite> SpriteManager::SpriteInfo::get() {
     if(sprite == nullptr) {
-      sprite = std::make_shared<core::ObjectSprite>(texture_name,
-                                                  center_of_mass,
-                                                  sprite_size,
-                                                  scale);
+      switch (type) {
+        case SpriteType::Ship:
+          sprite = std::make_shared<ShipSprite>(texture_name,
+                                                center_of_mass,
+                                                sprite_size,
+                                                scale);
+          break;
+        case SpriteType::Projectile:
+          sprite = std::make_shared<ProjectileSprite>(texture_name,
+                                                      center_of_mass,
+                                                      sprite_size,
+                                                      scale);
+          break;
+        default:
+          break;
+      }
     }
     return sprite;
   }
 
   void SpriteManager::init() {
     loadShipSprites();
+    loadProjectileSprites();
   }
 
   void SpriteManager::loadShipSprites() {
@@ -38,7 +51,8 @@ namespace assets {
         sprite_data["filename"],
         {sprite_data["size"]["x"], sprite_data["size"]["y"]},
         {sprite_data["origin"]["x"], sprite_data["origin"]["y"]},
-        sprite_data["scale"]
+        sprite_data["scale"],
+        SpriteType::Ship
       };
     }
   }
@@ -48,8 +62,7 @@ namespace assets {
     std::ifstream spritestream(
       assets::paths::getAssetsPath() + "/json/projectile_sprites.json");
     if(!spritestream) {
-      // TODO: error handling
-      return;
+      throw new std::runtime_error("Can't find projectile sprites file");
     }
     json data = json::parse(spritestream);
     for(auto& sprite_data : data["sprites"]) {
@@ -57,12 +70,13 @@ namespace assets {
         sprite_data["filename"],
         {sprite_data["size"]["x"], sprite_data["size"]["y"]},
         {sprite_data["origin"]["x"], sprite_data["origin"]["y"]},
-        sprite_data["scale"]
+        sprite_data["scale"],
+        SpriteType::Projectile
       };
     }
   }
 
-  std::shared_ptr<core::ObjectSprite> SpriteManager::getShipSprite(
+  std::shared_ptr<ObjectSprite> SpriteManager::getShipSprite(
     std::string name) {
     if(!ship_sprites.contains(name)) {
       throw std::runtime_error("Unknown sprite name: \"" + name + "\"");
@@ -70,7 +84,7 @@ namespace assets {
     return ship_sprites[name].get();
   }
 
-  std::shared_ptr<core::ObjectSprite> SpriteManager::getProjectileSprite(
+  std::shared_ptr<ObjectSprite> SpriteManager::getProjectileSprite(
     std::string name) {
     if(!projectile_sprites.contains(name)) {
       throw std::runtime_error("Unknown sprite name: \"" + name + "\"");

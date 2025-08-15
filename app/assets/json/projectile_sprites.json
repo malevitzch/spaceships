@@ -1,0 +1,11 @@
+{
+  "sprites": [
+    {
+      "name": "RedLaserBolt",
+      "filename": "LaserBolt",
+      "size": { "x": 256, "y": 256 },
+      "origin": { "x": 128, "y": 128 },
+      "scale": 0.05
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 #ifndef CORE_OBJECTS_SIMPLE_PROJECTILE_HPP
 #define CORE_OBJECTS_SIMPLE_PROJECTILE_HPP
 
+#include "assets/object_sprite.hpp"
 #include "core/objects/space_object.hpp"
 #include "utility/vec2d.hpp"
 
@@ -10,8 +11,7 @@ namespace core {
     const double max_duration;
     double cur_duration = 0;
     bool expired = false;
-    std::weak_ptr<sf::Texture> texture;
-    std::unique_ptr<sf::Sprite> sprite = nullptr;
+    std::shared_ptr<assets::ObjectSprite> sprite;
   public:
     SimpleProjectile(std::string sprite_name,
                      util::Vec2d position,

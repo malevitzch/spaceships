@@ -1,16 +1,17 @@
 #include "assets/object_sprite.hpp"
 #include "assets/texture_manager.hpp"
 
-namespace core {
+namespace assets {
   using util::Vec2d;
   ObjectSprite::ObjectSprite(std::string name,
-                         Vec2d sprite_size,
-                         Vec2d center_of_mass,
-                         double scale) :
+                             Vec2d sprite_size,
+                             Vec2d center_of_mass,
+                             double scale,
+                             std::weak_ptr<sf::Texture> texture) :
                            center_of_mass(center_of_mass),
                            sprite_size(sprite_size),
-                           scale(scale) {
-    texture = assets::TextureManager::getShipTexture(name);
+                           scale(scale),
+                           texture(texture) {
     sprite = std::make_unique<sf::Sprite>(*texture.lock());
 
     sprite->setScale(util::Vec2d(scale, scale));
@@ -33,4 +34,23 @@ namespace core {
     return sprite;
   }
 
+  ShipSprite::ShipSprite(std::string name,
+                         util::Vec2d sprite_size,
+                         util::Vec2d center_of_mass,
+                         double scale)
+  : ObjectSprite(name,
+                 sprite_size,
+                 center_of_mass,
+                 scale,
+                 assets::TextureManager::getShipTexture(name)) {}
+
+  ProjectileSprite::ProjectileSprite(std::string name,
+                                     util::Vec2d sprite_size,
+                                     util::Vec2d center_of_mass,
+                                     double scale)
+  : ObjectSprite(name,
+                 sprite_size,
+                 center_of_mass,
+                 scale,
+                 assets::TextureManager::getProjectileTexture(name)) {}
 }

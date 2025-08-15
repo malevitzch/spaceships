@@ -12,7 +12,7 @@ namespace core {
     std::string name;
     std::shared_ptr<parts::ShipCore> core;
   protected:
-    std::shared_ptr<ObjectSprite> sprite;
+    std::shared_ptr<assets::ObjectSprite> sprite;
   public:
     Ship(std::string name,
          std::shared_ptr<parts::ShipCore> core,
@@ -23,7 +23,7 @@ namespace core {
     util::Angle getAngle() const;
 
     std::string getName() const;
-    ObjectSprite& getSprite();
+    assets::ObjectSprite& getSprite();
     virtual void draw(sf::RenderTarget& target,
                       sf::RenderStates states) const override;
   };

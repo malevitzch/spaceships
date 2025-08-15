@@ -3,11 +3,14 @@
 #include "assets/font_manager.hpp"
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
+#include "core/objects/simple_projectile.hpp"
 #include <chrono>
 #include <memory>
 #include <thread>
 
 namespace core {
+
+  using util::Vec2d;
 
   Battle::Battle(sf::RenderWindow& window) : window(window), camera(window) {}
   void Battle::start() {

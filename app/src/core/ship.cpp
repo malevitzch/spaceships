@@ -23,7 +23,7 @@ namespace core {
   }
 
   std::string Ship::getName() const { return name; }
-  ObjectSprite& Ship::getSprite() { return *sprite; }
+  assets::ObjectSprite& Ship::getSprite() { return *sprite; }
 
   void Ship::draw(sf::RenderTarget& target,
                   sf::RenderStates states) const {
