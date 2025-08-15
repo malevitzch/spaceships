@@ -22,6 +22,9 @@ namespace assets {
   std::weak_ptr<sf::Texture> TextureManager::getShipTexture(std::string name) {
     return getTexture("ships/" + name);
   }
+  std::weak_ptr<sf::Texture> TextureManager::getProjectileTexture(std::string name) {
+    return getTexture("projectiles/" + name);
+  }
   std::weak_ptr<sf::Texture> TextureManager::getBackgroundTexture(std::string name) {
     return getTexture("backgrounds/" + name);
   }

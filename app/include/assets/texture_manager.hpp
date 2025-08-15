@@ -13,6 +13,7 @@ namespace assets {
     static std::weak_ptr<sf::Texture> getTexture(std::string name);
   public:
     static std::weak_ptr<sf::Texture> getShipTexture(std::string name);
+    static std::weak_ptr<sf::Texture> getProjectileTexture(std::string name);
     static std::weak_ptr<sf::Texture> getBackgroundTexture(std::string name);
 
     static void reset();

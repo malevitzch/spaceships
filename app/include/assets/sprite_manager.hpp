@@ -7,7 +7,7 @@
 
 namespace assets {
   class SpriteManager {
-    struct ShipSpriteInfo {
+    struct SpriteInfo {
       std::string texture_name;
       util::Vec2d center_of_mass;
       util::Vec2d sprite_size;
@@ -18,12 +18,15 @@ namespace assets {
       std::shared_ptr<core::ShipSprite> get();
     };
   private:
-    static std::map<std::string, ShipSpriteInfo> sprites;
+    static std::map<std::string, SpriteInfo> ship_sprites;
+    static std::map<std::string, SpriteInfo> projectile_sprites;
   public:
     static void init();
 
     static void loadShipSprites();
+    static void loadProjectileSprites();
     static std::shared_ptr<core::ShipSprite> getShipSprite(std::string name);
+    static std::shared_ptr<core::ShipSprite> getProjectileSprite(std::string name);
   };
 }
 
