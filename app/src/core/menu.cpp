@@ -1,6 +1,7 @@
 #include "core/menu.hpp"
 #include "assets/texture_manager.hpp"
 #include "parts/cores.hpp"
+#include "parts/modules/velocity_redirector.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 #include "assets/font_manager.hpp"
@@ -52,7 +53,10 @@ namespace core {
       "Phage Mk. 2",
       std::make_shared<parts::SimpleCore>(100, 6),
       "PhageMk2"));
-    ships.back()->getCore().addTriggerModule(std::move(std::make_unique<parts::NullBrake>(1, 5)));
+    ships.back()->getCore().addTriggerModule(
+      std::move(std::make_unique<parts::NullBrake>(1, 5)));
+    ships.back()->getCore().addTriggerModule(
+      std::move(std::make_unique<parts::VelocityRedirector>(2, 1, 0.7)));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");

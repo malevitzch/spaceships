@@ -14,6 +14,7 @@ namespace parts {
     // This uses raw pointers since the core pointer should be valid
     // at all times, if the core is destroyed then so is the module
     ShipCore* core;
+    ShipCore& getCore() const;
 
     // FIXME: add a way to access the game context
   public:
