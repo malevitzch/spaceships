@@ -12,6 +12,7 @@ set(PARTSLIB_SOURCES
   parts/modules/module.cpp
   parts/modules/trigger_module.cpp
   parts/modules/simple_trigger_module.cpp
+  parts/modules/null_brake.cpp
 )
 
 set(PHYSICSLIB_SOURCES

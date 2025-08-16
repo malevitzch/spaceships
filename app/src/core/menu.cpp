@@ -8,6 +8,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <memory>
 
+#include "parts/modules/null_brake.hpp"
+
 namespace core {
   using util::Vec2d;
   Menu::Menu(sf::RenderWindow& window) : window(window) {
@@ -45,10 +47,12 @@ namespace core {
       "Phage Mk. 1",
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
+
     ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 2",
-      std::make_shared<parts::SimpleCore>(50, 4),
+      std::make_shared<parts::SimpleCore>(100, 6),
       "PhageMk2"));
+    ships.back()->getCore().addTriggerModule(std::move(std::make_unique<parts::NullBrake>(1, 5)));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");
