@@ -1,9 +1,6 @@
 #include "core/menu.hpp"
 #include "assets/texture_manager.hpp"
 #include "parts/cores.hpp"
-#include "parts/cores/mouse_core.hpp"
-#include "parts/cores/omni_core.hpp"
-#include "parts/cores/ship_core.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 #include "assets/font_manager.hpp"
@@ -21,17 +18,17 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 1",
-      std::make_shared<parts::OmniCore>(5000, 3000, 5000),
+      std::make_shared<parts::OmniCore>(50, 30, 50),
       "BorgMk1"));
 
     ships.push_back(std::make_shared<Ship>(
       "Borg Mk. 2",
-      std::make_shared<parts::OmniCore>(7000, 5000, 3000),
+      std::make_shared<parts::OmniCore>(70, 50, 30),
       "BorgMk2"));
 
     ships.push_back(std::make_shared<Ship>(
       "Round",
-      std::make_shared<parts::OmniCore>(7000, 7000, 7000),
+      std::make_shared<parts::OmniCore>(70, 70, 70),
       "Round"));
 
     ships.push_back(std::make_shared<Ship>(
@@ -41,16 +38,16 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Spore Mk. 1",
-      std::make_shared<parts::MouseCore>(7000, 0.5),
+      std::make_shared<parts::MouseCore>(70, 0.5),
       "Spore"));
 
     ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 1",
-      std::make_shared<parts::SimpleCore>(5000, 4),
+      std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
     ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 2",
-      std::make_shared<parts::SimpleCore>(5000, 4),
+      std::make_shared<parts::SimpleCore>(50, 4),
       "PhageMk2"));
   }
   std::shared_ptr<Ship> Menu::pickShip() {

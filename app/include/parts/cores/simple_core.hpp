@@ -12,7 +12,7 @@
 namespace parts {
   class SimpleCore : public ShipCore {
   private:
-    double thrust = 8000;
+    double thrust = 80;
     bool engines_on = false;
 
     double angular_thrust = 3;

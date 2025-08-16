@@ -24,7 +24,7 @@ namespace parts {
   }
 
   ShipCore::ShipCore() :
-    PhysicsObject(std::make_unique<CappedTransform>(100000, 15)) {}
+    PhysicsObject(std::make_unique<CappedTransform>(10000, 15)) {}
 
   void ShipCore::resetState() {
     physics::PhysicsObject::resetTransform();

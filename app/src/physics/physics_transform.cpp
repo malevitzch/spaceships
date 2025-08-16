@@ -61,7 +61,7 @@ namespace physics {
     }
 
   void PhysicsTransform::tick(double dt) {
-    position += (velocity * dt + (acceleration * (dt * dt)) / 2.0) / 100.0;
+    position += (velocity * dt + (acceleration * (dt * dt)) / 2.0);
     velocity += acceleration * dt;
 
     angle += (angular_velocity * dt + (angular_acceleration * (dt * dt)) / 2.0);
