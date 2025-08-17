@@ -14,6 +14,7 @@ set(PARTSLIB_SOURCES
   parts/modules/simple_trigger_module.cpp
   parts/modules/null_brake.cpp
   parts/modules/velocity_redirector.cpp
+  parts/modules/simple_weapon.cpp
 )
 
 set(PHYSICSLIB_SOURCES
@@ -57,6 +58,7 @@ add_library(partslib ${PARTSLIB_SOURCES})
 target_link_libraries(partslib PUBLIC SFML::Graphics)
 target_link_libraries(partslib PUBLIC utilitylib)
 target_link_libraries(partslib PUBLIC physicslib)
+target_link_libraries(partslib PUBLIC corelib)
 
 add_library(physicslib ${PHYSICSLIB_SOURCES})
 target_link_libraries(physicslib PUBLIC SFML::Graphics)

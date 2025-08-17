@@ -1,6 +1,7 @@
 #include "core/menu.hpp"
 #include "assets/texture_manager.hpp"
 #include "parts/cores.hpp"
+#include "parts/modules/simple_weapon.hpp"
 #include "parts/modules/velocity_redirector.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
@@ -57,6 +58,16 @@ namespace core {
       std::move(std::make_unique<parts::NullBrake>(1, 5)));
     ships.back()->getCore().addTriggerModule(
       std::move(std::make_unique<parts::VelocityRedirector>(2, 1, 0.7)));
+
+    auto weapon = std::make_unique<parts::SimpleWeapon>(
+      3,
+      0.02,
+      "RedLaserBolt",
+      Vec2d(30, 0),
+      util::Angle(0),
+      1500,
+      5);
+    ships.back()->getCore().addTriggerModule(std::move(weapon));
   }
   std::shared_ptr<Ship> Menu::pickShip() {
     std::shared_ptr<sf::Font> font = assets::FontManager::getFont("orbitron");

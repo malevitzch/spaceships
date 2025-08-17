@@ -49,6 +49,9 @@ namespace util {
     Vec2d normalize();
     Vec2d normalized() const;
 
+    Vec2d rotate(const Angle angle);
+    Vec2d rotated(const Angle angle) const;
+
     double scalarProjection(Vec2d& vec);
     Vec2d vectorProjection(Vec2d& vec);
 

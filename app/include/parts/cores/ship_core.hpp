@@ -10,6 +10,10 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
+namespace core {
+  class Battle;
+}
+
 namespace parts {
   class ShipCore :
     public physics::PhysicsObject {
@@ -21,6 +25,7 @@ namespace parts {
     void broadcastSignal(int code, std::vector<std::string> args);
     void broadcastSignal(Signal signal);
 
+    core::Battle* battle;
   public:
     ShipCore();
 
@@ -33,6 +38,9 @@ namespace parts {
     virtual void resetState();
 
     virtual void handleInstructions(controls::ShipOrders input) = 0;
+
+    void setBattle(core::Battle* battle);
+    core::Battle& getBattle();
   };
 }
 

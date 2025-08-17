@@ -1,3 +1,4 @@
+#include "core/game.hpp"
 #include "parts/cores/ship_core.hpp"
 #include "physics/physics_object.hpp"
 #include "physics/physics_transform.hpp"
@@ -29,6 +30,13 @@ namespace parts {
   void ShipCore::resetState() {
     physics::PhysicsObject::resetTransform();
     PhysicsObject::setAngle(util::degrees(-90));
+  }
+
+  void ShipCore::setBattle(core::Battle* battle) {
+    this->battle = battle;
+  }
+  core::Battle& ShipCore::getBattle() {
+    return *battle;
   }
 
 }

@@ -3,6 +3,7 @@
 
 #include "assets/object_sprite.hpp"
 #include "core/objects/space_object.hpp"
+#include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 
 namespace core {
@@ -17,6 +18,7 @@ namespace core {
                      util::Vec2d position,
                      util::Vec2d velocity,
                      util::Vec2d acceleration,
+                     util::Angle angle,
                      double duration);
     virtual void physicsTick(double dt) override;
     virtual bool isDestroyed() override;

@@ -98,6 +98,10 @@ namespace core {
 
   void Battle::addShip(ShipActor ship, int team) {
     ship.setTeam(team);
+    // The point of this line is to give the ship access to the battle
+    // context, which is mostly used by modules that want to for example
+    // spawn projectiles
+    ship.getShip().getCore().setBattle(this);
     ships.push_back(ship);
   }
   void Battle::addPlayerShip(

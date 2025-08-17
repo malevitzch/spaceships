@@ -101,6 +101,18 @@ namespace util {
     return rescaled(1.0);
   }
 
+
+  Vec2d Vec2d::rotate(const Angle angle) {
+    (*this) = rotated(angle);
+    return *this;
+  }
+  Vec2d Vec2d::rotated(const Angle angle) const {
+    return {
+      x * cos(angle) - y * sin(angle),
+      x * sin(angle) + y * cos(angle)
+    };
+  }
+
   double Vec2d::scalarProjection(Vec2d& vec) {
     double veclength = vec.magnitude();
     if(veclength == 0) {

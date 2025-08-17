@@ -7,12 +7,14 @@ namespace core {
                                      util::Vec2d position,
                                      util::Vec2d velocity,
                                      util::Vec2d acceleration,
-                                     double max_duration) 
-  : max_duration(max_duration) {
+                                     util::Angle angle,
+                                     double duration) 
+  : max_duration(duration) {
     // TODO: maybe this should use some PhysicsObject constructor
     setPosition(position);
     setVelocity(velocity);
     setAcceleration(acceleration);
+    setAngle(angle);
 
     sprite = assets::SpriteManager::getProjectileSprite(sprite_name);
   }
