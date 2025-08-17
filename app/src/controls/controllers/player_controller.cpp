@@ -1,5 +1,6 @@
 #include "controls/controllers/player_controller.hpp"
 #include "core/game.hpp"
+#include <SFML/Window/Keyboard.hpp>
 
 namespace controls {
 
@@ -85,7 +86,46 @@ namespace controls {
       }
       events.pop();
     }
-
+    if(orders.actions[0] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num0)) {
+      orders.actions[0] = 1;
+    }
+    if(orders.actions[1] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1)) {
+      orders.actions[1] = 1;
+    }
+    if(orders.actions[2] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num2)) {
+      orders.actions[2] = 1;
+    }
+    if(orders.actions[3] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num3)) {
+      orders.actions[3] = 1;
+    }
+    if(orders.actions[4] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num4)) {
+      orders.actions[4] = 1;
+    }
+    if(orders.actions[5] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num5)) {
+      orders.actions[5] = 1;
+    }
+    if(orders.actions[6] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num6)) {
+      orders.actions[6] = 1;
+    }
+    if(orders.actions[7] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num7)) {
+      orders.actions[7] = 1;
+    }
+    if(orders.actions[8] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num8)) {
+      orders.actions[8] = 1;
+    }
+    if(orders.actions[9] == 0 
+       && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num9)) {
+      orders.actions[9] = 1;
+    }
     return orders;
   }
   void PlayerController::addEvent(sf::Event event) {

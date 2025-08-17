@@ -14,6 +14,10 @@ int main() {
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");
   window.setPosition({0, 0});
 
+  // Avoids firing the last keypress multiple times which caused inconsistent
+  // and unintuitive behavior
+  window.setKeyRepeatEnabled(false);
+
   core::Menu menu(window);
 
   while(window.isOpen()) {
