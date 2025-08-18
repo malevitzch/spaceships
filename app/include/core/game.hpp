@@ -49,6 +49,8 @@ namespace core {
 
     const Camera& getCamera() const;
     sf::Window& getWindow();
+
+    std::shared_ptr<Ship> getPlayerShip() const;
   };
 
 }

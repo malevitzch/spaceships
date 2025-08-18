@@ -13,7 +13,6 @@ namespace core {
 namespace controls {
   class PlayerController : public Controller {
   private:
-    core::Battle* battle;
     std::queue<sf::Event> events;
     void addHolddownKeys(ShipOrders& orders) const;
     void setTarget(ShipOrders& orders) const;
@@ -22,7 +21,6 @@ namespace controls {
     virtual ShipOrders getOrders() override;
 
     void addEvent(sf::Event event);
-    friend class core::Battle;
   };
 }
 

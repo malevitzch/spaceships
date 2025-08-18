@@ -33,6 +33,7 @@ set(CONTROLSLIB_SOURCES
   controls/ship_orders.cpp
   controls/controllers/controller.cpp
   controls/controllers/player_controller.cpp
+  controls/controllers/enemy_controller.cpp
 )
 
 set(CORELIB_SOURCES
@@ -68,10 +69,12 @@ target_link_libraries(utilitylib PUBLIC SFML::Graphics)
 
 add_library(controlslib ${CONTROLSLIB_SOURCES})
 target_link_libraries(controlslib PUBLIC SFML::Graphics)
+target_link_libraries(controlslib PUBLIC corelib)
 
 add_library(corelib ${CORELIB_SOURCES})
 target_link_libraries(corelib PUBLIC SFML::Graphics)
 target_link_libraries(corelib PUBLIC partslib)
+target_link_libraries(corelib PUBLIC controlslib)
 
 add_library(assetslib ${ASSETSLIB_SOURCES})
 target_link_libraries(assetslib PUBLIC nlohmann_json::nlohmann_json)

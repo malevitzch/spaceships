@@ -111,7 +111,7 @@ namespace core {
     addShip(ship, 0);
 
     player_ship = ship.getShipPointer();
-    player->battle = this;
+    player->setBattle(this);
     players.push_back(player);
   }
 
@@ -170,6 +170,9 @@ namespace core {
       player_events.pop();
     }
 
+  }
+  std::shared_ptr<Ship> Battle::getPlayerShip() const {
+    return player_ship;
   }
 
 }

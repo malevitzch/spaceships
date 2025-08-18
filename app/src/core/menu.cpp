@@ -63,7 +63,7 @@ namespace core {
       3,
       0.02,
       "RedLaserBolt",
-      Vec2d(30, 0),
+      Vec2d(50, 0),
       util::Angle(0),
       1500,
       5);

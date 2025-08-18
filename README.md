@@ -9,6 +9,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- EnemyController
 - Compound header for modules
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors

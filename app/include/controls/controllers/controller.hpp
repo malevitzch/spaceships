@@ -3,11 +3,20 @@
 
 #include "../ship_orders.hpp"
 
+namespace core {
+  class Battle;
+}
+
 namespace controls {
   class Controller {
   private:
+  protected:
+    core::Battle* battle;
   public:
     virtual ShipOrders getOrders() = 0;
+    void setBattle(core::Battle* battle);
+
+  friend class Battle;
   };
 }
 
