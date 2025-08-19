@@ -35,7 +35,7 @@ namespace controls {
       sf::Mouse::isButtonPressed(sf::Mouse::Button::Middle);
   }
 
-  ShipOrders PlayerController::getOrders() {
+  ShipOrders PlayerController::getOrders(core::Ship& ship) {
     ShipOrders orders;
     addHolddownKeys(orders);
     setTarget(orders);

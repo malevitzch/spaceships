@@ -8,7 +8,7 @@ namespace core {
       controller(controller) {}
 
   void ShipActor::makeDecisions() {
-    controls::ShipOrders orders = controller->getOrders();
+    controls::ShipOrders orders = controller->getOrders(*ship);
     ship->getCore().handleInstructions(orders);
   }
 

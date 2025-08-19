@@ -4,7 +4,7 @@
 
 
 namespace controls {
-  ShipOrders EnemyController::getOrders() {
+  ShipOrders EnemyController::getOrders(core::Ship& ship) {
     ShipOrders orders;
 
     auto& player_core = battle->getPlayerShip()->getCore();

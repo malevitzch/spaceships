@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "controller.hpp"
+#include "core/ship.hpp"
 #include <queue>
 
 namespace core {
@@ -18,7 +19,7 @@ namespace controls {
     void setTarget(ShipOrders& orders) const;
     void addMouseEvents(ShipOrders& orders) const;
   public:
-    virtual ShipOrders getOrders() override;
+    virtual ShipOrders getOrders(core::Ship& ship) override;
 
     void addEvent(sf::Event event);
   };

@@ -2,6 +2,7 @@
 #define CONTROLS_CONTROLLER_HPP
 
 #include "../ship_orders.hpp"
+#include "core/ship.hpp"
 
 namespace core {
   class Battle;
@@ -13,7 +14,7 @@ namespace controls {
   protected:
     core::Battle* battle;
   public:
-    virtual ShipOrders getOrders() = 0;
+    virtual ShipOrders getOrders(core::Ship& ship) = 0;
     void setBattle(core::Battle* battle);
 
   friend class Battle;
