@@ -75,6 +75,9 @@ namespace util {
   double Vec2d::magnitude() const {
     return std::sqrt(x*x + y*y);
   }
+  Angle Vec2d::angle() const {
+    return std::atan2(x, y);
+  }
 
   Vec2d Vec2d::unit() const {
     double length = magnitude();

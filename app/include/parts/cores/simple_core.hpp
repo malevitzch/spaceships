@@ -34,6 +34,8 @@ namespace parts {
     void angularLeft();
     void angularRight();
     void angularOff();
+
+    double getAngularThrust() const;
   };
 }
 

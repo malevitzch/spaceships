@@ -41,6 +41,7 @@ namespace util {
     operator sf::Vector2f() const; 
 
     double magnitude() const;
+    Angle angle() const;
 
     Vec2d unit() const;
 

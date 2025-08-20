@@ -80,4 +80,7 @@ namespace parts {
     angular_engines = 0;
   }
 
+  double SimpleCore::getAngularThrust() const {
+    return angular_thrust;
+  }
 }
