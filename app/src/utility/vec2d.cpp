@@ -147,8 +147,15 @@ namespace util {
     return Vec2d(vec.x * scalar, vec.y * scalar);
   }
 
+  Vec2d vecBetween(Vec2d from, Vec2d to) {
+    return (to - from);
+  }
   Vec2d vecBetween(Vec2d from, Vec2d to, double length) {
     return (to - from).rescale(length);
+  }
+
+  double vectorProduct(Vec2d v1, Vec2d v2) {
+    return v1.x * v2.y - v1.y * v2.x;
   }
 
   double distance(Vec2d v1, Vec2d v2) {
