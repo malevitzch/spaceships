@@ -1,6 +1,7 @@
 #include "controls/ship_orders.hpp"
 
 namespace controls {
+  // FIXME: update with persistent behavior
   ShipOrders ShipOrders::prolong() const {
     ShipOrders orders;
 
