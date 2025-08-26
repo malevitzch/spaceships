@@ -17,7 +17,7 @@ namespace parts {
 
     double angular_thrust = 3;
     // left is -1 and right is 1
-    int angular_engines = 0;
+    double angular_engines = 0;
 
     std::shared_ptr<sf::Texture> texture;
   public:
@@ -31,6 +31,7 @@ namespace parts {
     void turnOnEngines();
     void turnOffEngines();
 
+    void setAngularEngines(double value);
     void angularLeft();
     void angularRight();
     void angularOff();
