@@ -26,21 +26,13 @@ namespace controls {
     Angle target_angle = target_vector.angle();
 
     parts::SimpleCore& core = dynamic_cast<parts::SimpleCore&>(my_core);
+
+
     double angular_thrust = core.getAngularThrust();
+    double angular_velocity = core.getAngularVelocity();
 
-    bool side = false;
-
-    double stopping_angle = std::pow(core.getAngularVelocity(), 2) / angular_thrust;
-
-    if(my_core.getAngularVelocity() > 0) {
-      double distance = util::mathfmod(target_angle - my_angle, 2*std::numbers::pi);
-      side = (distance < stopping_angle);
-    } else {
-      double distance = util::mathfmod(my_angle - target_angle, 2*std::numbers::pi);
-      side = (distance > stopping_angle);
-    }
-
-    if(side) orders.left = true; else orders.right = true;
+    double rdist = util::mathfmod(target_angle - my_angle, std::numbers::pi * 2);
+    double ldist = std::numbers::pi * 2 - rdist;
 
     return orders;
   }
