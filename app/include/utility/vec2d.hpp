@@ -41,6 +41,7 @@ namespace util {
     operator sf::Vector2f() const; 
 
     double magnitude() const;
+    Angle angle() const;
 
     Vec2d unit() const;
 
@@ -65,7 +66,10 @@ namespace util {
 
   std::ostream& operator<<(std::ostream& o, const Vec2d vec);
 
+  Vec2d vecBetween(Vec2d from, Vec2d to);
   Vec2d vecBetween(Vec2d from, Vec2d to, double length);
+
+  double vectorProduct(Vec2d v1, Vec2d v2);
 
   double distance(Vec2d v1, Vec2d v2);
 }

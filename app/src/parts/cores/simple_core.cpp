@@ -70,6 +70,9 @@ namespace parts {
     engines_on = false;
   }
 
+  void SimpleCore::setAngularEngines(double value) {
+    angular_engines = std::clamp(value, -1.0, 1.0);
+  }
   void SimpleCore::angularLeft() {
     angular_engines = -1;
   }
@@ -80,4 +83,7 @@ namespace parts {
     angular_engines = 0;
   }
 
+  double SimpleCore::getAngularThrust() const {
+    return angular_thrust;
+  }
 }

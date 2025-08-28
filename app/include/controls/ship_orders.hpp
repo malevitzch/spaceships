@@ -13,11 +13,11 @@ namespace controls {
     util::Vec2d target = {0, 0};
 
     // Main movement orders
-    bool left = false;
-    bool right = false;
+    double left = 0;
+    double right = 0;
 
-    bool ahead = false;
-    bool back = false;
+    double ahead = 0;
+    double back = 0;
 
     // Secondary directional keys
     bool left_arrow = false;

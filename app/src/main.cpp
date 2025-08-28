@@ -2,11 +2,15 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
 #include "assets/sprite_manager.hpp"
+#include "controls/controllers/enemy_controller.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include "core/game.hpp"
 #include "core/menu.hpp"
 #include "core/ship_actor.hpp"
 
+
+#include "parts/cores.hpp"
+#include "core/ship.hpp"
 
 int main() {
   assets::SpriteManager::init();
@@ -33,10 +37,22 @@ int main() {
     std::shared_ptr<controls::PlayerController> player_controller
       = std::make_shared<controls::PlayerController>();
     core::ShipActor player(ship, player_controller);
-
     player.getShip().getCore().setPosition({0, 0});
 
     battle.addPlayerShip(player, player_controller);
+
+    // FIXME: remove or something
+    /*
+    std::shared_ptr<controls::EnemyController> enemy_controller
+      = std::make_shared<controls::EnemyController>();
+    std::shared_ptr<core::Ship> enemy_ship 
+      = std::make_shared<core::Ship>("Phage Mk. 1",
+                                     std::make_shared<parts::SimpleCore>(50, 4),
+                                     "Phage");
+    core::ShipActor enemy(enemy_ship, enemy_controller);
+    battle.addShip(enemy, 1);
+    */
+
     battle.start();
   }
   return 0;

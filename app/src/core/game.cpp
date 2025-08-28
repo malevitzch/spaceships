@@ -102,6 +102,7 @@ namespace core {
     // context, which is mostly used by modules that want to for example
     // spawn projectiles
     ship.getShip().getCore().setBattle(this);
+    ship.getController().setBattle(this);
     ships.push_back(ship);
   }
   void Battle::addPlayerShip(

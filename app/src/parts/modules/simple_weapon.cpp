@@ -3,6 +3,9 @@
 #include "parts/cores/ship_core.hpp"
 #include "core/game.hpp"
 
+#include <random>
+#include <algorithm>
+
 namespace parts {
 
   SimpleWeapon::SimpleWeapon(int signal_code,
@@ -11,19 +14,31 @@ namespace parts {
                              util::Vec2d offset,
                              util::Angle rotation,
                              double projectile_velocity,
-                             double projectile_duration)
+                             double projectile_duration,
+                             double spread)
   : SimpleTriggerModule(signal_code, cooldown),
     projectile_sprite_name(projectile_sprite_name),
     offset(offset),
     rotation(rotation),
     projectile_velocity(projectile_velocity),
-    projectile_duration(projectile_duration) {}
+    projectile_duration(projectile_duration),
+    spread(spread) {}
 
   void SimpleWeapon::trigger() {
     using util::Vec2d;
+
+    static std::mt19937 rng(std::random_device{}());
+    static std::normal_distribution<double> dist(0.0, 0.3);
+
     auto& core = getCore();
+
     Vec2d source = core.getPosition() + offset.rotated(core.getAngle());
-    Vec2d velocity = Vec2d(projectile_velocity, core.getAngle() + rotation) + core.getVelocity();
+
+    double deviation = spread * std::clamp(dist(rng), -1.0, 1.0);
+    util::Angle target_angle = core.getAngle() + deviation + rotation;
+
+    Vec2d velocity = Vec2d(projectile_velocity, target_angle) + core.getVelocity();
+
 
     auto& battle = core.getBattle();
     battle.addObject(
@@ -32,7 +47,7 @@ namespace parts {
         source,
         velocity,
         Vec2d(0, 0),
-        core.getAngle(),
+        target_angle,
         projectile_duration
     ));
   }
