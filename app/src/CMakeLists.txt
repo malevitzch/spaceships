@@ -3,6 +3,7 @@ set(ASSETS_TARGET_DIR "${CMAKE_BINARY_DIR}/assets")
 
 set(PARTSLIB_SOURCES
   parts/signal.cpp
+  parts/factory.cpp
 
   parts/cores/ship_core.cpp
   parts/cores/simple_core.cpp
@@ -107,7 +108,6 @@ add_custom_target(clean_assets
   COMMAND ${CMAKE_COMMAND} -E remove_directory "${ASSETS_TARGET_DIR}"
   COMMENT "Cleaning up assets"
 )
-
 
 
 
