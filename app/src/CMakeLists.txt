@@ -16,6 +16,8 @@ set(PARTSLIB_SOURCES
   parts/modules/null_brake.cpp
   parts/modules/velocity_redirector.cpp
   parts/modules/simple_weapon.cpp
+
+  parts/modules/simple_weapon_config.cpp
 )
 
 set(PHYSICSLIB_SOURCES
