@@ -61,11 +61,11 @@ namespace core {
 
     auto weapon = std::make_unique<parts::SimpleWeapon>(
       3,
-      0.1,
+      0.06,
       "RedLaserBolt",
       Vec2d(50, 0),
       util::Angle(0),
-      750,
+      1000,
       5,
       0.1);
     ships.back()->getCore().addTriggerModule(std::move(weapon));

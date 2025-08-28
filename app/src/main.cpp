@@ -41,6 +41,8 @@ int main() {
 
     battle.addPlayerShip(player, player_controller);
 
+    // FIXME: remove or something
+    /*
     std::shared_ptr<controls::EnemyController> enemy_controller
       = std::make_shared<controls::EnemyController>();
     std::shared_ptr<core::Ship> enemy_ship 
@@ -49,6 +51,7 @@ int main() {
                                      "Phage");
     core::ShipActor enemy(enemy_ship, enemy_controller);
     battle.addShip(enemy, 1);
+    */
 
     battle.start();
   }
