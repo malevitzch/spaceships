@@ -15,6 +15,7 @@ namespace parts {
     std::string projectile_sprite_name;
     double projectile_velocity;
     double projectile_duration;
+    double spread;
   public:
     SimpleWeapon(int signal_code,
                  double cooldown,
@@ -22,7 +23,8 @@ namespace parts {
                  util::Vec2d offset,
                  util::Angle rotation,
                  double projectile_velocity,
-                 double projectile_duration);
+                 double projectile_duration,
+                 double spread);
     virtual void trigger() override;
   };
 

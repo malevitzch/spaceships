@@ -66,7 +66,8 @@ namespace core {
       Vec2d(50, 0),
       util::Angle(0),
       750,
-      5);
+      5,
+      0.1);
     ships.back()->getCore().addTriggerModule(std::move(weapon));
   }
   std::shared_ptr<Ship> Menu::pickShip() {

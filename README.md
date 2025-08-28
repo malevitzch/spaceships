@@ -10,7 +10,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 
 ## features
 - EnemyController
-- Compound header for modules
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors
 - Actually, a lot of the information could be kept in json
@@ -26,5 +25,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Randomly generate a bunch of backgrounds
 
 ## other
+- Update weapon creation with a config struct so that it translates nicely to json
+- Compound header for modules
 - Update the introduction in the README (this document)
 - Add some testing library
