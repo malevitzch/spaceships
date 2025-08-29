@@ -25,6 +25,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Randomly generate a bunch of backgrounds
 
 ## other
+- For the love of programming, shorten the utility/ directory to just util/ becuase this was a really dumb thing to do and I don't want to write the extra two letters every time
 - Update weapon creation with a config struct so that it translates nicely to json
 - Compound header for modules
 - Update the introduction in the README (this document)
