@@ -16,7 +16,7 @@ namespace parts {
     double duration = 2; // Duration in seconds
     double spread = 0.0; // Spread is in RADIANS
 
-    std::vector<std::unique_ptr<core::SpaceObject>>
+    std::vector<std::shared_ptr<core::SpaceObject>>
       spawn(util::Vec2d source, util::Angle direction) const;
     static ProjectileConfig fromJson(nlohmann::json& data);
   };

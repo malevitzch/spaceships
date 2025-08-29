@@ -2,16 +2,14 @@
 #include "nlohmann/json.hpp"
 
 #include "anchor.hpp"
+#include "projectile_config.hpp"
 
 namespace parts {
 
   struct SimpleWeaponConfig {
     Anchor anchor;
-    std::string projectile_sprite_name;
-    double projectile_velocity;
-    double projectile_duration;
-    double spread = 0.0;
-
+    std::vector<ProjectileConfig> projectiles = {};
+    double cooldown = 1.0;
     static SimpleWeaponConfig fromJson(nlohmann::json& data);
   };
 

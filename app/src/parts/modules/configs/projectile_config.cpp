@@ -3,23 +3,23 @@
 #include <algorithm>
 
 namespace parts {
-  std::vector<std::unique_ptr<core::SpaceObject>>
+  std::vector<std::shared_ptr<core::SpaceObject>>
     ProjectileConfig::spawn(util::Vec2d source, util::Angle direction) const {
     //TODO: decide something about the number generator, for now this is enough
     static std::mt19937 rng(std::random_device{}());
     static std::normal_distribution<double> dist(0.0, 0.3);
 
 
-    std::vector<std::unique_ptr<core::SpaceObject>> res;
+    std::vector<std::shared_ptr<core::SpaceObject>> res;
     for(int i = 0; i < count; i++) {
       double deviation = spread * std::clamp(dist(rng), -1.0, 1.0);
       util::Angle target_angle = direction + deviation;
       res.push_back(
-        std::make_unique<core::SimpleProjectile>(
+        std::make_shared<core::SimpleProjectile>(
           sprite_name,
           source,
           util::Vec2d(velocity, target_angle),
-          util::Vec2d(0, 0), //TODO: investigate what this is
+          util::Vec2d(0, 0), //TODO: investigate what this is (probably acceleration)
           target_angle,
           duration));
     }

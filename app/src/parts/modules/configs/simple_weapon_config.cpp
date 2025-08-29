@@ -6,9 +6,14 @@ namespace parts {
     if(data.contains("anchor")) {
       config.anchor = Anchor::fromJson(data["anchor"]);
     }
-    // FIXME: maybe this should consider a vector of projectile configs
-    // rather than the information about a single projectile to allow
-    // for slightly more complex weapons
+    if(data.contains("projectiles")) {
+      for(auto& pdata : data["projectiles"]) {
+        config.projectiles.push_back(ProjectileConfig::fromJson(pdata));
+      }
+    }
+    if(data.contains("cooldown")) {
+      config.cooldown = data["cooldown"];
+    }
     return config;
   }
 }
