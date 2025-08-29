@@ -1,14 +1,18 @@
 #include "utility/vec2d.hpp"
+#include "nlohmann/json.hpp"
+
+#include "anchor.hpp"
 
 namespace parts {
 
   struct SimpleWeaponConfig {
-    util::Vec2d offset = {0, 0};
-    util::Angle rotation = 0.0;
+    Anchor anchor;
     std::string projectile_sprite_name;
     double projectile_velocity;
     double projectile_duration;
     double spread = 0.0;
+
+    static SimpleWeaponConfig fromJson(nlohmann::json& data);
   };
 
 }

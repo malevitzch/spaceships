@@ -17,7 +17,8 @@ set(PARTSLIB_SOURCES
   parts/modules/velocity_redirector.cpp
   parts/modules/simple_weapon.cpp
 
-  parts/modules/simple_weapon_config.cpp
+  parts/modules/configs/anchor.cpp
+  parts/modules/configs/simple_weapon_config.cpp
 )
 
 set(PHYSICSLIB_SOURCES
@@ -63,6 +64,7 @@ target_link_libraries(partslib PUBLIC SFML::Graphics)
 target_link_libraries(partslib PUBLIC utilitylib)
 target_link_libraries(partslib PUBLIC physicslib)
 target_link_libraries(partslib PUBLIC corelib)
+target_link_libraries(partslib PUBLIC nlohmann_json::nlohmann_json)
 
 add_library(physicslib ${PHYSICSLIB_SOURCES})
 target_link_libraries(physicslib PUBLIC SFML::Graphics)
