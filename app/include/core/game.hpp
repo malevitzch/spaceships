@@ -44,6 +44,7 @@ namespace core {
       std::shared_ptr<controls::PlayerController> player);
 
     void addObject(std::shared_ptr<SpaceObject> object);
+    void addObjects(std::vector<std::shared_ptr<SpaceObject>> object);
 
     virtual void processEvents();
 

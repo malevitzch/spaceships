@@ -15,9 +15,12 @@ namespace parts {
     double velocity = 1000;
     double duration = 2; // Duration in seconds
     double spread = 0.0; // Spread is in RADIANS
+    double rotation = 0.0; // In radians too
 
-    std::vector<std::shared_ptr<core::SpaceObject>>
-      spawn(util::Vec2d source, util::Angle direction) const;
+    std::vector<std::shared_ptr<core::SpaceObject>> spawn(
+      util::Vec2d source,
+      util::Angle direction,
+      util::Vec2d initial_velocity) const;
     static ProjectileConfig fromJson(nlohmann::json& data);
   };
 }

@@ -4,7 +4,9 @@
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include "core/objects/simple_projectile.hpp"
+#include <algorithm>
 #include <chrono>
+#include <iterator>
 #include <memory>
 #include <thread>
 
@@ -119,6 +121,10 @@ namespace core {
   void Battle::addObject(std::shared_ptr<SpaceObject> object) {
     objects.push_back(object);
   }
+  void Battle::addObjects(std::vector<std::shared_ptr<SpaceObject>> objects) {
+    std::copy(objects.begin(), objects.end(), std::back_inserter(this->objects));
+  }
+
 
   const Camera& Battle::getCamera() const {
     return camera;

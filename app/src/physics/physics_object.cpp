@@ -39,6 +39,9 @@ namespace physics {
   void PhysicsObject::setVelocity(util::Vec2d velocity) {
     transform->velocity = velocity;
   }
+  void PhysicsObject::addVelocity(util::Vec2d velocity) {
+    transform->velocity += velocity;
+  }
 
   util::Vec2d PhysicsObject::getAcceleration() const {
     return transform->position;
