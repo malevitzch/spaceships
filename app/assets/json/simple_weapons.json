@@ -1,0 +1,21 @@
+[
+  {
+    "name": "LaserWeapon",
+    "cooldown": 0.2,
+    "anchor": {
+      "offset": {
+        "x": 50,
+        "y": 0
+      }
+    },
+    "projectiles": [
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "spread": 0.2,
+        "count": 7,
+        "duration": 1.5
+      }
+    ]
+  }
+]

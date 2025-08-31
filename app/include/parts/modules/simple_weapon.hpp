@@ -5,26 +5,18 @@
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 
+#include "parts/modules/configs/simple_weapon_config.hpp"
+
 namespace parts {
 
   class SimpleWeapon : public SimpleTriggerModule {
   private:
   protected:
-    util::Vec2d offset;
-    util::Angle rotation;
-    std::string projectile_sprite_name;
-    double projectile_velocity;
-    double projectile_duration;
-    double spread;
+    Anchor anchor;
+    std::string name;
+    std::vector<ProjectileConfig> projectiles;
   public:
-    SimpleWeapon(int signal_code,
-                 double cooldown,
-                 std::string projectile_sprite_name,
-                 util::Vec2d offset,
-                 util::Angle rotation,
-                 double projectile_velocity,
-                 double projectile_duration,
-                 double spread);
+    SimpleWeapon(int signal_code, SimpleWeaponConfig config);
     virtual void trigger() override;
   };
 

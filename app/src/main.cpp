@@ -10,10 +10,12 @@
 
 
 #include "parts/cores.hpp"
+#include "parts/factory.hpp"
 #include "core/ship.hpp"
 
 int main() {
   assets::SpriteManager::init();
+  parts::Factory::init({"simple_weapons.json"});
 
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");
   window.setPosition({0, 0});

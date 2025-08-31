@@ -12,7 +12,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - EnemyController
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors
-- Actually, a lot of the information could be kept in json
+- Update weapon creation with a config struct so that it translates nicely to json
 - Integrate the Cobra into the game
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)
 - A factory for ships
@@ -25,7 +25,9 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Randomly generate a bunch of backgrounds
 
 ## other
-- Update weapon creation with a config struct so that it translates nicely to json
+- Compound header for configs that can be included in factory
 - Compound header for modules
+- PhysicsObject should have some nice functions such as addAcceleration etc
+- For the love of programming, shorten the utility/ directory to just util/ becuase this was a really dumb thing to do and I don't want to write the extra two letters every time
 - Update the introduction in the README (this document)
 - Add some testing library

@@ -3,6 +3,7 @@ set(ASSETS_TARGET_DIR "${CMAKE_BINARY_DIR}/assets")
 
 set(PARTSLIB_SOURCES
   parts/signal.cpp
+  parts/factory.cpp
 
   parts/cores/ship_core.cpp
   parts/cores/simple_core.cpp
@@ -15,6 +16,10 @@ set(PARTSLIB_SOURCES
   parts/modules/null_brake.cpp
   parts/modules/velocity_redirector.cpp
   parts/modules/simple_weapon.cpp
+
+  parts/modules/configs/anchor.cpp
+  parts/modules/configs/simple_weapon_config.cpp
+  parts/modules/configs/projectile_config.cpp
 )
 
 set(PHYSICSLIB_SOURCES
@@ -60,6 +65,7 @@ target_link_libraries(partslib PUBLIC SFML::Graphics)
 target_link_libraries(partslib PUBLIC utilitylib)
 target_link_libraries(partslib PUBLIC physicslib)
 target_link_libraries(partslib PUBLIC corelib)
+target_link_libraries(partslib PUBLIC nlohmann_json::nlohmann_json)
 
 add_library(physicslib ${PHYSICSLIB_SOURCES})
 target_link_libraries(physicslib PUBLIC SFML::Graphics)
@@ -107,7 +113,6 @@ add_custom_target(clean_assets
   COMMAND ${CMAKE_COMMAND} -E remove_directory "${ASSETS_TARGET_DIR}"
   COMMENT "Cleaning up assets"
 )
-
 
 
 

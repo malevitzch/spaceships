@@ -11,6 +11,7 @@ namespace physics {
   protected:
     std::unique_ptr<PhysicsTransform> transform;
   public:
+    // TODO: add some more functions for object manipulation
     PhysicsObject();
     PhysicsObject(std::unique_ptr<PhysicsTransform> transform);
     virtual void physicsTick(double dt);
@@ -24,7 +25,8 @@ namespace physics {
     util::Vec2d getVelocity() const;
     double getVelocityX() const;
     double getVelocityY() const;
-    void setVelocity(util::Vec2d target);
+    void setVelocity(util::Vec2d velocity);
+    void addVelocity(util::Vec2d velocity);
 
     util::Vec2d getAcceleration() const;
     double getAccelerationX() const;
