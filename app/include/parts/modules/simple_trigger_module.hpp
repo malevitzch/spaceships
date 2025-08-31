@@ -18,6 +18,7 @@ namespace parts {
     virtual void processSignal(Signal& signal) override;
 
     virtual void reset() override;
+    void setSignal(int new_sig_code);
   };
 
 }

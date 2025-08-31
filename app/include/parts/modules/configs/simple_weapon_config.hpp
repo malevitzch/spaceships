@@ -1,3 +1,6 @@
+#ifndef PARTS_MODULES_CONFIGS_SIMPLE_WEAPON_CONFIG
+#define PARTS_MODULES_CONFIGS_SIMPLE_WEAPON_CONFIG
+
 #include "utility/vec2d.hpp"
 #include "nlohmann/json.hpp"
 
@@ -16,3 +19,5 @@ namespace parts {
   };
 
 }
+
+#endif

@@ -3,9 +3,11 @@
 #include "parts/cores/ship_core.hpp"
 #include "core/game.hpp"
 
+#include <iostream>
 #include <random>
 #include <algorithm>
 #include <vector>
+
 
 namespace parts {
 
@@ -21,8 +23,8 @@ namespace parts {
 
     std::vector<std::shared_ptr<core::SpaceObject>> projectiles;
 
-    util::Vec2d source = core.getPosition();
-    util::Angle angle = core.getAngle();
+    util::Vec2d source = core.getPosition() + anchor.offset.rotated(core.getAngle());
+    util::Angle angle = core.getAngle() + anchor.angle;
     util::Vec2d velocity = core.getVelocity();
 
     for(auto& projectile_config : this->projectiles) {

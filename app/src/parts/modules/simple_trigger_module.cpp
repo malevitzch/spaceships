@@ -24,4 +24,7 @@ namespace parts {
     timer.restart();
   }
 
+  void SimpleTriggerModule::setSignal(int new_sig_code) {
+    sig_code = new_sig_code;
+  }
 }

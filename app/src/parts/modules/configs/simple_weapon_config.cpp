@@ -1,9 +1,11 @@
 #include "parts/modules/configs/simple_weapon_config.hpp"
+#include <iostream>
 
 namespace parts {
   SimpleWeaponConfig SimpleWeaponConfig::fromJson(nlohmann::json& data) {
     SimpleWeaponConfig config;
     if(data.contains("name")) {
+      config.name = data["name"];
     } else {
       // FIXME: this field is mandatory, weapons need a name
       // and we can't give a default one since it would mess
@@ -22,6 +24,7 @@ namespace parts {
     if(data.contains("cooldown")) {
       config.cooldown = data["cooldown"];
     }
+    std::cout << config.projectiles.size();
     return config;
   }
 }

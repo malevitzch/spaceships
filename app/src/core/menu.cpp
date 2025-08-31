@@ -1,6 +1,7 @@
 #include "core/menu.hpp"
 #include "assets/texture_manager.hpp"
 #include "parts/cores.hpp"
+#include "parts/factory.hpp"
 #include "parts/modules/simple_weapon.hpp"
 #include "parts/modules/velocity_redirector.hpp"
 #include "utility/angle.hpp"
@@ -54,10 +55,13 @@ namespace core {
       "Phage Mk. 2",
       std::make_shared<parts::SimpleCore>(100, 6),
       "PhageMk2"));
+    // FIXME: add a direct access addTriggerModule to Ship rather than just core
     ships.back()->getCore().addTriggerModule(
       std::move(std::make_unique<parts::NullBrake>(1, 5)));
     ships.back()->getCore().addTriggerModule(
       std::move(std::make_unique<parts::VelocityRedirector>(2, 1, 0.7)));
+    ships.back()->getCore().addTriggerModule(
+      parts::Factory::getTriggerModule("LaserWeapon", 3));
 
   }
   std::shared_ptr<Ship> Menu::pickShip() {
