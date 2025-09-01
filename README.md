@@ -2,6 +2,7 @@
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
 ## fixes
+- Actually use the logging system where it matters (for errors that should not crash the game but should be considered)
 - CMake asset copying
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp

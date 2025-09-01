@@ -60,6 +60,10 @@ set(ASSETSLIB_SOURCES
   assets/object_sprite.cpp
 )
 
+set(LOGLIB_SOURCES
+  logs/logger.cpp
+)
+
 add_library(partslib ${PARTSLIB_SOURCES})
 target_link_libraries(partslib PUBLIC SFML::Graphics)
 target_link_libraries(partslib PUBLIC utilitylib)
