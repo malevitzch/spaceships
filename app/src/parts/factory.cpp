@@ -3,6 +3,9 @@
 #include "parts/modules/simple_weapon.hpp"
 #include <fstream>
 
+#include "logs/logger.hpp"
+
+
 namespace parts {
   std::map<std::string, SimpleWeaponConfig> Factory::simple_weapons;
 
@@ -20,6 +23,11 @@ namespace parts {
       json data = json::parse(datastream);
       for(json& weapon_data : data) {
         SimpleWeaponConfig config = SimpleWeaponConfig::fromJson(weapon_data);
+        if(config.name == "___Anonymous___") {
+          logs::Logger::logWarning(
+            "Loading anonymous simple weapon (missing \"name\" field)");
+          continue;
+        }
         simple_weapons[config.name] = config;
       }
     }
@@ -31,7 +39,9 @@ namespace parts {
   }
 
   std::unique_ptr<TriggerModule> Factory::getTriggerModule(std::string name, int sig_code) {
-    // FIXME: guard against nonexistent modules
+    // FIXME: guard against nonexistent modules by returning a dummy
+    // in case the wanted one is not there
+    logs::Logger::logError("Unknown module: \"" + name + "\"");
     std::unique_ptr<TriggerModule> module =
       std::make_unique<SimpleWeapon>(sig_code, simple_weapons.at(name));
     return module;

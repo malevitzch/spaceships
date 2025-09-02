@@ -4,6 +4,8 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "logs/logger.hpp"
+
 namespace assets {
   std::map<std::string,
            SpriteManager::SpriteInfo> SpriteManager::ship_sprites;
@@ -34,15 +36,20 @@ namespace assets {
 
   void SpriteManager::init() {
     loadShipSprites();
+    logs::Logger::logInfo("Loaded ship sprites");
+
     loadProjectileSprites();
+    logs::Logger::logInfo("Loaded projectile sprites");
   }
 
+  // TODO: this should have a filename as a parameter and just load from the file
+  // rather than a single hardcoded one
   void SpriteManager::loadShipSprites() {
     using nlohmann::json;
     std::ifstream spritestream(
       assets::paths::getAssetsPath() + "/json/ship_sprites.json");
     if(!spritestream) {
-      // TODO: error handling
+      logs::Logger::logError("Couldn't open file \"ship_sprites.json\"");
       return;
     }
     json data = json::parse(spritestream);
@@ -56,13 +63,14 @@ namespace assets {
       };
     }
   }
-
+  
+  // TODO: parametrized file 
   void SpriteManager::loadProjectileSprites() {
     using nlohmann::json;
     std::ifstream spritestream(
       assets::paths::getAssetsPath() + "/json/projectile_sprites.json");
     if(!spritestream) {
-      throw new std::runtime_error("Can't find projectile sprites file");
+      logs::Logger::logError("Couldn't open file \"projectile_sprites.json\"");
     }
     json data = json::parse(spritestream);
     for(auto& sprite_data : data["sprites"]) {
@@ -79,7 +87,8 @@ namespace assets {
   std::shared_ptr<ObjectSprite> SpriteManager::getShipSprite(
     std::string name) {
     if(!ship_sprites.contains(name)) {
-      throw std::runtime_error("Unknown sprite name: \"" + name + "\"");
+      logs::Logger::logError("Unknown sprite name: \"" + name + "\"");
+      // FIXME: return a silly placeholder sprite so that the game doesn't crash
     }
     return ship_sprites[name].get();
   }
@@ -87,7 +96,8 @@ namespace assets {
   std::shared_ptr<ObjectSprite> SpriteManager::getProjectileSprite(
     std::string name) {
     if(!projectile_sprites.contains(name)) {
-      throw std::runtime_error("Unknown sprite name: \"" + name + "\"");
+      logs::Logger::logError("Unknown sprite name: \"" + name + "\"");
+      // FIXME: return a silly placeholder sprite so that the game doesn't crash
     }
     return projectile_sprites[name].get();
   }

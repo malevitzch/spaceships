@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
+#include <fstream>
 #include "assets/sprite_manager.hpp"
 #include "controls/controllers/enemy_controller.hpp"
 #include "controls/controllers/player_controller.hpp"
@@ -13,7 +14,10 @@
 #include "parts/factory.hpp"
 #include "core/ship.hpp"
 
+#include "logs/logger.hpp"
+
 int main() {
+  logs::Logger::init(10000, logs::MsgType::Info);
   assets::SpriteManager::init();
   parts::Factory::init({"simple_weapons.json"});
 
@@ -57,5 +61,7 @@ int main() {
 
     battle.start();
   }
+  std::ofstream logstream("log.txt");
+  logs::Logger::logDump(logstream);
   return 0;
 }

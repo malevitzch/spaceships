@@ -4,22 +4,26 @@ namespace logs {
 
   std::string getShorthand(MsgType type) {
     switch(type) {
-    case MsgType::Info:
-      return "INFO";
-    case MsgType::Oddity:
-      return "ODD";
-    case MsgType::Warning:
-      return "WARNING";
-    case MsgType::Error:
-      return "ERROR";
-    case MsgType::FatalError:
-      return "FATAL";
+      case MsgType::Info:
+        return "INFO";
+      case MsgType::Oddity:
+        return "ODD";
+      case MsgType::Warning:
+        return "WARNING";
+      case MsgType::Error:
+        return "ERROR";
+      case MsgType::FatalError:
+        return "FATAL";
+      default:
+        return "???";
     }
   }
   LogMessage::LogMessage(MsgType type, std::string content) 
   : type(type), content(content) {}
 
   std::deque<LogMessage> Logger::messages;
+  size_t Logger::capacity;
+  MsgType Logger::sensitivity;
 
   void Logger::addMessage(LogMessage message) {
     // Ignore messages that are not considered important enough

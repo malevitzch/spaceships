@@ -70,6 +70,7 @@ target_link_libraries(partslib PUBLIC utilitylib)
 target_link_libraries(partslib PUBLIC physicslib)
 target_link_libraries(partslib PUBLIC corelib)
 target_link_libraries(partslib PUBLIC nlohmann_json::nlohmann_json)
+target_link_libraries(partslib PUBLIC loglib) 
 
 add_library(physicslib ${PHYSICSLIB_SOURCES})
 target_link_libraries(physicslib PUBLIC SFML::Graphics)
@@ -80,17 +81,21 @@ target_link_libraries(utilitylib PUBLIC SFML::Graphics)
 add_library(controlslib ${CONTROLSLIB_SOURCES})
 target_link_libraries(controlslib PUBLIC SFML::Graphics)
 target_link_libraries(controlslib PUBLIC corelib)
+target_link_libraries(controlslib PUBLIC loglib) 
 
 add_library(corelib ${CORELIB_SOURCES})
 target_link_libraries(corelib PUBLIC SFML::Graphics)
 target_link_libraries(corelib PUBLIC partslib)
 target_link_libraries(corelib PUBLIC controlslib)
+target_link_libraries(corelib PUBLIC loglib) 
 
 add_library(assetslib ${ASSETSLIB_SOURCES})
 target_link_libraries(assetslib PUBLIC nlohmann_json::nlohmann_json)
 target_link_libraries(assetslib PUBLIC SFML::Graphics)
 target_link_libraries(assetslib PUBLIC corelib)
+target_link_libraries(assetslib PUBLIC loglib)
 
+add_library(loglib ${LOGLIB_SOURCES})
 
 add_executable(game main.cpp)
 target_compile_features(game PRIVATE cxx_std_20)
@@ -101,6 +106,7 @@ target_link_libraries(game PRIVATE
   controlslib
   corelib
   assetslib
+  loglib
 )
 
 target_link_libraries(game PRIVATE SFML::Graphics)
