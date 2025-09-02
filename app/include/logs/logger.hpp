@@ -47,6 +47,7 @@ namespace logs {
     static void logFatalError(std::string message);
 
     static void logDump(std::ostream& output_stream);
+    static void logFatalAndDump(std::ostream& output_stream, std::string message);
   };
 }
 

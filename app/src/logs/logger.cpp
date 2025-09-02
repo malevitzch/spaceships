@@ -60,4 +60,8 @@ namespace logs {
     for(LogMessage& msg : messages)
       output_stream << msg.toString() << "\n";
   }
+  void Logger::logFatalAndDump(std::ostream& output_stream, std::string message) {
+    logFatalError(message);
+    logDump(output_stream);
+  }
 }
