@@ -41,7 +41,9 @@ namespace parts {
   std::unique_ptr<TriggerModule> Factory::getTriggerModule(std::string name, int sig_code) {
     // FIXME: guard against nonexistent modules by returning a dummy
     // in case the wanted one is not there
-    logs::Logger::logError("Unknown module: \"" + name + "\"");
+    if(!simple_weapons.contains(name)) {
+      logs::Logger::logError("Unknown module: \"" + name + "\"");
+    }
     std::unique_ptr<TriggerModule> module =
       std::make_unique<SimpleWeapon>(sig_code, simple_weapons.at(name));
     return module;

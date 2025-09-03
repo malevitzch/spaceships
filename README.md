@@ -26,7 +26,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Randomly generate a bunch of backgrounds
 
 ## other
-- prettyLogDump for Logger, adding ANSI escape sequences to color messages
 - Compound header for configs that can be included in factory
 - Compound header for modules
 - PhysicsObject should have some nice functions such as addAcceleration etc

@@ -18,8 +18,38 @@ namespace logs {
         return "???";
     }
   }
+
+  constexpr std::string reset_color = "\033[0m";
+  std::string getColorEscapeSequence(MsgType type) {
+    switch(type) {
+      case MsgType::Info:
+        return "\033[38;5;27m";
+      case MsgType::Oddity:
+        return "\033[38;5;154m";
+      case MsgType::Warning:
+        return "\033[38;5;11m";
+      case MsgType::Error:
+        return "\033[38;5;214m";
+      case MsgType::FatalError:
+        return "\033[38;5;9m";
+      default:
+        return "";
+    }
+  }
+
+
   LogMessage::LogMessage(MsgType type, std::string content) 
   : type(type), content(content) {}
+
+  std::string LogMessage::toString() const {
+    return "[" + getShorthand(type) + "]: " + content;
+  }
+  std::string LogMessage::prettyToString() const {
+    return getColorEscapeSequence(type)
+      + "[" + getShorthand(type) + "]: " + content + reset_color;
+  }
+
+
 
   std::deque<LogMessage> Logger::messages;
   size_t Logger::capacity;
@@ -52,16 +82,27 @@ namespace logs {
   void Logger::logError(std::string message) {
     addMessage(LogMessage(MsgType::Error, message));
   }
-  void Logger::logFatalError(std::string message) {
+  void Logger::logFatal(std::string message) {
     addMessage(LogMessage(MsgType::FatalError, message));
   }
 
-  void Logger::logDump(std::ostream& output_stream) {
+  void Logger::logDump(std::ostream& output_stream, bool pretty) {
     for(LogMessage& msg : messages)
-      output_stream << msg.toString() << "\n";
+      output_stream << (pretty ? msg.prettyToString() : msg.toString()) << "\n";
   }
-  void Logger::logFatalAndDump(std::ostream& output_stream, std::string message) {
-    logFatalError(message);
-    logDump(output_stream);
+  void Logger::logFatalAndDump(std::ostream& output_stream,
+                               std::string message, bool pretty) {
+    logFatal(message);
+    logDump(output_stream, pretty);
+  }
+
+  namespace testing {
+    void logAll() {
+      logs::Logger::logInfo("Info");
+      logs::Logger::logOddity("Oddity");
+      logs::Logger::logWarning("Warning");
+      logs::Logger::logError("Error");
+      logs::Logger::logFatal("Fatal Error");
+    }
   }
 }

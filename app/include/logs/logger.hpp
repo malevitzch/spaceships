@@ -16,19 +16,19 @@ namespace logs {
   };
 
   std::string getShorthand(MsgType type);
+  std::string getColorEscapeSequence(MsgType type);
 
   struct LogMessage {
     MsgType type;
     std::string content;
     LogMessage(MsgType type, std::string content);
 
-    std::string toString() const {
-      return "[" + getShorthand(type) + "]: " + content;
-    }
+    std::string toString() const;
+    std::string prettyToString() const;
   };
 
   class Logger {
-  private: 
+  private:
     static MsgType sensitivity;
     static std::deque<LogMessage> messages;
     static size_t capacity;
@@ -44,11 +44,16 @@ namespace logs {
     static void logOddity(std::string message);
     static void logWarning(std::string message);
     static void logError(std::string message);
-    static void logFatalError(std::string message);
+    static void logFatal(std::string message);
 
-    static void logDump(std::ostream& output_stream);
-    static void logFatalAndDump(std::ostream& output_stream, std::string message);
+    static void logDump(std::ostream& output_stream, bool pretty = false);
+    static void logFatalAndDump(std::ostream& output_stream,
+                                std::string message, bool pretty = false);
   };
+
+  namespace testing {
+    void logAll();
+  }
 }
 
 #endif
