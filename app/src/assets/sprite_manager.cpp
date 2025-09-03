@@ -53,6 +53,7 @@ namespace assets {
       return;
     }
     json data = json::parse(spritestream);
+    //TODO: error handling
     for(auto& sprite_data : data["sprites"]) {
       ship_sprites[sprite_data["name"]] = {
         sprite_data["filename"],
@@ -63,7 +64,7 @@ namespace assets {
       };
     }
   }
-  
+
   // TODO: parametrized file 
   void SpriteManager::loadProjectileSprites() {
     using nlohmann::json;
@@ -73,6 +74,7 @@ namespace assets {
       logs::Logger::logError("Couldn't open file \"projectile_sprites.json\"");
     }
     json data = json::parse(spritestream);
+    // TODO: error handling
     for(auto& sprite_data : data["sprites"]) {
       projectile_sprites[sprite_data["name"]] = {
         sprite_data["filename"],

@@ -22,7 +22,12 @@ namespace core {
     return getCore().getAngle();
   }
 
+  void Ship::addTriggerModule(std::unique_ptr<parts::TriggerModule> module) {
+    core->addTriggerModule(std::move(module));
+  }
+
   std::string Ship::getName() const { return name; }
+
   assets::ObjectSprite& Ship::getSprite() { return *sprite; }
 
   void Ship::draw(sf::RenderTarget& target,

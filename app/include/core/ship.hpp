@@ -22,7 +22,10 @@ namespace core {
     util::Vec2d getPosition() const;
     util::Angle getAngle() const;
 
+    void addTriggerModule(std::unique_ptr<parts::TriggerModule> module);
+
     std::string getName() const;
+
     assets::ObjectSprite& getSprite();
     virtual void draw(sf::RenderTarget& target,
                       sf::RenderStates states) const override;
