@@ -13,9 +13,9 @@ namespace assets {
     };
     struct SpriteInfo {
       std::string texture_name;
-      util::Vec2d center_of_mass;
+      util::Vec2d center_of_mass = {0, 0};
       util::Vec2d sprite_size;
-      double scale;
+      double scale = 1.0;
       SpriteType type;
 
       std::shared_ptr<ObjectSprite> sprite = nullptr;
@@ -28,8 +28,8 @@ namespace assets {
   public:
     static void init();
 
-    static void loadShipSprites();
-    static void loadProjectileSprites();
+    static void loadShipSprites(std::string filename);
+    static void loadProjectileSprites(std::string filename);
     static std::shared_ptr<ObjectSprite> getShipSprite(std::string name);
     static std::shared_ptr<ObjectSprite> getProjectileSprite(std::string name);
   };
