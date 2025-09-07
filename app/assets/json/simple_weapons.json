@@ -1,5 +1,6 @@
 [
   {
+    "type": "simpleweapon",
     "name": "LaserWeapon",
     "cooldown": 0.2,
     "anchor": {

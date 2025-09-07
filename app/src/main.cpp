@@ -15,6 +15,7 @@
 #include "core/ship.hpp"
 
 #include "logs/logger.hpp"
+#include <iostream>
 
 int main() {
   logs::Logger::init(10000, logs::MsgType::Info);
@@ -63,5 +64,6 @@ int main() {
   }
   std::ofstream logstream("log.txt");
   logs::Logger::logDump(logstream, true);
+  logs::Logger::logDump(std::cout, true);
   return 0;
 }

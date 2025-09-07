@@ -9,7 +9,7 @@
 namespace parts {
   std::map<std::string, SimpleWeaponConfig> Factory::simple_weapons;
 
-  void Factory::loadSimpleWeapons(std::vector<std::string> filenames) {
+  void Factory::loadTriggerModules(std::vector<std::string> filenames) {
     // FIXME: it would probably make sense for the modules to just be in
     // mixed files where every module just contains type informations
     // that is later used to pick the correct constructor, that way we just
@@ -21,21 +21,36 @@ namespace parts {
       // if we fail to open file or the json is faulty
       std::ifstream datastream(path + filename);
       json data = json::parse(datastream);
-      for(json& weapon_data : data) {
-        SimpleWeaponConfig config = SimpleWeaponConfig::fromJson(weapon_data);
-        if(config.name == "___Anonymous___") {
-          logs::Logger::logWarning(
-            "Loading anonymous simple weapon (missing \"name\" field)");
+      for(json& module_data : data) {
+        if(!module_data.contains("type")) {
+          logs::Logger::logError("Module missing type in file "
+                                  "\"" + filename + "\"");
           continue;
         }
-        simple_weapons[config.name] = config;
+        if(module_data["type"] == "simpleweapon") {
+          SimpleWeaponConfig config = SimpleWeaponConfig::fromJson(module_data);
+          if(config.name == "___Anonymous___") {
+            logs::Logger::logWarning(
+              "Loading anonymous simple weapon from file"
+              "\"" + filename + "\" "
+              "(missing \"name\" field)");
+            continue;
+          }
+          simple_weapons[config.name] = config;
+        } else {
+          logs::Logger::logError("Unknown module type \""
+                                 + (std::string)module_data["type"] +
+                                "\" in file \"" + filename + "\"");
+
+
+        }
       }
     }
   }
 
   void Factory::init(std::vector<std::string> filenames) {
     // FIXME: make this more flexible
-    loadSimpleWeapons(filenames);
+    loadTriggerModules(filenames);
   }
 
   std::unique_ptr<TriggerModule> Factory::getTriggerModule(std::string name, int sig_code) {
