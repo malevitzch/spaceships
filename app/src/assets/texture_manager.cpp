@@ -1,7 +1,8 @@
 #include "assets/texture_manager.hpp"
 #include "assets/paths.hpp"
-#include <stdexcept>
 #include <filesystem>
+
+#include "logs/logger.hpp"
 
 namespace assets {
   std::unordered_map<
@@ -14,7 +15,9 @@ namespace assets {
     auto texture = 
       std::make_shared<sf::Texture>();
     if(!texture->loadFromFile(paths::getAssetsPath() + "/graphics/" + name + ".png")) {
-      throw new std::runtime_error("Failed to load texture \"" + name + "\"");
+      logs::Logger::logError("Failed to load texture \"" + name + "\"");
+      // FIXME: missing texture, return something that's very clearly not supposed 
+      // to be seen, like minecraft's pink-black 2x2 checkerboard
     }
     textures[name] = texture;
     return texture;

@@ -47,11 +47,18 @@ namespace logs {
     static void logFatal(std::string message);
 
     static void logDump(std::ostream& output_stream, bool pretty = false);
-    static void logFatalAndDump(std::ostream& output_stream,
-                                std::string message, bool pretty = false);
+    static void logDump(std::string filename, bool pretty = false);
+    static void logDump(bool pretty = false);
+
+    static void logFatalAndDump(std::string message, std::ostream& output_stream,
+                                bool pretty = false);
+    static void logFatalAndDump(std::string message, std::string filename,
+                                bool pretty = false);
+    static void logFatalAndDump(std::string message, bool pretty = false);
   };
 
   namespace testing {
+    // Logs a single instance of each type of message
     void logAll();
   }
 }

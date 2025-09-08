@@ -2,7 +2,7 @@
 A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++, with SFML3 being used for graphics.
 # todo
 ## fixes
-- Actually use the logging system where it matters (for errors that should not crash the game but should be considered)
+- Font manager should use init like the others
 - CMake asset copying
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp

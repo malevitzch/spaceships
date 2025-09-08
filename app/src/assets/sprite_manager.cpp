@@ -35,26 +35,43 @@ namespace assets {
   }
 
   void SpriteManager::init() {
-    loadShipSprites();
-    logs::Logger::logInfo("Loaded ship sprites");
+    loadShipSprites("ship_sprites.json");
 
-    loadProjectileSprites();
-    logs::Logger::logInfo("Loaded projectile sprites");
+    loadProjectileSprites("projectile_sprites.json");
   }
 
   // TODO: this should have a filename as a parameter and just load from the file
   // rather than a single hardcoded one
-  void SpriteManager::loadShipSprites() {
+  bool SpriteManager::loadShipSprites(std::string filename) {
     using nlohmann::json;
+
     std::ifstream spritestream(
-      assets::paths::getAssetsPath() + "/json/ship_sprites.json");
+      assets::paths::getAssetsPath() + "/json/" + filename);
     if(!spritestream) {
-      logs::Logger::logError("Couldn't open file \"ship_sprites.json\"");
-      return;
+      logs::Logger::logError("Couldn't open file \"" + filename + "\"");
+      return false;
     }
-    json data = json::parse(spritestream);
-    //TODO: error handling
+
+    json data;
+    try {
+      data = json::parse(spritestream);
+    } catch(const json::parse_error& e) {
+      logs::Logger::logError("Failed to parse JSON from "
+                             "file \"" + filename + "\".");
+      return false;
+    }
+
+    if(!data.contains("sprites")) {
+      logs::Logger::logError("Attempting to load sprites from the file "
+                             "\"" + filename + "\" but it contains "
+                             "no \"sprites\" field.");
+      return false;
+    }
+
     for(auto& sprite_data : data["sprites"]) {
+      // TODO: handle missing data here,
+      // error if missing crucial things like filename
+      // but give reasonable defaults for others
       ship_sprites[sprite_data["name"]] = {
         sprite_data["filename"],
         {sprite_data["size"]["x"], sprite_data["size"]["y"]},
@@ -63,19 +80,31 @@ namespace assets {
         SpriteType::Ship
       };
     }
+
+    logs::Logger::logInfo("Loaded ship sprites from " + filename);
+    return true;
   }
 
-  // TODO: parametrized file 
-  void SpriteManager::loadProjectileSprites() {
+  bool SpriteManager::loadProjectileSprites(std::string filename) {
     using nlohmann::json;
+
     std::ifstream spritestream(
-      assets::paths::getAssetsPath() + "/json/projectile_sprites.json");
+      assets::paths::getAssetsPath() + "/json/" + filename);
     if(!spritestream) {
-      logs::Logger::logError("Couldn't open file \"projectile_sprites.json\"");
+      logs::Logger::logError("Couldn't open file \"" + filename + "\"");
+      return false;
     }
-    json data = json::parse(spritestream);
-    // TODO: error handling
+
+    json data;
+    try {
+      data = json::parse(spritestream);
+    } catch(const json::parse_error& e) {
+      logs::Logger::logError("Failed to parse JSON from "
+                             "file \"" + filename + "\".");
+      return false;
+    }
     for(auto& sprite_data : data["sprites"]) {
+      //TODO: error handle inside
       projectile_sprites[sprite_data["name"]] = {
         sprite_data["filename"],
         {sprite_data["size"]["x"], sprite_data["size"]["y"]},
@@ -84,12 +113,15 @@ namespace assets {
         SpriteType::Projectile
       };
     }
+
+    logs::Logger::logInfo("Loaded projectile sprites from " + filename);
+    return true;
   }
 
   std::shared_ptr<ObjectSprite> SpriteManager::getShipSprite(
     std::string name) {
     if(!ship_sprites.contains(name)) {
-      logs::Logger::logError("Unknown sprite name: \"" + name + "\"");
+      logs::Logger::logFatalAndDump("Unknown sprite name: \"" + name + "\"");
       // FIXME: return a silly placeholder sprite so that the game doesn't crash
     }
     return ship_sprites[name].get();
@@ -98,7 +130,7 @@ namespace assets {
   std::shared_ptr<ObjectSprite> SpriteManager::getProjectileSprite(
     std::string name) {
     if(!projectile_sprites.contains(name)) {
-      logs::Logger::logError("Unknown sprite name: \"" + name + "\"");
+      logs::Logger::logFatalAndDump("Unknown sprite name: \"" + name + "\"");
       // FIXME: return a silly placeholder sprite so that the game doesn't crash
     }
     return projectile_sprites[name].get();
