@@ -28,8 +28,8 @@ namespace assets {
   public:
     static void init();
 
-    static void loadShipSprites(std::string filename);
-    static void loadProjectileSprites(std::string filename);
+    static bool loadShipSprites(std::string filename);
+    static bool loadProjectileSprites(std::string filename);
     static std::shared_ptr<ObjectSprite> getShipSprite(std::string name);
     static std::shared_ptr<ObjectSprite> getProjectileSprite(std::string name);
   };

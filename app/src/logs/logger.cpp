@@ -1,6 +1,10 @@
 #include "logs/logger.hpp"
+#include <fstream>
 
 namespace logs {
+
+  // TODO: This maybe could use the paths?
+  constexpr std::string default_log_name = "log.txt";
 
   std::string getShorthand(MsgType type) {
     switch(type) {
@@ -90,19 +94,36 @@ namespace logs {
     for(LogMessage& msg : messages)
       output_stream << (pretty ? msg.prettyToString() : msg.toString()) << "\n";
   }
-  void Logger::logFatalAndDump(std::ostream& output_stream,
-                               std::string message, bool pretty) {
+  void Logger::logDump(std::string filename, bool pretty) {
+    std::ofstream out(filename);
+    logDump(out, pretty);
+  }
+  void Logger::logDump(bool pretty) {
+    logDump(default_log_name);
+  }
+
+  void Logger::logFatalAndDump(std::string message,
+                               std::ostream& output_stream, bool pretty) {
     logFatal(message);
     logDump(output_stream, pretty);
+  }
+  void Logger::logFatalAndDump(std::string message,
+                               std::string filename, bool pretty) {
+    logFatal(message);
+    logDump(filename, pretty);
+  }
+  void Logger::logFatalAndDump(std::string message, bool pretty) {
+    logFatal(message);
+    logDump(pretty);
   }
 
   namespace testing {
     void logAll() {
-      logs::Logger::logInfo("Info");
-      logs::Logger::logOddity("Oddity");
-      logs::Logger::logWarning("Warning");
-      logs::Logger::logError("Error");
-      logs::Logger::logFatal("Fatal Error");
+      logs::Logger::logInfo("Phony Info");
+      logs::Logger::logOddity("Phony Oddity");
+      logs::Logger::logWarning("Phony Warning");
+      logs::Logger::logError("Phony Error");
+      logs::Logger::logFatal("Phony Fatal Error");
     }
   }
 }

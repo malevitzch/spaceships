@@ -62,8 +62,8 @@ int main() {
 
     battle.start();
   }
-  std::ofstream logstream("log.txt");
-  logs::Logger::logDump(logstream, true);
+
+  logs::Logger::logDump(true);
   logs::Logger::logDump(std::cout, true);
   return 0;
 }
