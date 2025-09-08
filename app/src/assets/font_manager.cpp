@@ -1,6 +1,5 @@
 #include "assets/font_manager.hpp"
 #include "assets/paths.hpp"
-#include <stdexcept>
 #include <filesystem>
 
 #include "logs/logger.hpp"
@@ -27,7 +26,8 @@ namespace assets {
     auto font = 
       std::make_shared<sf::Font>();
     if(!font->openFromFile(paths::getAssetsPath() + "/fonts/" + font_paths.at(name))) {
-      throw new std::runtime_error("Failed to load font \"" + name + "\"");
+      logs::Logger::logError("Failed to load font \"" + name + "\"");
+      //FIXME: default font
     }
 
     fonts[name] = font;
