@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <filesystem>
 
+#include "logs/logger.hpp"
+
 namespace assets {
   std::unordered_map<
     std::string,
@@ -11,18 +13,23 @@ namespace assets {
     std::string,
     std::string> FontManager::font_paths = {
       {"orbitron", "orbitron/orbitron.ttf"}};
+
   std::shared_ptr<sf::Font> FontManager::getFont(std::string name) {
     if(fonts.contains(name) && fonts[name].lock()) {
       return fonts[name].lock();
     }
+
     if(!font_paths.contains(name)) {
-      throw new std::runtime_error("Unknown font: \"" + name + "\n");
+      logs::Logger::logError("Couldn't find font \"" + name + "\"");
+      // FIXME: default font
     }
+
     auto font = 
       std::make_shared<sf::Font>();
     if(!font->openFromFile(paths::getAssetsPath() + "/fonts/" + font_paths.at(name))) {
       throw new std::runtime_error("Failed to load font \"" + name + "\"");
     }
+
     fonts[name] = font;
     return font;
   }
