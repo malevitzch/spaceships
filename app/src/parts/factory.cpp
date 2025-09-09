@@ -1,6 +1,9 @@
 #include "parts/factory.hpp"
 #include "assets/paths.hpp"
 #include "parts/modules/simple_weapon.hpp"
+
+#include "parts/modules/dummy_trigger_module.hpp"
+
 #include <fstream>
 
 #include "logs/logger.hpp"
@@ -10,10 +13,7 @@ namespace parts {
   std::map<std::string, SimpleWeaponConfig> Factory::simple_weapons;
 
   void Factory::loadTriggerModules(std::vector<std::string> filenames) {
-    // FIXME: it would probably make sense for the modules to just be in
-    // mixed files where every module just contains type informations
-    // that is later used to pick the correct constructor, that way we just
-    // have a 'trigger_modules' map rather than this, but that's for later
+
     using nlohmann::json;
     std::string path = assets::paths::getAssetsPath() + "/json/";
     for(std::string filename : filenames) {
@@ -53,14 +53,18 @@ namespace parts {
     loadTriggerModules(filenames);
   }
 
+
+  // sig_code is often irrelavant so it's -1 by default in the declaration
   std::unique_ptr<TriggerModule> Factory::getTriggerModule(std::string name, int sig_code) {
-    // FIXME: guard against nonexistent modules by returning a dummy
-    // in case the wanted one is not there
-    if(!simple_weapons.contains(name)) {
-      logs::Logger::logError("Unknown module: \"" + name + "\"");
+    if(simple_weapons.contains(name)) {
+      std::unique_ptr<TriggerModule> module =
+        std::make_unique<SimpleWeapon>(sig_code, simple_weapons.at(name));
+      return module;
     }
-    std::unique_ptr<TriggerModule> module =
-      std::make_unique<SimpleWeapon>(sig_code, simple_weapons.at(name));
-    return module;
+
+    std::unique_ptr<TriggerModule> dummy = std::make_unique<DummyTriggerModule>();
+    logs::Logger::logError("Unknown module \"" + name + "\"."
+                           " A dummy will be used instead");
+    return dummy;
   }
 }

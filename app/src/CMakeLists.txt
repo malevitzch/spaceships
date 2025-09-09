@@ -16,6 +16,7 @@ set(PARTSLIB_SOURCES
   parts/modules/null_brake.cpp
   parts/modules/velocity_redirector.cpp
   parts/modules/simple_weapon.cpp
+  parts/modules/dummy_trigger_module.cpp
 
   parts/modules/configs/anchor.cpp
   parts/modules/configs/simple_weapon_config.cpp
