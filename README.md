@@ -10,6 +10,7 @@ A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++,
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- Ships created from json rather than by hand in code
 - EnemyController
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors
@@ -27,7 +28,6 @@ A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++,
 
 ## other
 - Compound header for configs that can be included in factory
-- Compound header for modules
 - PhysicsObject should have some nice functions such as addAcceleration etc
 - For the love of programming, shorten the utility/ directory to just util/ becuase this was a really dumb thing to do and I don't want to write the extra two letters every time
 - Update the introduction in the README (this document)

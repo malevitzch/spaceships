@@ -3,6 +3,7 @@
 
 #include "assets/object_sprite.hpp"
 #include "parts/cores/ship_core.hpp"
+#include "parts/modules/trigger_module.hpp"
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>
 
@@ -16,13 +17,14 @@ namespace core {
   public:
     Ship(std::string name,
          std::shared_ptr<parts::ShipCore> core,
-         std::string sprite_name);
+         std::string sprite_name,
+         std::vector<std::shared_ptr<parts::TriggerModule>> trigger_modules = {});
 
     parts::ShipCore& getCore() const;
     util::Vec2d getPosition() const;
     util::Angle getAngle() const;
 
-    void addTriggerModule(std::unique_ptr<parts::TriggerModule> module);
+    void addTriggerModule(std::shared_ptr<parts::TriggerModule> module);
 
     std::string getName() const;
 

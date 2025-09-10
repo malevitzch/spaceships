@@ -18,6 +18,7 @@
 #include <iostream>
 
 int main() {
+  // Default log limit is 10k so that we don't keep too much in RAM
   logs::Logger::init(10000, logs::MsgType::Info);
   assets::SpriteManager::init();
   parts::Factory::init({"simple_weapons.json"});
