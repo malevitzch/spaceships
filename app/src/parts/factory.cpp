@@ -1,13 +1,10 @@
 #include "parts/factory.hpp"
 #include "assets/paths.hpp"
-#include "parts/modules/simple_weapon.hpp"
-
-#include "parts/modules/dummy_trigger_module.hpp"
-
-#include <fstream>
-
 #include "logs/logger.hpp"
 
+#include "parts/modules.hpp"
+
+#include <fstream>
 
 namespace parts {
   std::map<std::string, SimpleWeaponConfig> Factory::simple_weapons;
