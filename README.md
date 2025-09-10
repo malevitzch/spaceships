@@ -10,6 +10,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- Ships created from json rather than by hand in code
 - EnemyController
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors
@@ -27,7 +28,6 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 
 ## other
 - Compound header for configs that can be included in factory
-- Compound header for modules
 - PhysicsObject should have some nice functions such as addAcceleration etc
 - For the love of programming, shorten the utility/ directory to just util/ becuase this was a really dumb thing to do and I don't want to write the extra two letters every time
 - Update the introduction in the README (this document)

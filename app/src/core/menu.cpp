@@ -15,6 +15,7 @@
 
 namespace core {
   using util::Vec2d;
+  using parts::Factory;
   Menu::Menu(sf::RenderWindow& window) : window(window) {
     ships.push_back(std::make_shared<Ship>(
       "Bird Mk. 1",
@@ -51,17 +52,18 @@ namespace core {
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
 
+    std::vector<std::shared_ptr<parts::TriggerModule>> phage_modules =
+    {
+      Factory::getNullBrake(1, 2),
+      Factory::getVelocityRedirector(2, 1, 0.7),
+      Factory::getTriggerModule("LaserWeapon", 3)
+    };
+
     ships.push_back(std::make_shared<Ship>(
       "Phage Mk. 2",
       std::make_shared<parts::SimpleCore>(100, 6),
-      "PhageMk2"));
-    // FIXME: add a direct access addTriggerModule to Ship rather than just core
-    ships.back()->getCore().addTriggerModule(
-      parts::Factory::getNullBrake(1, 2));
-    ships.back()->getCore().addTriggerModule(
-      std::move(std::make_unique<parts::VelocityRedirector>(2, 1, 0.7)));
-    ships.back()->getCore().addTriggerModule(
-      parts::Factory::getTriggerModule("LaserWeapon", 3));
+      "PhageMk2",
+      phage_modules));
 
   }
   std::shared_ptr<Ship> Menu::pickShip() {
@@ -118,16 +120,15 @@ namespace core {
             selection_index =
               (ships.size() + selection_index - 1) % ships.size();
           } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space
-                    || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
+                   || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
             return ships[(ships.size() - selection_index) % ships.size()];
           }
         }
       }
-      //FIXME: this is very ugly but we can't let the last loop execution
-      // come to the next part if the window gets closed
-      if(!window.isOpen()) {
-        continue;
-      }
+
+      // Avoid attempting to render if the window has been closed
+      if(!window.isOpen()) continue;
+
       window.clear();
       for(int i = 0; i < SELECTIONS_COUNT; i++) {
         window.draw(selections[i]);

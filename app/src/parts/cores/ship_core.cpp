@@ -19,7 +19,7 @@ namespace parts {
     }
   }
 
-  void ShipCore::addTriggerModule(std::unique_ptr<TriggerModule> module) {
+  void ShipCore::addTriggerModule(std::shared_ptr<TriggerModule> module) {
     module->setCore(*this);
     trigger_modules.push_back(std::move(module));
   }
