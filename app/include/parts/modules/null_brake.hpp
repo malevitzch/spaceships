@@ -6,9 +6,12 @@
 namespace parts {
   class NullBrake : public SimpleTriggerModule {
   private:
+    double efficiency;
+    double angular_efficiency;
   protected:
   public:
-    NullBrake(int signal_code, double cooldown = 10.0);
+    NullBrake(int signal_code, double cooldown,
+              double efficiency = 1.0, double angular_efficiency = 1.0);
     virtual void trigger() override;
   };
 }

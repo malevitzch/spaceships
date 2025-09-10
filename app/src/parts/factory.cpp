@@ -2,7 +2,6 @@
 #include "assets/paths.hpp"
 #include "logs/logger.hpp"
 
-#include "parts/modules.hpp"
 
 #include <fstream>
 
@@ -64,4 +63,12 @@ namespace parts {
                            " A dummy will be used instead");
     return dummy;
   }
+  std::unique_ptr<NullBrake> Factory::getNullBrake(int signal_code,
+                                                   double cooldown,
+                                                   double efficiency,
+                                                   double angular_efficiency) {
+    return std::make_unique<NullBrake>(signal_code, cooldown,
+                                       efficiency, angular_efficiency);
+  }
+
 }

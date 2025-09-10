@@ -3,7 +3,7 @@
 
 #include <map>
 #include "modules/configs/simple_weapon_config.hpp"
-#include "modules/trigger_module.hpp"
+#include "parts/modules.hpp"
 
 namespace parts {
   class Factory {
@@ -15,6 +15,11 @@ namespace parts {
     // FIXME: this only supports simple weapons for now
     static std::unique_ptr<TriggerModule> getTriggerModule(std::string name,
                                                            int sig_code = -1);
+
+    static std::unique_ptr<NullBrake> getNullBrake(int signal_code,
+                                                   double cooldown,
+                                                   double efficiency = 1.0,
+                                                   double angular_efficiency = 1.0);
   };
 }
 

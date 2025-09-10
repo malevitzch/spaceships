@@ -57,7 +57,7 @@ namespace core {
       "PhageMk2"));
     // FIXME: add a direct access addTriggerModule to Ship rather than just core
     ships.back()->getCore().addTriggerModule(
-      std::move(std::make_unique<parts::NullBrake>(1, 5)));
+      parts::Factory::getNullBrake(1, 2));
     ships.back()->getCore().addTriggerModule(
       std::move(std::make_unique<parts::VelocityRedirector>(2, 1, 0.7)));
     ships.back()->getCore().addTriggerModule(
