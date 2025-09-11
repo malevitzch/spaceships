@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
 #include <fstream>
+#include "assets/font_manager.hpp"
 #include "assets/sprite_manager.hpp"
 #include "controls/controllers/enemy_controller.hpp"
 #include "controls/controllers/player_controller.hpp"
@@ -21,6 +22,7 @@ int main() {
   // Default log limit is 10k so that we don't keep too much in RAM
   logs::Logger::init(10000, logs::MsgType::Info);
   assets::SpriteManager::init();
+  assets::FontManager::init();
   parts::Factory::init({"simple_weapons.json"});
 
   auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Main Window");

@@ -34,7 +34,7 @@
         "sprite_name": "RedLaserBolt",
         "velocity": 1250,
         "duration": 1.5,
-        "rotation": 0.7
+        "rotation": 0.4
       },
       {
         "sprite_name": "RedLaserBolt",
@@ -45,7 +45,7 @@
         "sprite_name": "RedLaserBolt",
         "velocity": 1250,
         "duration": 1.5,
-        "rotation": -0.3
+        "rotation": -0.4
       }
     ]
   }
