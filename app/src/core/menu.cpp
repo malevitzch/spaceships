@@ -56,7 +56,7 @@ namespace core {
     {
       Factory::getNullBrake(1, 2),
       Factory::getVelocityRedirector(2, 1, 0.7),
-      Factory::getTriggerModule("LaserWeapon", 3)
+      Factory::getTriggerModule("LaserSplitter", 3)
     };
 
     ships.push_back(std::make_shared<Ship>(

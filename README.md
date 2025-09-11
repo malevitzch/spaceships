@@ -2,8 +2,7 @@
 A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++, with SFML3 being used for graphics.
 # todo
 ## fixes
-- Font manager should use init like the others
-- CMake asset copying
+- Consider having weapon anchors not be a part of the weapon itself but rather be customizable
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
@@ -11,24 +10,24 @@ A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++,
 
 ## features
 - Ships created from json rather than by hand in code
+- Extend json projectile types to allow for non-standard ones
 - EnemyController
-- Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
-- PhysicObject could have some nicer constructors
+- PhysicsObject could have some nicer constructors
 - Update weapon creation with a config struct so that it translates nicely to json
-- Integrate the Cobra into the game
 - Convex Polygon Colliders (possibly using Separating Axis Theorem)
-- A factory for ships
 - Separate the drawing pipeline from physics, likely running them on two threads (which will be later useful for network play etc)
 
 ## art and assets
 - More elite bugships
 - Rock ships
+- Update Cobra and add it into the game
 - Phase out the initial placeholder assets for ships such as bird, borg, and round
-- Randomly generate a bunch of backgrounds
+- Update backgrounds
 
 ## other
 - Compound header for configs that can be included in factory
-- PhysicsObject should have some nice functions such as addAcceleration etc
+- PhysicsObject should have some convenient functions such as addAcceleration etc
 - For the love of programming, shorten the utility/ directory to just util/ becuase this was a really dumb thing to do and I don't want to write the extra two letters every time
 - Update the introduction in the README (this document)
-- Add some testing library
+- Add some testing library perhaps
+- Extend logger with named variables that can be created and kept in a map so that certain things can be tracked in the background

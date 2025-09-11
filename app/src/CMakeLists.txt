@@ -112,13 +112,10 @@ target_link_libraries(game PRIVATE
 
 target_link_libraries(game PRIVATE SFML::Graphics)
 
-add_custom_command(
-  TARGET game POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${ASSETS_SOURCE_DIR}"
-    "${ASSETS_TARGET_DIR}"
-  COMMENT "Copying assets"
+add_custom_target(copy_assets
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_SOURCE_DIR} ${ASSETS_TARGET_DIR}
 )
+add_dependencies(game copy_assets)
 
 add_custom_target(clean_assets
   COMMAND ${CMAKE_COMMAND} -E remove_directory "${ASSETS_TARGET_DIR}"

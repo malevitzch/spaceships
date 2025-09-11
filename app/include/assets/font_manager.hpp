@@ -9,9 +9,12 @@
 namespace assets {
   class FontManager {
   private:
-    static std::unordered_map<std::string, std::weak_ptr<sf::Font>> fonts;
+    static std::unordered_map<std::string, std::shared_ptr<sf::Font>> fonts;
     static const std::unordered_map<std::string, std::string> font_paths;
+
+    static void loadFont(std::string name, std::string path);
   public:
+    static void init();
     static std::shared_ptr<sf::Font> getFont(std::string name);
   };
 }
