@@ -18,5 +18,35 @@
         "duration": 1.5
       }
     ]
+  },
+  {
+    "type": "simpleweapon",
+    "name": "LaserSplitter",
+    "cooldown": 0.2,
+    "anchor": {
+      "offset": {
+        "x": 55,
+        "y": 0
+      }
+    },
+    "projectiles": [
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "duration": 1.5,
+        "rotation": 0.7
+      },
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "duration": 1.5
+      },
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "duration": 1.5,
+        "rotation": -0.3
+      }
+    ]
   }
 ]

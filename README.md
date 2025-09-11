@@ -2,8 +2,8 @@
 A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
 # todo
 ## fixes
+- Consider having weapon anchors not be a part of the weapon itself but rather be customizable
 - Font manager should use init like the others
-- CMake asset copying
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
@@ -11,6 +11,7 @@ A simple game written in C++ using the SFML-3.0 library that I always wanted to 
 
 ## features
 - Ships created from json rather than by hand in code
+- Extend json projectile types to allow for non-standard ones
 - EnemyController
 - Add some actual weapons or anything that can test the functionality of SimpleTriggerModule
 - PhysicObject could have some nicer constructors
