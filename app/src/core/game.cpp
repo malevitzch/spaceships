@@ -139,6 +139,7 @@ namespace core {
 
       if(event->is<sf::Event::Closed>()) {
         assets::TextureManager::reset();
+        assets::FontManager::reset();
         window.close();
       }
       // This is a bit ugly but it handles keypresses which we don't want
