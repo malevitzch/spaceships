@@ -108,7 +108,10 @@ namespace core {
         // Keys A-D are used to move the selection left or right
         // And Space/Enter is used to select the ship currently in the middle 
         if(event->is<sf::Event::Closed>()) {
+          // FIXME: this should perhaps be some global function that just
+          // frees all assets
           assets::TextureManager::reset();
+          assets::FontManager::reset();
           window.close();
           break;
         } else if (

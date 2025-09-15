@@ -16,6 +16,7 @@ namespace assets {
   public:
     static void init();
     static std::shared_ptr<sf::Font> getFont(std::string name);
+    static void reset();
   };
 }
 

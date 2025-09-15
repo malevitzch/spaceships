@@ -42,4 +42,8 @@ namespace assets {
 
     return fonts[name];
   }
+
+  void FontManager::reset() {
+    fonts.clear();
+  }
 }
