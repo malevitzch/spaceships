@@ -1,6 +1,7 @@
 #include "parts/factory.hpp"
 #include "assets/paths.hpp"
 #include "logs/logger.hpp"
+#include "parts/modules/centrifugal_slingshot.hpp"
 
 
 #include <fstream>
@@ -77,6 +78,16 @@ namespace parts {
     return std::make_shared<VelocityRedirector>(signal_code,
                                                 cooldown,
                                                 efficiency);
+  }
+  std::shared_ptr<CentrifugalSlingshot> Factory::getCentrifugalSlingshot(
+        int signal_code,
+        double cooldown,
+        double multiplier,
+        double efficiency) {
+    return std::make_shared<CentrifugalSlingshot>(signal_code,
+                                                  cooldown,
+                                                  multiplier,
+                                                  efficiency);
   }
 
 
