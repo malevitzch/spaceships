@@ -11,5 +11,6 @@
 
 #include "modules/null_brake.hpp"
 #include "modules/velocity_redirector.hpp"
+#include "modules/centrifugal_slingshot.hpp"
 
 #endif

@@ -15,6 +15,8 @@ set(PARTSLIB_SOURCES
   parts/modules/simple_trigger_module.cpp
   parts/modules/null_brake.cpp
   parts/modules/velocity_redirector.cpp
+  parts/modules/centrifugal_slingshot.cpp
+
   parts/modules/simple_weapon.cpp
   parts/modules/dummy_trigger_module.cpp
 

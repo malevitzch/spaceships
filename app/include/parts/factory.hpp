@@ -4,6 +4,7 @@
 #include <map>
 #include "modules/configs/simple_weapon_config.hpp"
 #include "parts/modules.hpp"
+#include "parts/modules/centrifugal_slingshot.hpp"
 
 namespace parts {
   class Factory {
@@ -24,6 +25,12 @@ namespace parts {
     static std::shared_ptr<VelocityRedirector> getVelocityRedirector(
       int signal_code,
       double cooldown,
+      double efficiency = 1.0);
+
+    static std::shared_ptr<CentrifugalSlingshot> getCentrifugalSlingshot(
+      int signal_code,
+      double cooldown,
+      double multiplier = 50.0,
       double efficiency = 1.0);
   };
 }
