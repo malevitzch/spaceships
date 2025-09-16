@@ -1,5 +1,5 @@
 # spaceships
-A space combat game written in C++ using the SFML-3.0 library for graphics. Inspired by games such as Event Horizon and Reassembly.
+A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++, with SFML3 being used for graphics.
 # todo
 ## fixes
 - Consider having weapon anchors not be a part of the weapon itself but rather be customizable
