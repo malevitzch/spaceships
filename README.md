@@ -1,14 +1,15 @@
 # spaceships
-A simple game written in C++ using the SFML-3.0 library that I always wanted to make. Or at least make something similar.
+A space combat game written in C++ using the SFML-3.0 library for graphics. Inspired by games such as Event Horizon and Reassembly.
 # todo
 ## fixes
 - Consider having weapon anchors not be a part of the weapon itself but rather be customizable
 - Consider using engine transforms in SimpleCore and OmniCore
-- Battle should have its own file, not game.cpp
+- Battle should have its own file, not game.cpp since game.cpp would eventually contain more things
 - Libraries are a bit too fragmented, too much unnecessary linking when they all depend on each other
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- Ship buff / debuff system to allow applying things such as "angular velocity in a certain direction for X seconds"
 - Ships created from json rather than by hand in code
 - Extend json projectile types to allow for non-standard ones
 - EnemyController
