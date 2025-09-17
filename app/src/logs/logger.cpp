@@ -4,7 +4,7 @@
 namespace logs {
 
   // TODO: This maybe could use the paths?
-  constexpr std::string default_log_name = "log.txt";
+  constexpr auto default_log_name = "log.txt";
 
   std::string getShorthand(MsgType type) {
     switch(type) {
@@ -23,7 +23,7 @@ namespace logs {
     }
   }
 
-  constexpr std::string reset_color = "\033[0m";
+  constexpr auto reset_color = "\033[0m";
   std::string getColorEscapeSequence(MsgType type) {
     switch(type) {
       case MsgType::Info:
