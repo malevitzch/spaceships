@@ -99,7 +99,7 @@ namespace logs {
     logDump(out, pretty);
   }
   void Logger::logDump(bool pretty) {
-    logDump(default_log_name);
+    logDump(default_log_name, pretty);
   }
 
   void Logger::logFatalAndDump(std::string message,
