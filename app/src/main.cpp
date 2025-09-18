@@ -4,6 +4,7 @@
 #include <fstream>
 #include "assets/font_manager.hpp"
 #include "assets/sprite_manager.hpp"
+#include "assets/texture_manager.hpp"
 #include "controls/controllers/enemy_controller.hpp"
 #include "controls/controllers/player_controller.hpp"
 #include "core/game.hpp"
@@ -40,8 +41,13 @@ int main() {
 
     // If ship selection fails it's usually becuase user closed the window
     // in which case we want to avoid things like nullptr dereferences
-    // and we just exit the program with code 0
-    if(ship == nullptr) return 0;
+    // and we just end the program
+    if(ship == nullptr) {
+      window.close();
+      assets::TextureManager::reset();
+      assets::FontManager::reset();
+      break;
+    }
 
     core::Battle battle(window);
     std::shared_ptr<controls::PlayerController> player_controller
