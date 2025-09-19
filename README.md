@@ -9,6 +9,7 @@ A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++,
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- A "StrafeCore" which turns towards mouse and can use left-right commands with side thrusters to move laterally
 - Ship buff / debuff system to allow applying things such as "angular velocity in a certain direction for X seconds"
 - Ships created from json rather than by hand in code
 - Extend json projectile types to allow for non-standard ones
