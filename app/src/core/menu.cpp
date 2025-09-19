@@ -52,6 +52,11 @@ namespace core {
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
 
+    ships.push_back(std::make_shared<Ship>(
+      "Maw Mk. 1",
+      std::make_shared<parts::SimpleCore>(50, 4),
+      "Maw"));
+
     std::vector<std::shared_ptr<parts::TriggerModule>> phage_modules =
     {
       Factory::getNullBrake(1, 2),
@@ -161,13 +166,14 @@ namespace core {
 
         auto ship_sprite = ship.getSprite().getImageSprite();
 
+        Vec2d size = ship_sprite.getGlobalBounds().size;
+        double scale_factor = 1.0;
         if(i == CENTER) {
-          Vec2d size = ship_sprite.getGlobalBounds().size;
-          ship_sprite.scale(Vec2d( CENTER_SIZE.x / size.x, CENTER_SIZE.y / size.y));
+          scale_factor = CENTER_SIZE.x / std::max(size.x, size.y);
         } else {
-          Vec2d size = ship_sprite.getGlobalBounds().size;
-          ship_sprite.scale(Vec2d( REGULAR_SIZE.x / size.x, REGULAR_SIZE.y / size.y));
+          scale_factor = REGULAR_SIZE.x / std::max(size.x, size.y);
         }
+        ship_sprite.scale(Vec2d( scale_factor, scale_factor));
 
         window.draw(ship_sprite, states);
       }
