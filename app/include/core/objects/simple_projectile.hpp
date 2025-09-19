@@ -2,12 +2,12 @@
 #define CORE_OBJECTS_SIMPLE_PROJECTILE_HPP
 
 #include "assets/object_sprite.hpp"
-#include "core/objects/space_object.hpp"
+#include "core/objects/projectile.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 
 namespace core {
-  class SimpleProjectile : public SpaceObject {
+  class SimpleProjectile : public Projectile {
   private:
     const double max_duration;
     double cur_duration = 0;

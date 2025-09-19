@@ -52,6 +52,7 @@ set(CORELIB_SOURCES
   core/ship_actor.cpp
 
   core/objects/space_object.cpp
+  core/objects/projectile.cpp
   core/objects/simple_projectile.cpp
 )
 
