@@ -10,7 +10,7 @@ namespace core {
              std::string sprite_name,
              std::vector<std::shared_ptr<parts::TriggerModule>> trigger_modules)
              : name(name), core(core) {
-    //FIXME: give a default texture in case of failure, don't cause
+    // FIXME: give a default texture in case of failure, don't cause
     // a null pointer dereference or an any other exception
     // and instead just return some silly missing ship texture
     sprite = assets::SpriteManager::getShipSprite(sprite_name);

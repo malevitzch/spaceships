@@ -14,7 +14,7 @@ namespace core {
     std::shared_ptr<Ship> ship;
     std::shared_ptr<controls::Controller> controller;
 
-    //TODO: for now the default team is 1, team 0 
+    // TODO: for now the default team is 1, team 0 
     // is for the "local" player
     // in the future teams might be a bit more complicated than just
     // a single integer but its ok for now

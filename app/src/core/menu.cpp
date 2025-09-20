@@ -59,7 +59,7 @@ namespace core {
 
     ships.push_back(std::make_shared<Ship>(
       "Maw Mk. 1",
-      std::make_shared<parts::SimpleCore>(50, 4),
+      std::make_shared<parts::SimpleCore>(50, 1),
       "Maw",
       maw_modules));
 
