@@ -52,10 +52,16 @@ namespace core {
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
 
+    std::vector<std::shared_ptr<parts::TriggerModule>> maw_modules = 
+    {
+        Factory::getTriggerModule("TwinLasers", 1),
+    };
+
     ships.push_back(std::make_shared<Ship>(
       "Maw Mk. 1",
       std::make_shared<parts::SimpleCore>(50, 4),
-      "Maw"));
+      "Maw",
+      maw_modules));
 
     std::vector<std::shared_ptr<parts::TriggerModule>> phage_modules =
     {

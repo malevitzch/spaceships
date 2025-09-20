@@ -1,4 +1,5 @@
 #include "parts/modules/configs/projectile_config.hpp"
+#include "logs/logger.hpp"
 #include <random>
 #include <algorithm>
 
@@ -7,10 +8,12 @@ namespace parts {
     ProjectileConfig::spawn(util::Vec2d source,
                             util::Angle direction,
                             util::Vec2d initial_velocity) const {
-    //TODO: decide something about the number generator, for now this is enough
+    // TODO: decide something about the random number generator,
+    // but for now this is enough
     static std::mt19937 rng(std::random_device{}());
     static std::normal_distribution<double> dist(0.0, 0.3);
 
+    source += offset.rotated(direction);
 
     std::vector<std::shared_ptr<core::SpaceObject>> res;
     for(int i = 0; i < count; i++) {
@@ -21,7 +24,7 @@ namespace parts {
           sprite_name,
           source,
           util::Vec2d(velocity, target_angle) + initial_velocity,
-          util::Vec2d(0, 0), //TODO: investigate what this is (probably acceleration)
+          util::Vec2d(0, 0),
           target_angle,
           duration));
     }
@@ -33,7 +36,8 @@ namespace parts {
     if(data.contains("sprite_name")) {
       config.sprite_name = data["sprite_name"];
     } else {
-      //FIXME: sprite name is mandatory (or at least there should be a default
+      logs::Logger::logError("Projectile without sprite name");
+      // FIXME: sprite name is mandatory (or at least there should be a default
       // stock sprite that is used rather than an empty string)
     }
     if(data.contains("count")) {
@@ -50,6 +54,11 @@ namespace parts {
     }
     if(data.contains("rotation")) {
       config.rotation = data["rotation"];
+    }
+    if(data.contains("offset")) {
+      // TODO:validate if offset is a composite type
+      if(data["offset"].contains("x")) config.offset.x = data["offset"]["x"];
+      if(data["offset"].contains("y")) config.offset.y = data["offset"]["y"];
     }
 
     return config;
