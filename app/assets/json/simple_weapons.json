@@ -1,6 +1,37 @@
 [
   {
     "type": "simpleweapon",
+    "name": "TwinLasers",
+    "cooldown": 0.1,
+    "anchor": {
+      "offset": {
+        "x": 55,
+        "y": 0
+      }
+    },
+    "projectiles": [
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "duration": 1.5,
+        "offset": {
+          "x": -48,
+          "y": 35
+        }
+      },
+      {
+        "sprite_name": "RedLaserBolt",
+        "velocity": 1250,
+        "duration": 1.5,
+        "offset": {
+          "x": -48,
+          "y": -35
+        }
+      }
+    ]
+  },
+  {
+    "type": "simpleweapon",
     "name": "LaserWeapon",
     "cooldown": 0.2,
     "anchor": {

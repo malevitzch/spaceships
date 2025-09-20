@@ -16,6 +16,7 @@ namespace parts {
     double duration = 2; // Duration in seconds
     double spread = 0.0; // Spread is in RADIANS
     double rotation = 0.0; // In radians too
+    util::Vec2d offset = {0.0, 0.0};
 
     std::vector<std::shared_ptr<core::SpaceObject>> spawn(
       util::Vec2d source,

@@ -104,7 +104,7 @@ namespace assets {
       return false;
     }
     for(auto& sprite_data : data["sprites"]) {
-      //TODO: error handle inside
+      // TODO: error handle inside
       projectile_sprites[sprite_data["name"]] = {
         sprite_data["filename"],
         {sprite_data["size"]["x"], sprite_data["size"]["y"]},
