@@ -5,7 +5,7 @@
 #include "nlohmann/json.hpp"
 
 #include "anchor.hpp"
-#include "projectile_config.hpp"
+#include "simple_projectile_config.hpp"
 
 namespace parts {
 

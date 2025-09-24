@@ -1,4 +1,4 @@
-#include "parts/modules/configs/projectile_config.hpp"
+#include "parts/modules/configs/simple_projectile_config.hpp"
 #include "logs/logger.hpp"
 #include <random>
 #include <algorithm>

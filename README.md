@@ -2,6 +2,7 @@
 A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++, with SFML3 being used for graphics.
 # todo
 ## fixes
+- Replace the current ProjectileConfig with SimpleProjectileConfig, inheriting from new ProjectileConfig which contains only shared behavior of projectiles
 - Consider having weapon anchors not be a part of the weapon itself but rather be customizable
 - Consider using engine transforms in SimpleCore and OmniCore
 - Battle should have its own file, not game.cpp since game.cpp would eventually contain more things
@@ -9,6 +10,7 @@ A 2D space combat game inspired by Reassembly and Event Horizon. Made using C++,
 - Clean up the "core" directory because it contains too many slightly unrelated files, probably needs splitting into subdirectories
 
 ## features
+- PayloadProjectile which spawns other projectiles when it expires
 - A "StrafeCore" which turns towards mouse and can use left-right commands with side thrusters to move laterally
 - Ship buff / debuff system to allow applying things such as "angular velocity in a certain direction for X seconds"
 - Ships created from json rather than by hand in code
