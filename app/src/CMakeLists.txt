@@ -22,7 +22,7 @@ set(PARTSLIB_SOURCES
 
   parts/modules/configs/anchor.cpp
   parts/modules/configs/simple_weapon_config.cpp
-  parts/modules/configs/projectile_config.cpp
+  parts/modules/configs/simple_projectile_config.cpp
 )
 
 set(PHYSICSLIB_SOURCES

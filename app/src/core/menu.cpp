@@ -128,15 +128,28 @@ namespace core {
           break;
         } else if (
           const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-          if(keyPressed->scancode == sf::Keyboard::Scancode::A) {
-            selection_index =
-              (ships.size() + selection_index + 1) % ships.size();
-          } else if(keyPressed->scancode == sf::Keyboard::Scancode::D) {
-            selection_index =
-              (ships.size() + selection_index - 1) % ships.size();
-          } else if(keyPressed->scancode == sf::Keyboard::Scancode::Space
-                   || keyPressed->scancode == sf::Keyboard::Scancode::Enter) {
-            return ships[(ships.size() - selection_index) % ships.size()];
+          using keys = sf::Keyboard::Scancode;
+          switch(keyPressed->scancode) {
+            case keys::A:
+              selection_index =
+                (ships.size() + selection_index + 1) % ships.size();
+              break;
+            case keys::D:
+              selection_index =
+                (ships.size() + selection_index - 1) % ships.size();
+              break;
+            case keys::Space:
+            case keys::Enter:
+              return ships[(ships.size() - selection_index) % ships.size()];
+              break;
+            case keys::Escape:
+              // FIXME: use the cleanup + close window function here
+              assets::TextureManager::reset();
+              assets::FontManager::reset();
+              window.close();
+              break;
+            default:
+              break;
           }
         }
       }
