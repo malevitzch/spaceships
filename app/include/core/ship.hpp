@@ -18,13 +18,13 @@ namespace core {
     Ship(std::string name,
          std::shared_ptr<parts::ShipCore> core,
          std::string sprite_name,
-         std::vector<std::shared_ptr<parts::TriggerModule>> trigger_modules = {});
+         std::vector<parts::TriggerModule*> trigger_modules = {});
 
     parts::ShipCore& getCore() const;
     util::Vec2d getPosition() const;
     util::Angle getAngle() const;
 
-    void addTriggerModule(std::shared_ptr<parts::TriggerModule> module);
+    void addTriggerModule(parts::TriggerModule* module);
 
     std::string getName() const;
 

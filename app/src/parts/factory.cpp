@@ -52,42 +52,36 @@ namespace parts {
 
 
   // sig_code is often irrelavant so it's -1 by default in the declaration
-  std::shared_ptr<TriggerModule> Factory::getTriggerModule(std::string name, int sig_code) {
+  TriggerModule* Factory::getTriggerModule(std::string name, int sig_code) {
     if(simple_weapons.contains(name)) {
-      std::shared_ptr<TriggerModule> module =
-        std::make_shared<SimpleWeapon>(sig_code, simple_weapons.at(name));
+      TriggerModule* module =
+        new SimpleWeapon(sig_code, simple_weapons.at(name));
       return module;
     }
 
-    std::shared_ptr<TriggerModule> dummy = std::make_shared<DummyTriggerModule>();
+    TriggerModule* dummy = new DummyTriggerModule();
     logs::Logger::logError("Unknown module \"" + name + "\"."
                            " A dummy will be used instead");
     return dummy;
   }
-  std::shared_ptr<NullBrake> Factory::getNullBrake(int signal_code,
-                                                   double cooldown,
-                                                   double efficiency,
-                                                   double angular_efficiency) {
-    return std::make_shared<NullBrake>(signal_code, cooldown,
-                                       efficiency, angular_efficiency);
+  NullBrake* Factory::getNullBrake(int signal_code,
+                                   double cooldown,
+                                   double efficiency,
+                                   double angular_efficiency) {
+    return new NullBrake(signal_code, cooldown, efficiency, angular_efficiency);
   }
-  std::shared_ptr<VelocityRedirector> Factory::getVelocityRedirector(
+  VelocityRedirector* Factory::getVelocityRedirector(
         int signal_code,
         double cooldown,
         double efficiency) {
-    return std::make_shared<VelocityRedirector>(signal_code,
-                                                cooldown,
-                                                efficiency);
+    return new VelocityRedirector(signal_code, cooldown, efficiency);
   }
-  std::shared_ptr<CentrifugalSlingshot> Factory::getCentrifugalSlingshot(
+  CentrifugalSlingshot* Factory::getCentrifugalSlingshot(
         int signal_code,
         double cooldown,
         double multiplier,
         double efficiency) {
-    return std::make_shared<CentrifugalSlingshot>(signal_code,
-                                                  cooldown,
-                                                  multiplier,
-                                                  efficiency);
+    return new CentrifugalSlingshot(signal_code, cooldown, multiplier, efficiency);
   }
 
 

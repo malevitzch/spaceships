@@ -8,7 +8,7 @@ namespace core {
   Ship::Ship(std::string name,
              std::shared_ptr<parts::ShipCore> core,
              std::string sprite_name,
-             std::vector<std::shared_ptr<parts::TriggerModule>> trigger_modules)
+             std::vector<parts::TriggerModule*> trigger_modules)
              : name(name), core(core) {
     // FIXME: give a default texture in case of failure, don't cause
     // a null pointer dereference or an any other exception
@@ -26,7 +26,7 @@ namespace core {
     return getCore().getAngle();
   }
 
-  void Ship::addTriggerModule(std::shared_ptr<parts::TriggerModule> module) {
+  void Ship::addTriggerModule(parts::TriggerModule* module) {
     core->addTriggerModule(module);
   }
 

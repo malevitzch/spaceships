@@ -19,13 +19,17 @@ namespace parts {
     }
   }
 
-  void ShipCore::addTriggerModule(std::shared_ptr<TriggerModule> module) {
+  void ShipCore::addTriggerModule(TriggerModule* module) {
     module->setCore(*this);
     trigger_modules.push_back(std::move(module));
   }
 
   ShipCore::ShipCore() :
     PhysicsObject(std::make_unique<CappedTransform>(10000, 15)) {}
+
+  ShipCore::~ShipCore() {
+    for(auto& ptr : trigger_modules) delete ptr;
+  }
 
   void ShipCore::resetState() {
     physics::PhysicsObject::resetTransform();
