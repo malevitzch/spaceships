@@ -14,20 +14,20 @@ namespace parts {
     static void loadTriggerModules(std::vector<std::string> filenames);
     static void init(std::vector<std::string> filenames);
     // FIXME: this only supports simple weapons for now
-    static std::shared_ptr<TriggerModule> getTriggerModule(std::string name,
+    static TriggerModule* getTriggerModule(std::string name,
                                                            int sig_code = -1);
 
-    static std::shared_ptr<NullBrake> getNullBrake(int signal_code,
+    static NullBrake* getNullBrake(int signal_code,
                                                    double cooldown,
                                                    double efficiency = 1.0,
                                                    double angular_efficiency = 1.0);
 
-    static std::shared_ptr<VelocityRedirector> getVelocityRedirector(
+    static VelocityRedirector* getVelocityRedirector(
       int signal_code,
       double cooldown,
       double efficiency = 1.0);
 
-    static std::shared_ptr<CentrifugalSlingshot> getCentrifugalSlingshot(
+    static CentrifugalSlingshot* getCentrifugalSlingshot(
       int signal_code,
       double cooldown,
       double multiplier = 50.0,

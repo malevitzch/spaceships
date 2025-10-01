@@ -52,7 +52,7 @@ namespace core {
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
 
-    std::vector<std::shared_ptr<parts::TriggerModule>> maw_modules = 
+    std::vector<parts::TriggerModule*> maw_modules = 
     {
         Factory::getTriggerModule("TwinLasers", 1),
     };
@@ -63,7 +63,7 @@ namespace core {
       "Maw",
       maw_modules));
 
-    std::vector<std::shared_ptr<parts::TriggerModule>> phage_modules =
+    std::vector<parts::TriggerModule*> phage_modules =
     {
       Factory::getNullBrake(1, 2),
       Factory::getVelocityRedirector(2, 1, 0.7),

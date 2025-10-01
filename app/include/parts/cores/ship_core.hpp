@@ -19,7 +19,7 @@ namespace parts {
     public physics::PhysicsObject {
   private:
   protected:
-    std::vector<std::shared_ptr<TriggerModule>> trigger_modules;
+    std::vector<TriggerModule*> trigger_modules;
     void broadcastSignal(int code);
     void broadcastSignal(int code, std::vector<std::string> args);
     void broadcastSignal(Signal signal);
@@ -27,10 +27,10 @@ namespace parts {
     core::Battle* battle;
   public:
     ShipCore();
-
+    ~ShipCore();
     //FIXME: this should allow for some nicer argument passing
     // and not require the creation of unique_ptr to the object
-    void addTriggerModule(std::shared_ptr<TriggerModule> module);
+    void addTriggerModule(TriggerModule* module);
 
     // Any override of this function should call the parent version
     // in 99.9% of situations
