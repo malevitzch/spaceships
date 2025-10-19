@@ -45,6 +45,18 @@ namespace parts {
     }
   }
 
+  TriggerModule* Factory::getTriggerModuleFromJSON(nlohmann::json data) {
+    // FIXME: this should correctly identify module type and proceed accordinaly
+  }
+
+  std::vector<TriggerModule*> Factory::getTriggerModulesFromJSON(nlohmann::json data) {
+    std::vector<TriggerModule*> modules;
+    for(nlohmann::json& module_data : data) {
+      TriggerModule* module = getTriggerModuleFromJSON(module_data);
+      if(module) modules.push_back(module);
+    }
+  }
+
   void Factory::init(std::vector<std::string> filenames) {
     // FIXME: make this more flexible
     loadTriggerModules(filenames);
