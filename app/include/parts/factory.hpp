@@ -13,6 +13,7 @@ namespace parts {
   public:
     static void loadTriggerModules(std::vector<std::string> filenames);
     static TriggerModule* getTriggerModuleFromJSON(nlohmann::json data);
+    static ShipCore* getCoreFromJSON(nlohmann::json data);
     static std::vector<TriggerModule*> getTriggerModulesFromJSON(nlohmann::json data);
     static void init(std::vector<std::string> filenames);
     // FIXME: this only supports simple weapons for now
