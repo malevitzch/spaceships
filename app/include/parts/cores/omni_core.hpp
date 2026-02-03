@@ -22,6 +22,7 @@ namespace parts {
     bool dampener = true;
 
   public:
+    // FIXME: angular thrust
     OmniCore(double front_thrust, double back_thrust, double side_thrust);
     virtual void physicsTick(double dt) override;
 

@@ -3,6 +3,7 @@
 #include "logs/logger.hpp"
 #include "parts/modules/centrifugal_slingshot.hpp"
 
+#include "parts/cores.hpp"
 
 #include <fstream>
 
@@ -45,12 +46,50 @@ namespace parts {
     }
   }
 
+  TriggerModule* Factory::getTriggerModuleFromJSON(nlohmann::json data) {
+    // FIXME: this should correctly identify module type and proceed accordinaly
+  }
+
+  std::vector<TriggerModule*> Factory::getTriggerModulesFromJSON(nlohmann::json data) {
+    std::vector<TriggerModule*> modules;
+    for(nlohmann::json& module_data : data) {
+      TriggerModule* module = getTriggerModuleFromJSON(module_data);
+      if(module) modules.push_back(module);
+    }
+  }
+
   void Factory::init(std::vector<std::string> filenames) {
     // FIXME: make this more flexible
     loadTriggerModules(filenames);
   }
 
-
+  ShipCore* Factory::getCoreFromJSON(nlohmann::json data) {
+    // FIXME: return nullptr if this fails
+    std::string core_type = data["type"];
+    
+    // TODO: do not require full initialization and use defaults instead
+    // FIXME: warnings/errors on missing stuff
+    if(core_type == "simple") {
+      double thrust = data["thrust"];
+      double angular_thrust = data["angular_thrust"];
+      return new SimpleCore(thrust, angular_thrust);
+    }
+    else if(core_type == "mouse") {
+      double thrust = data["thrust"];
+      double angular_thrust = data["angular_thrust"];
+      return new MouseCore(thrust, angular_thrust);
+    }
+    else if(core_type == "omni") {
+      // FIXME: add angular thrust
+      double front_thrust = data["front_thrust"];
+      double back_thrust = data["back_thrust"];
+      double side_thrust = data["side_thrust"];
+      return new OmniCore(front_thrust, back_thrust, side_thrust);
+    }
+    else {
+      return nullptr;
+    }
+  }
   // sig_code is often irrelavant so it's -1 by default in the declaration
   TriggerModule* Factory::getTriggerModule(std::string name, int sig_code) {
     if(simple_weapons.contains(name)) {
