@@ -1,0 +1,6 @@
+*
+!app/
+!app/**
+!CMakeLists.txt
+!LICENSE
+!README.md
