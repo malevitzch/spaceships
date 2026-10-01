@@ -3,7 +3,7 @@
 #include "logs/logger.hpp"
 #include "parts/modules/centrifugal_slingshot.hpp"
 
-#include "parts/cores.hpp"
+#include "parts/cores.hpp" // IWYU pragma: keep
 
 #include <fstream>
 
@@ -66,7 +66,7 @@ namespace parts {
   ShipCore* Factory::getCoreFromJSON(nlohmann::json data) {
     // FIXME: return nullptr if this fails
     std::string core_type = data["type"];
-    
+
     // TODO: do not require full initialization and use defaults instead
     // FIXME: warnings/errors on missing stuff
     if(core_type == "simple") {

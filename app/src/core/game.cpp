@@ -3,7 +3,6 @@
 #include "assets/font_manager.hpp"
 #include "assets/texture_manager.hpp"
 #include "controls/controllers/player_controller.hpp"
-#include "core/objects/simple_projectile.hpp"
 #include <algorithm>
 #include <chrono>
 #include <iterator>
@@ -12,7 +11,6 @@
 
 namespace core {
 
-  using util::Vec2d;
 
   Battle::Battle(sf::RenderWindow& window) : window(window), camera(window) {}
   void Battle::start() {
@@ -39,7 +37,7 @@ namespace core {
       processEvents();
       // If the processing of events causes the window to close,
       // we need to immediately exit the loop because SFML textures
-      // require a valid OpenGL context which (on some systems) 
+      // require a valid OpenGL context which (on some systems)
       // is destroyed when the window is closed
       if(!window.isOpen()) break;
 

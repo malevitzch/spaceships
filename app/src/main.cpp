@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/System/Clock.hpp>
-#include <fstream>
 #include "assets/font_manager.hpp"
 #include "assets/sprite_manager.hpp"
 #include "assets/texture_manager.hpp"
@@ -12,7 +11,6 @@
 #include "core/ship_actor.hpp"
 
 
-#include "parts/cores.hpp"
 #include "parts/factory.hpp"
 #include "core/ship.hpp"
 
@@ -61,7 +59,7 @@ int main() {
     /*
     std::shared_ptr<controls::EnemyController> enemy_controller
       = std::make_shared<controls::EnemyController>();
-    std::shared_ptr<core::Ship> enemy_ship 
+    std::shared_ptr<core::Ship> enemy_ship
       = std::make_shared<core::Ship>("Phage Mk. 1",
                                      std::make_shared<parts::SimpleCore>(50, 4),
                                      "Phage");

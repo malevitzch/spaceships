@@ -1,17 +1,13 @@
 #include "core/menu.hpp"
 #include "assets/texture_manager.hpp"
-#include "parts/cores.hpp"
+#include "parts/cores.hpp" // IWYU pragma: keep
 #include "parts/factory.hpp"
-#include "parts/modules/simple_weapon.hpp"
-#include "parts/modules/velocity_redirector.hpp"
 #include "utility/angle.hpp"
 #include "utility/vec2d.hpp"
 #include "assets/font_manager.hpp"
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <memory>
-
-#include "parts/modules/null_brake.hpp"
 
 namespace core {
   using util::Vec2d;
@@ -52,7 +48,7 @@ namespace core {
       std::make_shared<parts::SimpleCore>(50, 4),
       "Phage"));
 
-    std::vector<parts::TriggerModule*> maw_modules = 
+    std::vector<parts::TriggerModule*> maw_modules =
     {
         Factory::getTriggerModule("TwinLasers", 1),
     };
@@ -118,7 +114,7 @@ namespace core {
     while(window.isOpen() && ship == nullptr) {
       while(const std::optional event = window.pollEvent()) {
         // Keys A-D are used to move the selection left or right
-        // And Space/Enter is used to select the ship currently in the middle 
+        // And Space/Enter is used to select the ship currently in the middle
         if(event->is<sf::Event::Closed>()) {
           // FIXME: this should perhaps be some global function that just
           // frees all assets

@@ -44,7 +44,7 @@ namespace physics {
   }
 
   util::Vec2d PhysicsObject::getAcceleration() const {
-    return transform->position;
+    return transform->acceleration;
   }
   double PhysicsObject::getAccelerationX() const {
     return getAcceleration().x;

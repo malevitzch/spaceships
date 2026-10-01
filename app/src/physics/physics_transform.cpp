@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <numbers>
 #include <cmath>
 
 #include "physics/physics_transform.hpp"
@@ -11,7 +10,7 @@ namespace physics {
     util::Vec2d acceleration,
     util::Angle angle,
     double angular_velocity,
-    double angular_acceleration) 
+    double angular_acceleration)
     :
     position(position),
     velocity(velocity),
@@ -95,7 +94,7 @@ namespace physics {
     double angular_velocity,
     double angular_acceleration,
     double velocity_cap,
-    double angular_velocity_cap) 
+    double angular_velocity_cap)
   :
   PhysicsTransform(
     position,

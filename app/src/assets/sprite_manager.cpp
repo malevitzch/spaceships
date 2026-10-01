@@ -2,7 +2,6 @@
 #include "assets/paths.hpp"
 #include "nlohmann/json.hpp"
 #include <fstream>
-#include <stdexcept>
 
 #include "logs/logger.hpp"
 
