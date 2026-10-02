@@ -15,7 +15,7 @@ namespace assets {
     static void loadFont(std::string name, std::string path);
   public:
     static void init();
-    static std::shared_ptr<sf::Font> getFont(std::string name);
+    static std::shared_ptr<sf::Font> getFont(std::string name, std::string default_name = "orbitron");
     static void reset();
   };
 }

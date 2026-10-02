@@ -33,11 +33,17 @@ namespace assets {
     }
   }
 
-  std::shared_ptr<sf::Font> FontManager::getFont(std::string name) {
+  std::shared_ptr<sf::Font> FontManager::getFont(std::string name, std::string default_name) {
 
     if(!font_paths.contains(name)) {
-      logs::Logger::logError("Couldn't find font \"" + name + "\"");
-      // FIXME: default font
+      if(name != "orbitron") {
+        logs::Logger::logError("Couldn't find font \"" + name + "\", defaulting to " + default_name);
+        return getFont("orbitron");
+      } else {
+        logs::Logger::logError("Couldn't find font \"" + name + "\", aborting...");
+        // TODO: exception handling?
+        throw std::runtime_error("Couldn't find font \"" + name + "\"");
+      }
     }
 
     return fonts[name];
