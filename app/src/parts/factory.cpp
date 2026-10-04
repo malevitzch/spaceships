@@ -9,53 +9,79 @@
 
 namespace parts {
   std::map<std::string, SimpleWeaponConfig> Factory::simple_weapons;
-
-  void Factory::loadTriggerModules(std::vector<std::string> filenames) {
-
+  void Factory::loadTriggerModule(std::string filename) {
     using nlohmann::json;
-    std::string path = assets::paths::getAssetsPath() + "/json/";
+
+    std::ifstream datastream(filename);
+    if(!datastream) {
+      logs::Logger::logError("Couldn't open module file \"" + filename + "\"");
+      return;
+    }
+
+    json data;
+    try {
+      data = json::parse(datastream);
+    } catch(const json::parse_error& error) {
+      logs::Logger::logError("Failed to parse module file \"" + filename
+                             + "\": " + error.what());
+      return;
+    }
+
+    if(!data.is_array()) {
+      logs::Logger::logError("Expected an array of modules in file \""
+                             + filename + "\"");
+      return;
+    }
+
+    for(const json& module_data : data) {
+      getTriggerModuleFromJSON(module_data, filename);
+    }
+  }
+  void Factory::loadTriggerModules(std::vector<std::string> filenames) {
+    std::string asset_path = assets::paths::getAssetsPath() + "/json/";
     for(std::string filename : filenames) {
-      // TODO: this should perhaps get logged somewhere
-      // if we fail to open file or the json is faulty
-      std::ifstream datastream(path + filename);
-      json data = json::parse(datastream);
-      for(json& module_data : data) {
-        if(!module_data.contains("type")) {
-          logs::Logger::logError("Module missing type in file "
-                                  "\"" + filename + "\"");
-          continue;
-        }
-        if(module_data["type"] == "simpleweapon") {
-          SimpleWeaponConfig config = SimpleWeaponConfig::fromJson(module_data);
-          if(config.name == "___Anonymous___") {
-            logs::Logger::logWarning(
-              "Loading anonymous simple weapon from file"
-              "\"" + filename + "\" "
-              "(missing \"name\" field)");
-            continue;
-          }
-          simple_weapons[config.name] = config;
-        } else {
-          logs::Logger::logError("Unknown module type \""
-                                 + (std::string)module_data["type"] +
-                                "\" in file \"" + filename + "\"");
-
-
-        }
-      }
+      loadTriggerModule(asset_path + filename);
     }
   }
 
-  TriggerModule* Factory::getTriggerModuleFromJSON(nlohmann::json data) {
-    // FIXME: this should correctly identify module type and proceed accordinaly
-  }
-
-  std::vector<TriggerModule*> Factory::getTriggerModulesFromJSON(nlohmann::json data) {
-    std::vector<TriggerModule*> modules;
-    for(nlohmann::json& module_data : data) {
-      TriggerModule* module = getTriggerModuleFromJSON(module_data);
-      if(module) modules.push_back(module);
+  bool Factory::getTriggerModuleFromJSON(
+      nlohmann::json module_data, const std::string& source_filename) {
+    if(!module_data.is_object()) {
+      logs::Logger::logError("Expected a module object in file \""
+                             + source_filename + "\"");
+      return false;
     }
+
+    if(!module_data.contains("type") || !module_data["type"].is_string()) {
+      logs::Logger::logError("Module missing a string type in file \""
+                             + source_filename + "\"");
+      return false;
+    }
+
+    const std::string type = module_data["type"];
+    if(type != "simpleweapon") {
+      logs::Logger::logError("Unknown module type \"" + type
+                             + "\" in file \"" + source_filename + "\"");
+      return false;
+    }
+
+    SimpleWeaponConfig config;
+    try {
+      config = SimpleWeaponConfig::fromJson(module_data);
+    } catch(const nlohmann::json::exception& error) {
+      logs::Logger::logError("Invalid module in file \"" + source_filename
+                             + "\": " + error.what());
+      return false;
+    }
+
+    if(config.name == "___Anonymous___") {
+      logs::Logger::logWarning("Skipping anonymous simple weapon in file \""
+                               + source_filename + "\" (missing \"name\")");
+      return false;
+    }
+
+    simple_weapons[config.name] = std::move(config);
+    return true;
   }
 
   void Factory::init(std::vector<std::string> filenames) {

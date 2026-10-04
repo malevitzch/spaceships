@@ -3,7 +3,7 @@
 
 #include <map>
 #include "modules/configs/simple_weapon_config.hpp"
-#include "parts/modules.hpp"
+#include "parts/modules.hpp" // IWYU pragma: keep
 #include "parts/modules/centrifugal_slingshot.hpp"
 
 namespace parts {
@@ -11,10 +11,11 @@ namespace parts {
   private:
     static std::map<std::string, SimpleWeaponConfig> simple_weapons;
   public:
+    static void loadTriggerModule(std::string filename);
     static void loadTriggerModules(std::vector<std::string> filenames);
-    static TriggerModule* getTriggerModuleFromJSON(nlohmann::json data);
+    static bool getTriggerModuleFromJSON(
+      nlohmann::json data, const std::string& source_filename);
     static ShipCore* getCoreFromJSON(nlohmann::json data);
-    static std::vector<TriggerModule*> getTriggerModulesFromJSON(nlohmann::json data);
     static void init(std::vector<std::string> filenames);
     // FIXME: this only supports simple weapons for now
     static TriggerModule* getTriggerModule(std::string name,
